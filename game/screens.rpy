@@ -213,7 +213,7 @@ style input:
 screen choice(items):
     style_prefix "choice"
     frame:
-        xalign 0.05
+        xalign 0.95
         yalign 0.1
         xmaximum int(config.screen_width * 0.25)
         xminimum 220
@@ -237,7 +237,7 @@ screen choice(items):
 screen choice_hub(items):
     style_prefix "choice"
     frame:
-        xalign 0.05
+        xalign 0.95
         yalign 0.1
         xmaximum int(config.screen_width * 0.25)
         xminimum 220

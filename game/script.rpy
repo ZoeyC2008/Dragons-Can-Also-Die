@@ -62,33 +62,18 @@ label start:
             $ aloof += add_some
         "That was boring. Next.":
             $ aloof += add_most
+        
+    jump mirror_question_hub
 
-#mirror needs a variable to keep track of how many times we've been to the hub
-$ mirror_hub_count = 0
 
 label mirror_question_hub:
+    #show mirror_whole
     call hub_loop("mirror", 4)
     
     mirror "I see neither of us have any time left."
     mirror "I hope to see you soon, after I've rested."
-
-#the mirror's different apperances
-label mirror_one:
-    #show mirror_one
-    mirror "One."
-
-label mirror_two:
-    #show mirror_two
-    mirror "Two."
-
-label mirror_three:
-    #show mirror_three
-    mirror "Three."
-
-label mirror_four:
-    #show mirror_four
-    mirror "Four."
-
+    jump meet_boy
+    
 #Chapter 1
 label meet_boy:
     boy "Wake up!"
