@@ -36,6 +36,26 @@ init python:
             "requires":[]
         },
 
+                "mirror_wakeup":{
+            "title":"Wake up!",
+            "answer_lines":[
+                {"who":"mirror", 
+                "text":"...I see."},
+
+                {"who":"mirror", 
+                "text":"That is your choice"},
+
+                {"choices":[
+                    {"text":"Or, or maybe I don't want to.",
+                    "effects:":{"royal":add_little, "decon":add_little, "aloof":add_little}},
+                    {"text":"Wake up! Wake up! WAKE UP!",
+                    "jump_label":"mirror_end"}
+                ]}
+            ],
+            "hub":"mirror",
+            "requires":["mirror_leave"]
+        },
+
         "mirror_dream":{
             "title":"What is a dream within a dream?",
             "answer_lines":[
@@ -147,26 +167,6 @@ init python:
             "requires":["mirror_where"]
         },
 
-        "mirror_wakeup":{
-            "title":"Wake up!",
-            "answer_lines":[
-                {"who":"mirror", 
-                "text":"...I see."},
-
-                {"who":"mirror", 
-                "text":"That is your choice"},
-
-                {"choices":[
-                    {"text":"Or, or maybe I don't want to.",
-                    "effects:":{"royal":add_little, "decon":add_little, "aloof":add_little}},
-                    {"text":"Wake up! Wake up! WAKE UP!",
-                    "jump_label":"meet_boy"}
-                ]}
-            ],
-            "hub":"mirror",
-            "requires":["mirror_leave"]
-        },
-
         "mirror_what":{
             "title":"What are you?",
             "answer_lines":[
@@ -210,7 +210,7 @@ init python:
                 "text":"Later on, a hint of magic was added by my then keeper."},
 
                 {"who":"mirror", 
-                "text":"Theytold me to be free, as if that's something I can just be..."},
+                "text":"They told me to be free, as if that's something I can just be..."},
 
                 {"choices":[
                     {"text":"Aha, so you want to be me since I'm something you're not.", 
@@ -219,7 +219,7 @@ init python:
                     {"text":"So I'm talking to a magic mirror like the Evil Queen...fascinating.", 
                     "effects":{"decon":add_most}},
                     
-                    {"text":"You're keeper was foolish, an ordinary mirror, no matter how magic  was added can't be 'free', whatever that means.", 
+                    {"text":"You're keeper was foolish, an ordinary mirror, no matter how magic was added can be 'free', whatever that means.", 
                     "effects":{"royal":add_some, "aloof":add_some}},
                     
                     {"text":"I need not be concerned with what a former person wanted...but it doesn't feel--no, I am not concerned with...with that.", 
@@ -249,7 +249,8 @@ init python:
                     {"text":"I didn't want an easy way out, I wanted to know if I'm-I'm something or somesone--someone different! Not just a reflection in a mirror!", 
                     "effects":{"royal":add_some, "decon":add_some}},
                     
-                    {"text":"", "effects":{}}
+                    {"text":"So I'm not playing as a mirror...", 
+                    "effects":{"decon":add_most}}
                 ]}
             ],
             "hub":"mirror",

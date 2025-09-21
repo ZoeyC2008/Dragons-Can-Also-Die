@@ -151,8 +151,10 @@ label show_topic_answer:
     return
 
 default hub_loop_num = 0
+default hub_key = None
+default num_asks = 0
 
-label hub_loop(hub_key, num_asks):    
+label hub_loop:    
     # hub loop
     
     $ hub_loop_num = 0
@@ -161,6 +163,8 @@ label hub_loop(hub_key, num_asks):
         $ entries = unlocked_questions(hub_key)
         
         call screen choice_hub (items=entries)
+
+        call show_topic_answer
 
         if hub_key == "mirror":
             call mirror_reaction

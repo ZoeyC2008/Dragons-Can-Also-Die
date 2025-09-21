@@ -256,7 +256,7 @@ screen choice_hub(items):
                 spacing 20
                 # Add buttons for each choice
                 for tid, meta, locked in items:
-                    textbutton meta['title'] action [SetVariable("_current_topic", tid), Call("show_topic_answer")]
+                    textbutton meta['title'] action [SetVariable("_current_topic", tid), Return()]
 #    vbox:
 #        for i in items:
 #            textbutton i.caption action i.action
