@@ -9,6 +9,12 @@ init offset = -1
 ## Styles
 ################################################################################
 
+#I just want a scroll wheel and I think I'm supposed to put it here
+#Ren'py please just let me have a scroll wheel!
+
+
+#The rest of the default stuff
+
 style default:
     properties gui.text_properties()
     language gui.language
@@ -206,28 +212,57 @@ style input:
 
 screen choice(items):
     style_prefix "choice"
+    frame:
+        xalign 0.05
+        yalign 0.1
+        xmaximum int(config.screen_width * 0.25)
+        xminimum 220
+        ymaximum 540
+        background "#ffffff70"
 
-    vbox:
-        for i in items:
-            textbutton i.caption action i.action
+        # Scrollable area
+        viewport:
+            draggable True
+            mousewheel True
+            ymaximum 540
+            xmaximum 450
+
+            vbox:
+                align (0.5, 0.5)
+                spacing 20
+                # Add buttons for each choice
+                for i in items:
+                    textbutton i.caption action i.action
+#    vbox:
+#        for i in items:
+#            textbutton i.caption action i.action
 
 
-style choice_vbox is vbox
-style choice_button is button
-style choice_button_text is button_text
-
-style choice_vbox:
+#style choice_vbox is vbox
+style choice_button:
+    xmaximum 450
+    xminimum 450
+    yminimum 50
+    background "#444"
+    padding (7, 7)
     xalign 0.5
-    ypos 405
-    yanchor 0.5
+style choice_button_text:
+    xalign 0.5
+    yalign 0.5
 
-    spacing gui.choice_spacing
 
-style choice_button is default:
-    properties gui.button_properties("choice_button")
+#style choice_vbox:
+#    xalign 0.5
+#    ypos 405
+#    yanchor 0.5
 
-style choice_button_text is default:
-    properties gui.text_properties("choice_button")
+#    spacing gui.choice_spacing
+
+#style choice_button is default:
+#    properties gui.button_properties("choice_button")
+
+#style choice_button_text is default:
+#    properties gui.text_properties("choice_button")
 
 
 ## Quick Menu screen ###########################################################

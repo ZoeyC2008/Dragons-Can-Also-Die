@@ -3,50 +3,81 @@
 # Declare characters used by this game. The color argument colorizes the
 # name of the character.
 
+#define dynamic colour, cause deconstructed wants to be weird
+define drgn_decon_color = "#000000"
+
+#define dynamic names: (i think this works?)
+define boy_name = "The Boy" #Boy is namable by the player, real name is Sasha
+define sojourn_name = "Man in Midst of Sojourn: 噩梦" #With 'e's: The Sojourner: E Meng
+define mirror_name = "The Mirror" #In recover the past ending, The Mirror: Ilia
+
+
 #@Naomi are we putting char in front of the characters? e.g. char_boy??
-define mirror = Character("The Mirror")
-define boy = Character("The Boy" + boy_name)
-define wolf = Character("The Wolf:")
-define wizard = Character("The Wizard: Bea")
-define innkeeper = Character("The Innkeeper: Pepper")
-define shephed = Character("Herd Shep: Rath'la Dnar")
-define sojourn = Character(sojourn_name)
-define miller_son = Character("Miller's Mischieveous Moppet: Much")
-define drgn_classic = Character("Classic Dragon") #@Naomi is Furious better than Classic?
-define drgn_sad = Character("Depressed Dragon") #logic here is that decon also starts with d
-define drgn_happy = Character("Joyous Dragon")
-define degn_decon = Character("drgn_decon") #I think it makes sense for decon to use her in code name
+define mirror = Character(mirror_name)
+define boy = Character(boy_name, color="#ba0f0a")
+define wolf = Character("The Wolf:", color="#90a3b0")
+define wizard = Character("The Wizard: Bea", color="#6f4685")
+define innkeeper = Character("The Innkeeper: Pepper", color="#028a0f")
+define shephed = Character("Herd Shep: Rath'la Dnar", color="#ffda03")
+define sojourn = Character(sojourn_name, color="#001f3d")
+define miller_son = Character("Miller's Mischieveous Moppet: Much", color="#be5504")
+define drgn_classic = Character("Traditional Dragon", color="#ff2400") #@Naomi is Furious better than Classic or Traditional?
+define drgn_sad = Character("Depressed Dragon", color="#2c3e4c") #logic here is that decon also starts with d
+define drgn_happy = Character("Joyous Dragon", color="#0492c2")
+define degn_decon = Character("drgn_decon", color=drgn_decon_color) #I think it makes sense for decon to use her in code name
 
+#Game variables (the idea is that these dictate what dragon you get)
+init python:
+    royal = 0 #depressed, a classic subversion for a classic prince/ss
+    aloof = 0 #happy, you have to be grounded to enjoy life, don't be aloof all the time
+    decon = 0 #classic, it's not a proper deconstruction if everything is different
+    #if none of the thresholds are met, deconstructed since you haven't made personality choices
 
-#Some characters need different names
-$ boy_name = ""
-#Boy is namable and he'll later choose Sasha
-$ sojourn_name = "Man in Midst of Sojourn: 噩梦" 
-#This will change to The Sojourner: E Meng when he's telling the stories of his journey
-
+    #amount to add
+    add_most = 16
+    add_some = 10
+    add_little = 6
+    add_tiny = 2
+    subtract_tiny = -2
+    threshold = 40
 
 # The game starts here.
-
+#Chapter 0
 label start:
 
-    # Show a background. This uses a placeholder by default, but you can
-    # add a file (named either "bg room.png" or "bg room.jpg") to the
-    # images directory to show it.
+    #shadow puppet of a prince and princess
 
-    scene bg room
+    #initial choices
+    "...And so they lived, happily ever after."
+    
+    #first menu, mirror opening
+    menu:
+        "That was lovely. I'm glad they found joy after all their hardships.":
+            $ royal += add_most
+        "That is such a cliche. Happily ever after doesn't exist, it's just a tad unrealistic.":
+            $ decon += add_most
+        "I don't care. There was nothing for me to be emotionally invested in, thus 'happily ever after' doesn't matter one bit.":
+            $ decon += add_some
+            $ aloof += add_some
+        "That was boring. Next.":
+            $ aloof += add_most
 
-    # This shows a character sprite. A placeholder is used, but you can
-    # replace it by adding a file named "eileen happy.png" to the images
-    # directory.
+#mirror needs a variable to keep track of how many times we've been to the hub
+$ mirror_hub_count = 0
 
-    show eileen happy
+label mirror_question_hub:
+    call hub_loop("mirror", 4)
+    
+    mirror "I see neither of us have any time left. I hope to see you soon, after I've rested."
 
-    # These display lines of dialogue.
 
-    e "You've created a new Ren'Py game."
+#Chapter 1
+label meet_boy:
+    boy "Wake up!"
+    
 
-    e "Once you add a story, pictures, and music, you can release it to the world!"
-
+#kinda just ignoring the whole ending thing
+label ending:
     # This ends the game.
 
     return
