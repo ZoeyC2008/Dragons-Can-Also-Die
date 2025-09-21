@@ -3,17 +3,17 @@
 # Declare characters used by this game. The color argument colorizes the
 # name of the character.
 
-#define dynamic colour, cause deconstructed wants to be weird
+#make dynamic colour, cause deconstructed wants to be weird
 define drgn_decon_color = "#000000"
 
-#define dynamic names: (i think this works?)
+#make dynamic names: (i think this works?)
 define boy_name = "The Boy" #Boy is namable by the player, real name is Sasha
 define sojourn_name = "Man in Midst of Sojourn: 噩梦" #With 'e's: The Sojourner: E Meng
 define mirror_name = "The Mirror" #In recover the past ending, The Mirror: Ilia
 
 
 #@Naomi are we putting char in front of the characters? e.g. char_boy??
-define mirror = Character(mirror_name)
+define mirror = Character(mirror_name, color="#e0dddd")
 define boy = Character(boy_name, color="#ba0f0a")
 define wolf = Character("The Wolf:", color="#90a3b0")
 define wizard = Character("The Wizard: Bea", color="#6f4685")
@@ -27,12 +27,13 @@ define drgn_happy = Character("Joyous Dragon", color="#0492c2")
 define degn_decon = Character("drgn_decon", color=drgn_decon_color) #I think it makes sense for decon to use her in code name
 
 #Game variables (the idea is that these dictate what dragon you get)
-init python:
-    royal = 0 #depressed, a classic subversion for a classic prince/ss
-    aloof = 0 #happy, you have to be grounded to enjoy life, don't be aloof all the time
-    decon = 0 #classic, it's not a proper deconstruction if everything is different
+
+default royal = 0 #depressed, a classic subversion for a classic prince/ss
+default aloof = 0 #happy, you have to be grounded to enjoy life, don't be aloof all the time
+default decon = 0 #classic, it's not a proper deconstruction if everything is different
     #if none of the thresholds are met, deconstructed since you haven't made personality choices
 
+init python:
     #amount to add
     add_most = 16
     add_some = 10
@@ -51,7 +52,7 @@ label start:
     "...And so they lived, happily ever after."
     
     #first menu, mirror opening
-    menu:
+    menu mirror_opening:
         "That was lovely. I'm glad they found joy after all their hardships.":
             $ royal += add_most
         "That is such a cliche. Happily ever after doesn't exist, it's just a tad unrealistic.":
@@ -68,12 +69,30 @@ $ mirror_hub_count = 0
 label mirror_question_hub:
     call hub_loop("mirror", 4)
     
-    mirror "I see neither of us have any time left. I hope to see you soon, after I've rested."
+    mirror "I see neither of us have any time left."
+    mirror "I hope to see you soon, after I've rested."
 
+#the mirror's different apperances
+label mirror_one:
+    #show mirror_one
+    mirror "One."
+
+label mirror_two:
+    #show mirror_two
+    mirror "Two."
+
+label mirror_three:
+    #show mirror_three
+    mirror "Three."
+
+label mirror_four:
+    #show mirror_four
+    mirror "Four."
 
 #Chapter 1
 label meet_boy:
     boy "Wake up!"
+    boy "Check values [royal], [decon], [aloof]"
     
 
 #kinda just ignoring the whole ending thing
