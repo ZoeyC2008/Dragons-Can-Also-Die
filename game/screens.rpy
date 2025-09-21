@@ -233,6 +233,30 @@ screen choice(items):
                 # Add buttons for each choice
                 for i in items:
                     textbutton i.caption action i.action
+
+screen choice_hub(items):
+    style_prefix "choice"
+    frame:
+        xalign 0.05
+        yalign 0.1
+        xmaximum int(config.screen_width * 0.25)
+        xminimum 220
+        ymaximum 540
+        background "#ffffff70"
+
+        # Scrollable area
+        viewport:
+            draggable True
+            mousewheel True
+            ymaximum 540
+            xmaximum 450
+
+            vbox:
+                align (0.5, 0.5)
+                spacing 20
+                # Add buttons for each choice
+                for tid, meta, locked in items:
+                    textbutton meta['title'] action [SetVariable("_current_topic", tid), Call("show_topic_answer")]
 #    vbox:
 #        for i in items:
 #            textbutton i.caption action i.action
@@ -247,8 +271,9 @@ style choice_button:
     padding (7, 7)
     xalign 0.5
 style choice_button_text:
-    xalign 0.5
+    xalign 0.0
     yalign 0.5
+    layout "subtitle"
 
 
 #style choice_vbox:

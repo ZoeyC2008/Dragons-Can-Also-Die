@@ -3,28 +3,12 @@
 
 # Make sure this default exists so screens can read/write it.
 default _current_topic = None
+default asked_questions = []
+
 
 init 1 python:
-    #import renpy
-
-    # NOTE: `questions` must already be defined (in another file) before this init runs.
-    # If it's not, move this init to run after that file or define questions earlier.
-
-    # --- runtime state ---
-    # store asked questions as a set for fast membership tests
-    #if not hasattr(store, "asked_questions"):
-    #    asked_questions = set()
-    #else:
-    #    asked_questions = set(store.asked_questions)
-
-    # convenience list of question ids (not required, but handy)
+    #variables
     question_list = list(questions.keys())
-    asked_questions = []
-
-    # --- storage initialization (put in an init block or at top-level) ---
-    # ensure the saved list exists (Ren'Py store uses RevertableList)
-    #if not hasattr(store, "asked_questions"):
-    #    store.asked_questions = []   # persists as a list in saves
 
     # --- helper functions ---
 
@@ -39,30 +23,27 @@ init 1 python:
     def unlocked_questions(hub_key):
         out = []
         for key, meta in questions.items():
+            #if it's not the right hub, don't retrieve it!
             if meta.get("hub") != hub_key:
                 continue
+            #avoid repeats (i'll need to figure out a way to ignore this for wolf & sojourn)
+            if key in asked_questions:
+                continue
+
+            #i'm afraid to mess with locked, but i'm think this is just a requiremnets check
             locked = not meets_requirements(meta.get("requires", []))
             if not locked:
                 out.append((key, meta, locked))
-        # optional: keep a stable order
-        #out.sort(key=lambda t: t[1].get("title", t[0]))
         return out
 
     # Mark a question as asked (persist to store so saves work)
     def mark_answered(question_id):
-        asked_questions.append(question_id)
+        #no dupes!
+        if question_id not in asked_questions:
+            asked_questions.append(question_id)
 
-        #templst = getattr(store, "asked_questions", [])
-        #if question_id not in templst:
-        #    templst.append(question_id)
-        #    store.asked_questions = templst
-
+    #we making the options even if there isn't much branching (at least I try not to have to much)
     def create_followup_from(choice_create, hub_key):
-        """
-        choice_create: dict with keys like 'id', 'title', 'answer_lines', optional 'requires'
-        hub_key: string, assign hub to followup so it shows in the same wheel
-        Returns the id created.
-        """
         # generate id if none given
         fid = choice_create.get("id")
         if not fid:
@@ -148,9 +129,13 @@ label show_topic_answer:
 
                     # if choice asks to jump to another label, do it
                     if "jump_label" in selected:
-                        renpy.call(selected["jump_label"])
+                        renpy.jump(selected["jump_label"])
                         break
-
+                    
+                    #if there are any effects
+                    if "effects" in selected:
+                        for stat, amount in selected["effects"].items():
+                            setattr(renpy.store, stat, getattr(renpy.store, stat, 0) + amount)  
                     # otherwise continue to next line
                     i += 1
                     continue
@@ -167,46 +152,12 @@ label show_topic_answer:
 
 label hub_loop(hub_key, num_asks):
     # initialize ask_remaining in store if missing
-
     while num_asks > 0:
-        call screen hub_menu(hub_key)
-        $ num_asks -= 1
-    return
-
-# --- screen: left scroll wheel of unlocked questions ---
-screen hub_menu(hub_key):
-    tag menu
-
-    # capture up/down keys here if needed (optional)
-    #key "up" action SetVariable("_current_topic", _current_topic)  # placeholder to capture keys
-    #key "down" action SetVariable("_current_topic", _current_topic)
-
-    frame:
-        xalign 0.05
-        xmaximum int(config.screen_width * 0.25)
-        xminimum 220
-        yalign 0.05
-        ymaximum 540
-
-        has vbox
-
-        # Use Ren'Py expression $ to run the helper and get entries
         python:
+            num_asks -= 1
             entries = unlocked_questions(hub_key)
+        
+        call screen choice_hub (items=entries)
 
-        viewport id "wheel_viewport" draggable True mousewheel True:
-            vbox:
-                spacing 6
-
-                if not entries:
-                    text "No questions available." xalign 0.0
-
-                for tid, meta, locked in entries:
-                    # Single button: select + play. Use a list of actions so both run.
-                    # SetVariable sets the selected topic (for preview/highlight).
-                    # Function(play_topic, tid) immediately plays the topic.
-                    if _current_topic == tid:
-                        textbutton meta['title'] action [SetVariable("_current_topic", tid), Call("show_topic_answer")]
-                    else:
-                        textbutton meta['title'] action [SetVariable("_current_topic", tid), Call("show_topic_answer")]
+    return
 
