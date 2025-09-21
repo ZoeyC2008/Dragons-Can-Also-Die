@@ -150,14 +150,21 @@ label show_topic_answer:
     # the Call returns here and the original 'call screen hub_menu' returns to the hub_loop.
     return
 
-label hub_loop(hub_key, num_asks):
-    # initialize ask_remaining in store if missing
-    while num_asks > 0:
-        python:
-            num_asks -= 1
-            entries = unlocked_questions(hub_key)
+default hub_loop_num = 0
+
+label hub_loop(hub_key, num_asks):    
+    # hub loop
+    
+    $ hub_loop_num = 0
+
+    while hub_loop_num < num_asks:        
+        $ entries = unlocked_questions(hub_key)
         
         call screen choice_hub (items=entries)
 
+        if hub_key == "mirror":
+            call mirror_reaction
+        
+        $ hub_loop_num += 1    
     return
 

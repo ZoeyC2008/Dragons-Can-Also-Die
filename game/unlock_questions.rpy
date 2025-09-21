@@ -2,8 +2,6 @@
 #I'm using a data-driven prerequisites (understanding? No, copy & paste code form internet is good)
 
 init python:
-    #the text needs to be warrped so it looks neat both in the game and in vs code, trust
-
     #the big list of questions (20/09 i wonder if it'll be longer than the script?)
     questions = {
         #really long, but this is basically all the text i need for my question hubs
