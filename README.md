@@ -6,6 +6,7 @@ This is a visual novel made for Hackclub Storyboard. The main character is a pri
 
 Done:
 - Set up GitHub
+- Chapter 0: Mirror question hub
 
 To do:
 - Implement Character Sprites
@@ -20,7 +21,6 @@ To do:
   - Mirror, with five stages of fracturing from complete, a few cracks, some cracks, many cracks, and completely broken (if possible, show progression)
   - Village doors with numbers
 - Script
-  - Chapter 0: Mirror question hub
   - Chapter 1: Initial meeting, Boy's name start, Chapter 1 travel question hub
   - Chapter 2: Innkeeper initial meeting + demo, Innkeeper question hub, Sojourn question hub, Shepherd question hub, Miller's Son question hub
   - Chapter 2 (cont): Announcing results, find wizard, Convince Wizard question chain, Chapter 2 travel question hub
