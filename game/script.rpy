@@ -7,14 +7,15 @@
 define drgn_decon_color = "#000000"
 
 #make dynamic names: (i think this works?)
-define boy_name = "The Boy" #Boy is namable by the player, real name is Sasha
+define boy_name = "" #Boy is namable by the player, real name is Sasha
+define boy_display_name = "The Boy: "+boy_name
 define sojourn_name = "Man in Midst of Sojourn: 噩梦" #With 'e's: The Sojourner: E Meng
 define mirror_name = "The Mirror" #In recover the past ending, The Mirror: Ilia
 
 
 #@Naomi are we putting char in front of the characters? e.g. char_boy??
 define mirror = Character(mirror_name, color="#e0dddd")
-define boy = Character(boy_name, color="#ba0f0a")
+define boy = Character(boy_display_name, color="#ba0f0a")
 define wolf = Character("The Wolf:", color="#90a3b0")
 define wizard = Character("The Wizard: Bea", color="#6f4685")
 define innkeeper = Character("The Innkeeper: Pepper", color="#028a0f")
@@ -90,7 +91,7 @@ label mirror_question_hub:
         hub_key = "mirror"
         num_asks = 4
     
-    call hub_loop    
+    call hub_loop
     
     jump mirror_end
 
@@ -126,6 +127,32 @@ label meet_boy:
     boy "We're just saying test statements, really."
     
     return #no idea why it's not returning to start, oh well
+
+#chapter 2
+
+#innkeeper q hub
+label innkeeper_question_hub:
+    python:
+        hub_key = "Innkeeper"
+        num_asks = 2
+    
+    innkeeper "What are you doing here? is there anything you hope to hear?"
+    innkeeper "Well, I haven't got much time; I'll take a question or two so long as there's a rhyme."
+
+    call hub_loop
+
+label innkeeper_no_rhyme:
+    python:
+        hub_key = None
+        num_asks = 0
+    
+    innkeeper "I told you already, my day was quite unsteady."
+    innkeeper "I must return to my inn, it's not like I have any other kin."
+
+    jump ch2_scrum
+
+label ch2_scrum:
+    show boy at pos_left
 
 #kinda just ignoring the whole ending thing
 label ending:
