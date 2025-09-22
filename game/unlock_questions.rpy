@@ -630,23 +630,118 @@ init python:
             "requires":["mirror_but_why"]
         },
 
+        "innkeeper_no_wizard":{
+            "title":"You didn't mention wizard when you were introducing everyone. Tell me about them please",
+            "hub":"innkeeper",
+            "requires":[],
+            "answer_lines":[
+                {"jump":"innkeeper_no_rhyme"}
+            ]
+        },
+
+        "innkeeper_no_miller":{
+            "title":"Were you involved in the Miller's death in any way, shape, or form?",
+            "hub":"innkeeper",
+            "requires":[mu_my_flag],
+            "answer_lines":[
+                {"jump":"innkeeper_no_rhyme"}
+            ]
+        },
+
+        "innkeeper_no_town":{
+            "title":"Do you like living here, in a small town that's almost on the edge of dragon territory?",
+            "hub":"innkeeper",
+            "requires":[],
+            "answer_lines":[
+                {"jump":"inkeeper_no_rhyme"}
+            ]
+        },
+
+        "innkeeper_yes_dragon":{
+            "title":"Have you any advice to handle a dragon? I'd rather not step onto the 'running away' band wagon.",
+            "hub":"innkeeper",
+            "requires":[],
+            "answer_lines":[
+                {"who":"innkeeper",
+                "text":"I've heard a rumour 'round parts, that the dragon eats people's hearts."},
+                {"who":"innkeeper",
+                "text":"Can't say I know any way to stop that bit, that's just not the way the tale is writ."}
+            ]
+        },
+
+        "innkeeper_no_help":{
+            "title":"Even the barest hint would be helpful.",
+            "hub":"innkeeper",
+            "requires":["innkeeper_yes_dragon"],
+            "answer_lines":[
+                {"jump":"innkeeper_no_rhyme"}
+            ]
+        },
+
+        "innkeeper_yes_help":{
+            "title":"My companions and I will face this dragon help or no help; so if you can think of anything, anything at all, even if it's so boring and basic as kelp.",
+            "hub":"innkeeper",
+            "requires":["innkeeper_yes_dragon"],
+            "answer_lines":[
+                {"who":"innkeeper",
+                "text":"Well at least mean you aren't rushing, and I guess there isn't nothing."},
+                {"who":"innkeeper",
+                "text":"Some say the dragons fears the good, solid loaf of bread; As if I'd believe them, it'd be like a spider being afraid of thread."}
+            ]
+        },
+
+        "innkeeper_yes_miller":{
+            "title":"I just wanted to ask about something from the past, what was your relation with the Miller that passed?",
+            "hub":"innkeeper",
+            "requires":[mu_my_flag],
+            "answer_lines":[
+                {"who":"innkeeper",
+                "text":"Miller is-was my fiancee, my husband-to-be; I would never kill him don't you see? I'm just as much as a victem, this what I plea."},
+                {"who":"innkeeper",
+                "text":"It brings me too much to reminise; please, please speak of something with a little more bliss."}
+            ]
+        },
+
+        "innkeeper_yes_wizard":{
+            "title":"[boy_name] already asked you about the magician, I'm really hoping to learn more since it'll help with my mission.",
+            "hub":"innkeeper",
+            "requires":[],
+            "answer_lines":[
+                {"who":"innkeeper",
+                "text":"The magician is quite odd, but I think she's just a sod."}
+            ]
+        },
+
+        "innkeeper_no_wizard_info":{
+            "title":"I meant where should I make my inquiries, if I want to meet her that is.",
+            "hub":"innkeeper",
+            "requires":["innkeeper_yes_wizard"],
+            "answer_lines":[
+                {"jump":"innkeeper_no_rhyme"}
+            ]
+        },
+
+        "innkeeper_yes_wizard_info":{
+            "title":"Where can she be found? I don't wish to look everywhere around.",
+            "hub":"innkeeper",
+            "requires":["innkeeper_yes_wizard"],
+            "answer_lines":[
+                {"who":"innkeeper",
+                "text":"Can't quite remember, but it was the left side of the cul-de-sac. And I do think her house number was prime, though I thinkit's closer to a shack."}
+            ]
+        }
+
     }
 
     """"
         "":{
             "title":"",
-            "hub":"mirror",
+            "hub":"",
             "requires":[],
             "answer_lines":[
-                {"who":"",
-                "text":""},
-
-                {"choices":[
-                    {"text":"",
-                    "effects":}
-                ]}
+                {}
             ]
-        }
+        },
     
     //basically variables that go in answer_lines, in this order, repeat is to only be used with call and jump, trust
     "repeat"
