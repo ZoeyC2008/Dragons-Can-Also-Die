@@ -16,10 +16,10 @@ define mirror_name = "The Mirror" #In recover the past ending, The Mirror: Ilia
 #@Naomi are we putting char in front of the characters? e.g. char_boy??
 define mirror = Character(mirror_name, color="#e0dddd")
 define boy = Character(boy_display_name, color="#ba0f0a")
-define wolf = Character("The Wolf:", color="#90a3b0")
+define wolf = Character("The Wolf: Youagi", color="#90a3b0")
 define wizard = Character("The Wizard: Bea", color="#6f4685")
 define innkeeper = Character("The Innkeeper: Pepper", color="#028a0f")
-define shephed = Character("Herd Shep: Rath'la Dnar", color="#ffda03")
+define shepherd = Character("Herd Shep: Rath'la Dnar", color="#ffda03")
 define sojourn = Character(sojourn_name, color="#001f3d")
 define miller_son = Character("Miller's Mischieveous Moppet: Much", color="#be5504")
 define drgn_classic = Character("Traditional Dragon", color="#ff2400") #@Naomi is Furious better than Classic or Traditional?
@@ -130,10 +130,12 @@ label meet_boy:
 
 #chapter 2
 
+
+
 #innkeeper q hub
 label innkeeper_question_hub:
     python:
-        hub_key = "Innkeeper"
+        hub_key = "innkeeper"
         num_asks = 2
     
     innkeeper "What are you doing here? is there anything you hope to hear?"
@@ -141,13 +143,35 @@ label innkeeper_question_hub:
 
     call hub_loop
 
-label innkeeper_no_rhyme:
+    jump innkeeper_end
+
+label innkeeper_no:
     python:
         hub_key = None
         num_asks = 0
     
     innkeeper "I told you already, my day was quite unsteady."
     innkeeper "I must return to my inn, it's not like I have any other kin."
+
+    jump ch2_scrum
+
+label innkeeper_end:
+    innkeeper ""
+
+label shepherd_question_hub:
+    python:
+        hub_key = "shepherd"
+        num_asks = 4
+    
+    shepherd "Field's humble. My to you brings what?"
+
+    call hub_loop
+
+    jump ch2_scrum
+
+label shepherd_no:
+    shepherd "Strangers' foolish. For no time have."
+    shepherd "Sheep mine. To return must I."
 
     jump ch2_scrum
 
