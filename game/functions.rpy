@@ -83,15 +83,16 @@ label show_topic_answer:
         $ renpy.log("show_topic_answer: no _current_topic set")
         return
     
-    #what if a i want to call or jump stuff
-    $ call_label = None
-    $ jump_label = None
+    python: 
+        #what if a i want to call or jump stuff
+        call_label = None
+        jump_label = None
 
-    #pre-scan data
-    $ is_repeatable = False
+        #pre-scan data
+        is_repeatable = False
 
-    #interactable
-    $ interact_flag = True
+        #interactable
+        interact_flag = True
 
     # run the answer lines; this label runs in a proper interaction context so renpy.say() is safe
     python:
@@ -132,7 +133,7 @@ label show_topic_answer:
                 text = line.get("text", "")
                 
                 #interact (prevent a double click issue)
-                if "call" in line or "jump" in line or "choices" in line:
+                if "call" in line or "jump" in line or "choices" in line or "effects" in line:
                     interact_flag = False
                 
                 # display the line
@@ -141,6 +142,10 @@ label show_topic_answer:
                     renpy.say(char, text, interact=interact_flag)
                 else:
                     renpy.say(None, text, interact=interact_flag)
+                
+                if "effects" in line:
+                    for stat, amount in selected["effects"].items():
+                        setattr(renpy.store, stat, getattr(renpy.store, stat, 0) + amount) 
                 
                 # if this line has choices, present them
                 if "choices" in line:

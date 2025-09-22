@@ -3,6 +3,9 @@
 
 init python:
     #the big list of questions (20/09 i wonder if it'll be longer than the script?)
+    
+    mu_my_flag = False
+
     questions = {
         #really long, but this is basically all the text i need for my question hubs
         #which are like, a good half? of the game, and where most of the exploration is
@@ -717,7 +720,7 @@ init python:
             "hub":"innkeeper",
             "requires":["innkeeper_yes_wizard"],
             "answer_lines":[
-                {"jump":"innkeeper_no_rhyme"}
+                {"jump":"innkeeper_no"}
             ]
         },
 
@@ -729,11 +732,320 @@ init python:
                 {"who":"innkeeper",
                 "text":"Can't quite remember, but it was the left side of the cul-de-sac. And I do think her house number was prime, though I thinkit's closer to a shack."}
             ]
+        },
+
+        "shepherd_no_royal":{
+            "title":"As a royal, I need you to fullfill some requests",
+            "hub":"shepherd",
+            "requires":[],
+            "answer_lines":[
+                {"effects":"royal":add_some},
+                {"jump":"shepherd_no"}
+            ]
+        },
+
+        "shepherd_yes_what":{
+            "title":"Shepherd is what? New am I.",
+            "hub":"shepherd",
+            "requires":[],
+            "answer_lines":[
+                {"who":"shepherd",
+                "text":"Sheep for care take we, job simple."},
+                
+                {"who":"shepherd"
+                "text":"Peaceful is it. For it like I."},
+
+                {"who":"shepherd",
+                "text":"Sheep wanderin no and flowers bright and skies sunny. Than more for ask never would I."}
+            ]
+        },
+
+        "shepherd_no_wizard":{
+            "title":"Where does the wizard live?",
+            "hub":"shepherd",
+            "requires":[],
+            "answer_lines":[
+                {"jump":"shepherd_no"}
+            ]
+        },
+
+        "shepherd_no_watch":{
+            "title":"Do you do anything all day other than watch the sheep?",
+            "hub":"shepherd",
+            "requires":["shepherd_yes_what"],
+            "answer_lines":[
+                {"jump":"shepherd_no"}
+            ]
+        },
+
+        "shepherd_no_flower":{
+            "title":"Your sheep are grazing on lovely flowers! Say, do you do anything with them?",
+            "hub":"shepherd",
+            "requires":[],
+            "answer_lines":[
+                {"jump":"shepherd_no"}
+            ]
+        },
+
+        "shepherd_yes_watch":{
+            "title":"Sheep watch except, else anything.",
+            "hub":"shepherd",
+            "requires":["shepherd_yes_what"],
+            "answer_lines":[
+                {"who":"shepherd",
+                "text":"Sometimes flowers pick."},
+                
+                {"who":"shepherd",
+                "text":"Lovely bouquets make they."},
+
+                {"who":"shepherd",
+                "text":"Sometimes read to book bring."},
+
+                {"who":"shepherd",
+                "text":"Books in lives peaceful, never are there."},
+                
+                {"who":"shepherd",
+                "text":"Sheep the return to, always."},
+            ]
+        },
+
+        "shepherd_no_book":{
+            "title":"Do you have a favourite book?",
+            "hub":"shepherd",
+            "requires":["shepherd_yes_watch"],
+            "answer_lines":[
+                {"jump":"shepherd_no"}
+            ]
+        },
+
+        "shepherd_decon":{
+            "title":"Are there many shepherds and goatherds wailing their romantic faliures into the mountains around here?",
+            "hub":"shepherd",
+            "requires":[],
+            "answer_lines":[
+                {"effects":"decon":add_some},
+                {"jump":"shepherd_no"}
+            ]
+        },
+
+        "shepherd_yes_bouquet":{
+            "title":"Bouquets of reciever.",
+            "hub":"shepherd",
+            "requires":["shepherd_yes_watch"],
+            "answer_lines":[
+                {"who":"shepherd",
+                "text":"Friend! Best!"},
+
+                {"who":"shepherd",
+                "text":"Magic & green & purple is she!"},
+
+                {"who":"shepherd",
+                "text":"Bouquets a have she. Ensure always I."},
+
+                {"who":"shepherd",
+                "text":"Her-door outside them left I."},
+
+                {"who":"shepherd",
+                "text":"Another leave. To go back go I. When usually are tehy since. Bouquets like she thinks I."},
+
+                {"who":"shepherd",
+                "text":"Morning this one. Left just I!"}
+            ]
+        },
+
+        "shepherd_yes_specific":{
+            "title":"Specific more bit anout the wizard?",
+            "hub":"shepherd",
+            "requires":["shepderd_yes_bouquet"],
+            "answer_lines":[
+                {"who":"shepherd",
+                "text":"Her-door outside flowers left I, her-door is windchimes with green."},
+
+                {"who":"shepherd",
+                "text":"I not did you told? Already I."},
+
+                {"who":"shepherd",
+                "text":"Chrysanthemums and poppies and roses. Some got I today."}
+            ]
+        },
+
+        "shepherd_no_bouquet":{
+            "title":"Who do you give these bouquets to?",
+            "hub":"shepherd",
+            "requires":["shepherd_yes_watch"],
+            "answer_lines":[
+                {"jump":"shepherd_no"}
+            ]
+        },
+
+        "shepherd_yes_book":{
+            "title":"Book favourite?",
+            "hub":"shepherd",
+            "requires":["shepherd_yes_watch"],
+            "answer_lines":[
+                {"who":"shepherd",
+                "text":"Hm..."},
+
+                {"who":"shepherd",
+                "text":"Hm..."},
+
+                {"who":"shepherd",
+                "text":"Time of Wheel."},
+
+                {"who":"shepherd",
+                "text":"Are quests stupid? How shows it."},
+
+                {"who":"shepherd",
+                "text":"Sheep with outside. Stay to better."}
+            ]
+        },
+
+        "shepherd_no_frame":{
+            "title":"Please tell me more about the book?",
+            "hub":"shepherd",
+            "requires":["shepherd_yes_book"],
+            "answer_lines":[
+                {"jump":"shepherd_no"}
+            ]
+        },
+
+        "shepherd_no_specific":{
+            "title":"Wizard specific more bit?",
+            "hub":"shepherd",
+            "requires":["shepherd_yes_bouquet"],
+            "answer_lines":[
+                {"jump":"shepherd_no"}
+            ]
+        },
+
+        "shepherd_yes frame":{
+            "title":"Book about more tell.",
+            "hub":"shepherd",
+            "requires":["shepherd_yes_book"],
+            "answer_lines":[
+                {"who":"shepherd",
+                "text":"Stories frame two. From told it is."},
+
+                {"who":"shepherd",
+                "text":"Sheep to tend while reading. Shepherd A is there, like me."},
+
+                {"who":"shepherd",
+                "text":"Decade a after. Down everything wrote. Who chronicler? Of perspective the from."},
+
+                {"who":"shepherd",
+                "text":"Live will they. Know to! Comfort is it."}
+            ]
+        },
+
+        "shepherd_no_miller":{
+            "title":"I am curious, did you know the Miller?",
+            "hub":"shepherd",
+            "requires":[mu_my_flag],
+            "answer_lines":[
+                {"jump":"shepherd_no"}
+            ]
+        },
+
+        "shepherd_yes_miller":{
+            "title":"The-Miller know? You did? Curious am I.",
+            "hub":"shepherd",
+            "requires":[mu_my_flag],
+            "answer_lines":[
+                {"who":"shepherd",
+                "text":"No all at well not, thinks I."},
+
+                {"who":"shepherd",
+                "text":"Juniper to was marriage future."},
+
+                {"who":"shepherd",
+                "text":"Son his like not, also"},
+
+                {"who":"shepherd",
+                "text":"Her-door on banged. Always he."}
+            ]
+        },
+
+        "shepherd_yes_upset":{
+            "title":"Anyone upsets by Miller, thinks you?",
+            "hub":"shepherd",
+            "requires":["shepherd_yes_miller"],
+            "answer_lines":[
+                {"who":"shepherd",
+                "text":"Gossip of lot. A know not do I."},
+
+                {"who":"shepherd",
+                "text", "Maybe Sally, seamstress."}
+            ]
+        },
+
+        "shepherd_yes_son":{
+            "title":"Son like? The was that?",
+            "hub":"shepherd",
+            "requires":["shepherd_yes_miller"],
+            "answer_lines":[
+                {"who":"shepherd",
+                "text", "Rude, very rude."},
+
+                {"who":"shepherd",
+                "text", "Books took."},
+
+                {"who":"shepherd",
+                "text", "Language wrong."},
+
+                {"who":"shepherd",
+                "text", "Bea annoyed, important most."}
+            ]
+        },
+
+        "shepherd_no_upset":{
+            "title":"Can you think of if the Miller's upset anyone?",
+            "hub":"shepherd",
+            "requires":["shepherd_yes_miller"],
+            "answer_lines":[
+                {"jump":"shepherd_no"}
+            ]
+        },
+
+        "shepherd_yes_relation":{
+            "title":"Relationship? Miller and Juniper",
+            "hub":"shepherd",
+            "requires":["shepherd_yes_miller"],
+            "answer_lines":[
+                {"who":"shepherd",
+                "text", "Either with close? Not was."},
+
+                {"who":"shepherd",
+                "text", "Bad not, thinks I."},
+
+                {"who":"shepherd",
+                "text", "Though good not also."},
+
+                {"who":"shepherd",
+                "text", "Shouting heard sometimes. Bea as street, same."}
+            ]
+        },
+
+        "shepherd_no_relation":{
+            "title":"Do you know anything about Juniper and Miller's relationship?",
+            "hub":"shepherd",
+            "requires":["shepherd_yes_miller"],
+            "answer_lines":[
+                {"jump":"shepherd_no"}
+            ]
+        },
+
+        "shepher_no_son":{
+            "title":"Anything else you know about this Miller's son?",
+            "hub":"shepherd",
+            "requires":["shepherd_yes_miller"],
+            "answer_lines":[
+                {"jump":"shepherd_no"}
+            ]
         }
 
     }
 
-    """"
+    """
         "":{
             "title":"",
             "hub":"",
