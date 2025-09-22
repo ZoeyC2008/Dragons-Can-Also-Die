@@ -7,6 +7,9 @@ default asked_questions = []
 
 
 init 1 python:
+    #random magic exposition or story!
+    import random
+    
     #variables
     question_list = list(questions.keys())
 
@@ -14,10 +17,19 @@ init 1 python:
 
     # Check whether all requirements in req_list are met.
     def meets_requirements(req_list):
+        #empty list is good
         if not req_list:
             return True
         # req_list is a list of ids; return True only if every item in asked_questions
-        return all(item in asked_questions for item in req_list)
+        
+        for req in req_list:
+            if isinstance(req, str):
+                if req not in asked_questions:
+                    return False
+            if not req:
+                return False
+        #everything else evaluates to true        
+        return True
 
     # Return unlocked questions for a given hub
     def unlocked_questions(hub_key):
@@ -64,29 +76,22 @@ init 1 python:
         renpy.log(f"Created followup question {fid}")
         return fid
 
-    # Play a topic at runtime (resolves Characters safely)
-    def play_topic(question_id):
-        meta = questions.get(question_id, None)
-        if not meta:
-            renpy.log("play_topic: missing question " + str(question_id))
-            return
-        for line in meta.get("answer_lines", []):
-            who = line.get("who", None)
-            text = line.get("text", "")
-            char = getattr(renpy.store, who, None) if who else None
-            if char:
-                renpy.say(char, text)
-            else:
-                renpy.say(None, text)
-        # after playing, mark completed for unlocks
-        mark_answered(question_id)
-
 # --- label to play topic with nested-choices support ---
 label show_topic_answer:
     $ topic_id = _current_topic
     if not topic_id:
         $ renpy.log("show_topic_answer: no _current_topic set")
         return
+    
+    #what if a i want to call or jump stuff
+    $ call_label = None
+    $ jump_label = None
+
+    #pre-scan data
+    $ is_repeatable = False
+
+    #interactable
+    $ interact_flag = True
 
     # run the answer lines; this label runs in a proper interaction context so renpy.say() is safe
     python:
@@ -94,19 +99,49 @@ label show_topic_answer:
         if not meta:
             renpy.log("show_topic_answer: missing topic " + str(topic_id))
         else:
+            # copy the lines
             lines = list(meta.get("answer_lines", []))
+
+            #look for that yummy pre-scan data
+            if meta.get("repeatable", False):
+                is_repeatable = True
+                interact_flag = False
+            else:
+                for L in lines:
+                    if "repeat" in L and L.get("repeat"):
+                        is_repeatable = True
+                        interact_flag = False
+                        break
+            
+            #main loop for displaying stuff
             i = 0
             while i < len(lines):
                 line = lines[i]
+                
+                #there's a call
+                if "call" in line:
+                    call_label = line["call"]
+                    break
+                #if there a jump
+                if "jump" in line:
+                    jump_label = line["jump"]
+                    break
+                
+                
                 who = line.get("who", None)
                 text = line.get("text", "")
+                
+                #interact (prevent a double click issue)
+                if "call" in line or "jump" in line or "choices" in line:
+                    interact_flag = False
+                
                 # display the line
                 char = getattr(renpy.store, who, None) if who else None
                 if char:
-                    renpy.say(char, text)
+                    renpy.say(char, text, interact=interact_flag)
                 else:
-                    renpy.say(None, text)
-
+                    renpy.say(None, text, interact=interact_flag)
+                
                 # if this line has choices, present them
                 if "choices" in line:
                     menu_list = []
@@ -143,8 +178,18 @@ label show_topic_answer:
                 # no choices -> next line
                 i += 1
 
-            # mark the asked question (decrement asks)
+    #actually call/jump
+    if call_label is not None:
+        call expression call_label
+    if jump_label is not None:
+        hide screen choice_hub
+        jump expression jump_label
+    
+    # mark the asked question
+    python:
+        if not is_repeatable:
             mark_answered(topic_id)
+        
 
     # return to the hub: because we used Call("show_topic_answer") inside the screen,
     # the Call returns here and the original 'call screen hub_menu' returns to the hub_loop.

@@ -36,7 +36,7 @@ init python:
             "requires":[]
         },
 
-                "mirror_wakeup":{
+        "mirror_wakeup":{
             "title":"Wake up!",
             "answer_lines":[
                 {"who":"mirror", 
@@ -250,7 +250,7 @@ init python:
                     "effects":{"royal":add_some, "decon":add_some}},
                     
                     {"text":"So I'm not playing as a mirror...", 
-                    "effects":{"decon":add_most}}
+                    "effects":{"decon":add_some}}
                 ]}
             ],
             "hub":"mirror",
@@ -288,7 +288,7 @@ init python:
             "title":"What do all those titles mean?",
             "answer_lines":[
                 {"who":"mirror", 
-                "text":"All of nothing"},
+                "text":"All of nothing."},
 
                 {"who":"mirror", 
                 "text":"At least, they won't earn you any respect nor do they contain even an iota of power, thus they mean nothing"},
@@ -628,5 +628,46 @@ init python:
             ],
             "hub":"mirror",
             "requires":["mirror_but_why"]
-        }
+        },
+
     }
+
+    """"
+        "":{
+            "title":"",
+            "hub":"mirror",
+            "requires":[],
+            "answer_lines":[
+                {"who":"",
+                "text":""},
+
+                {"choices":[
+                    {"text":"",
+                    "effects":}
+                ]}
+            ]
+        }
+    
+    //basically variables that go in answer_lines, in this order, repeat is to only be used with call and jump, trust
+    "repeat"
+    "call"
+    "jump"
+    
+
+    "story_hour": {
+    "title": "Tell me a story",
+    # top-level answer_lines can be empty or default; we'll use variants
+    "hub": "mirror",
+    "variants": [
+        [   # variant 0 (list of lines)
+            {"who": "mirror", "text": "Once upon a time..."},
+            {"who": "mirror", "text": "They lived happily ever after."}
+        ],
+        [   # variant 1
+            {"who": "mirror", "text": "A different tale begins..."},
+            {"who": "mirror", "text": "And so it goes."}
+        ],
+        # ...more variants...
+    ],
+    requirements: []
+    """
