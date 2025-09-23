@@ -31,6 +31,13 @@ define degn_decon = Character("drgn_decon", color=drgn_decon_color) #I think it 
 
 
 #define all the images (the way renpy handles this is so weird, like why are there spaces, please get rid of the spaces in my variables)
+
+#mirror
+image mirror = "mirror_0_whole.png"
+image mirror small cracks = "mirror_1_small_cracks.png"
+image mirror medium cracks = "mirror_2_medium_cracks.png"
+image mirror big cracks = "mirror_3_big_cracks.png"
+
 #Boy!
 image boy = "boy_default.png"
 image boy snarky = "boy_snarky.png"
@@ -108,12 +115,14 @@ label start:
     jump ch0_mirror_question_hub
 
 label ch0_mirror_question_hub:
-    #show mirror_whole
-    #set hub
+    show mirror
+    
     python:
         hub_key = "mirror"
         num_asks = 4
     
+    mirror "Good. This is right."
+
     call hub_loop
     
     jump ch0_mirror_end
@@ -310,9 +319,8 @@ label ch1_wolf_name:
     boy "As for me, I'm not all that impressive. I'm just a boy."
 
     menu:
-        if not prince_named_flag:
-            "(Tell them your name.)":
-                jump ch1_share_name
+        "(Tell them your name.)" if not prince_named_flag:
+            jump ch1_share_name
         "Aren't you just inflating Llangernyw's ego?":
             jump ch1_wolf_ego
         "But you haven't told me your name?":
