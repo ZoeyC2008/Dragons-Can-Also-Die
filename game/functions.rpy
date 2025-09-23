@@ -6,7 +6,7 @@ default _current_topic = None
 default asked_questions = []
 
 
-init 1 python:
+init 2 python:
     #random magic exposition or story!
     import random
     

@@ -7,16 +7,18 @@
 define drgn_decon_color = "#000000"
 
 #make dynamic names: (i think this works?)
-define boy_name = "" #Boy is namable by the player, real name is Sasha
+define boy_name = "Boy" #Boy is namable by the player, real name is Sasha
 define boy_display_name = "The Boy: "+boy_name
 define sojourn_name = "Man in Midst of Sojourn: 噩梦" #With 'e's: The Sojourner: E Meng
 define mirror_name = "The Mirror" #In recover the past ending, The Mirror: Ilia
 
+#protag name
+define princess_name = ""
 
 #@Naomi are we putting char in front of the characters? e.g. char_boy??
 define mirror = Character(mirror_name, color="#e0dddd")
 define boy = Character(boy_display_name, color="#ba0f0a")
-define wolf = Character("The Wolf: Youagi", color="#90a3b0")
+define wolf = Character("The Wolf: Llangernyw", color="#90a3b0")
 define wizard = Character("The Wizard: Bea", color="#6f4685")
 define innkeeper = Character("The Innkeeper: Pepper", color="#028a0f")
 define shepherd = Character("Herd Shep: Rath'la Dnar", color="#ffda03")
@@ -47,13 +49,14 @@ define pos_slightly_left = Position(xalign=0.35, yalign=0.5)
 define pos_left = Position(xalign=0.15, yalign=0.5)
 define pos_wolf_center = Position(xalign=0.5, ypos=wolf_ypos)
 
-#Game variables (the idea is that these dictate what dragon you get)
-default royal = 0 #depressed, a classic subversion for a classic prince/ss
-default aloof = 0 #happy, you have to be grounded to enjoy life, don't be aloof all the time
-default decon = 0 #classic, it's not a proper deconstruction if everything is different
+init python:
+    #Game variables (the idea is that these dictate what dragon you get)
+    royal = 0 #depressed, a classic subversion for a classic prince/ss
+    aloof = 0 #happy, you have to be grounded to enjoy life, don't be aloof all the time
+    decon = 0 #classic, it's not a proper deconstruction if everything is different
+    
     #if none of the thresholds are met, deconstructed since you haven't made personality choices
 
-init python:
     #amount to add
     add_most = 16
     add_some = 10
@@ -61,6 +64,26 @@ init python:
     add_tiny = 2
     subtract_tiny = -2
     threshold = 40
+
+    #FLAGS
+    #chapter one
+    boy_named_flag = False
+    prince_named_flag = False
+    kidnap_royal_flag = False 
+    invite_reaction_flag = False 
+
+    #chapter two
+    mu_my_flag = False
+
+    #this is a vaiable affecting function
+    def ellipsis():
+        global royal, decon, aloof
+        royal += subtract_tiny
+        decon += subtract_tiny
+        aloof += subtract_tiny
+
+    
+
 
 # The game starts here.
 #Chapter 0
@@ -71,7 +94,7 @@ label start:
     "...And so they lived, happily ever after."
     
     #first menu, mirror opening
-    menu mirror_opening:
+    menu:
         "That was lovely. I'm glad they found joy after all their hardships.":
             $ royal += add_most
         "That is such a cliche. Happily ever after doesn't exist, it's just a tad unrealistic.":
@@ -82,9 +105,9 @@ label start:
         "That was boring. Next.":
             $ aloof += add_most
         
-    jump mirror_question_hub
+    jump ch0_mirror_question_hub
 
-label mirror_question_hub:
+label ch0_mirror_question_hub:
     #show mirror_whole
     #set hub
     python:
@@ -93,9 +116,9 @@ label mirror_question_hub:
     
     call hub_loop
     
-    jump mirror_end
+    jump ch0_mirror_end
 
-label mirror_end:
+label ch0_mirror_end:
     #reset the hub
     python:
         hub_key = None
@@ -105,33 +128,272 @@ label mirror_end:
     mirror "I hope to see you soon, after I've rested."
     mirror "And I hope you'll recieve me then."
 
-    jump meet_boy
+    jump ch1_titlecard
 
 #Chapter 1
-label meet_boy:
+label ch1_titlecard:
+    #scene
+    #scene titlecard ch1
+    jump ch1_wake_up
+
+#boy shows up
+label ch1_wake_up:
+    scene
     scene bg forest path
     show boy at pos_left
     
 
     boy "Wake up!"
     
-    boy "This is wolf:"
-
-    show wolf at pos_wolf_center
-    wolf "*I am a cynical wolf.*"
-
     show boy snarky
-    boy "I'm shocked, shocked that Wolf would say that."
+    boy "Hey, Wolf didn't you say this was the middle of nowhere and about as many as people live here as at the edge of the world?:"
 
     show boy -snarky
-    boy "We're just saying test statements, really."
+    wolf "I remember my own words, Boy, my mind is sharp. And my senses told me there is no one."
+
+    show wolf at pos_wolf_center
+    wolf "Oh."
+
+    show boy snarky
+    boy "Then why is there a person? not so all-knowing now, are you."
+
+    show boy -snarky
+    wolf "I--"
+    wolf "Nevermind."
+    wolf "Who are you?"
     
-    return #no idea why it's not returning to start, oh well
+    menu:
+        "Who ARE you?":
+            jump ch1_wolf_name
+        "(Tell them your name.)":
+            jump ch1_share_name
+
+    return
+
+$ boy_name_prince_react = 0
+label ch1_share_name:
+    $ prince_named_flag = True
+    menu:
+        "I'm just [princess_name].":
+            $ decon += add_some
+            $ boy_name_prince_react = 1
+            jump ch1_name_prince_react
+        "I am Princess [princess_name], Heir to the Billyburrows, Duchess of Viantara, and the Dreamer of Zalon.":
+            $ decon += add_some
+            $ boy_name_prince_react = 2
+            jump ch1_name_prince_react
+        "I don't think my name matters.":
+            $ aloof += add_some
+            $ boy_name_prince_react = 3
+            jump ch1_name_prince_react
+        "...":
+            $ ellipsis()
+            $ boy_name_prince_react = 3
+            jump ch1_name_prince_react
+
+label ch1_name_prince_react:
+    if boy_name_prince_react == 1:
+        boy "That name doesn't suit you."
+        boy "I think you look more like prince instead."
+    elif boy_name_prince_react == 2:
+        boy "No, I think that's too long."
+        boy "Hm..."
+        boy "Prince, Prince suits you."
+    elif boy_name_prince_react == 3:
+        boy "in that case, do you mind if I call you prince?"
+
+    menu:
+        "You--you can't just call me Prince!":
+            $ royal += add_little
+            jump ch1_prince_name_deny
+        "But I'm not a Prince?? At least no one's told me that? Including the labels?":
+            $ decon += add_little
+            jump ch1_prince_name_deny
+        "I guess I accept...It's not like it matters...":
+            $ aloof += add_little
+            jump ch1_prince_name_accept
+        "...":
+            $ ellipsis()
+            jump ch1_prince_name_accept
+
+label ch1_prince_name_accept:
+    wolf "Guess I 'ought to be half-way impressed you know better than to flight the battles you cannot win."
+    jump ch1_invite 
+
+label ch1_prince_name_deny:
+    wolf "Don't bother arguing."
+    wolf "Once Boy has his sights set on a name, you're accepting it. Take me, I'm supposed to be Llangernyw, but he insists on calling me Wolf."
+    wolf "I've had the unfortunance of learning not bother fighting it."
+    jump ch1_invite
+
+label ch1_invite:
+    boy "Anyways, Prince, if you're not busy, why don't you come with the two of us?"
+    menu:
+        "I don't even know you." if not boy_named_flag:
+            jump ch1_wolf_name
+        "Are you trying to kidnap royalty? And maybe hold them hostage?":
+            $ royal += add_some
+            $ kidnap_royal_flag = True
+            jump ch1_invite_reaction
+        "Can you elaborate a tad on where we'll be going?":
+            jump ch1_invite_place
+        "...":
+            $ ellipsis()
+            jump ch1_invite_reaction
+        "No thank you.":
+            jump ending_ch1_walk_away
+
+label ch1_invite_reaction:
+    $ invite_reaction_flag = True
+    if kidnap_royal_flag:
+        boy "No, no!"
+        boy "Neither Wolf nor I are interested in politicking or money."
+        boy "We ain't got need for it, so..."
+        
+    boy "I was just wondering if you'd like to travel with us for at least until the next village. It ain't safe for anyone in the middle of the forest."
+    show boy snarky
+    boy "I would know, I was almost eaten by wolves, you know."
+    show boy -snarky
+    wolf "That's not what happened!"
+    boy "Moving past that, Wolf and I, we're on a quest to kill a dragon, and we'll eventually make it to a village."
+    boy "So, you want to come along?"
+
+    menu:
+        "I'm not going anywhere with strangers.":
+            jump ending_ch1_walk_away
+        "Where is this next village anyway?":
+            jump ch1_invite_place
+        "Sure, I'll come along":
+            jump ch1_travel_day1_question_hub
+        "...":
+            $ ellipsis()
+            jump ch1_travel_day1_question_hub
+
+label ch1_invite_place:
+    boy "Well, I'm not all that sure."
+    boy "But I know there'll be a village before we properly head into dragon territory."
+    if not invite_reaction_flag:
+        boy "I was just wondering if you'd like to travel with us for at least until the next village. It ain't safe for anyone in the middle of the forest."
+        show boy snarky
+        boy "I would know, I was almost eaten by wolves, you know."
+        show boy -snarky
+        wolf "That's not what happened!"
+        boy "Moving past that, Wolf and I, we're on a quest to kill a dragon, and we'll eventually make it to a village."
+    boy "So, you want to come along?"
+    
+    menu:
+        "I'm not going anywhere with strangers.":
+            jump ending_ch1_walk_away
+        "Sure, I'll come along":
+            jump ch1_travel_day1_question_hub
+        "...":
+            $ ellipsis()
+            jump ch1_travel_day1_question_hub
+
+#boy naming subplot
+label ch1_wolf_name:
+    $ boy_named_flag = True
+
+    wolf "I am Llangernyw, the wolf."
+
+    show boy snarky
+    boy "The one wolf to rule them all, the last of his kind, etc, etc. And my very kind and generous teacher."
+
+    show boy -snarky
+
+    wolf "Yes exactly so. Boy understands my importance."
+
+    show boy snarky
+    boy "As always, the joke goes right over his head."
+
+    show boy -snarky
+    boy "As for me, I'm not all that impressive. I'm just a boy."
+
+    menu:
+        if not prince_named_flag:
+            "(Tell them your name.)":
+                jump ch1_share_name
+        "Aren't you just inflating Llangernyw's ego?":
+            jump ch1_wolf_ego
+        "But you haven't told me your name?":
+            jump ch1_boy_name
+
+label ch1_wolf_ego:
+    show boy snarky
+    boy "No doubt, no doubt."
+
+    show boy -snarky
+    wolf "I could smite you for you insolence, Boy."
+
+    boy "Don't worry, he wouldn't. And his ego's large enough that I'm hardly adding a drop in the bucket."
+
+    menu:
+        "You still haven't told me your name?":
+            jump ch1_boy_name
+
+label ch1_boy_name:
+    boy "Well, like I said, I'm just Boy everyone calls me that."
+
+    menu:
+        "But that's hardly a name! I need to call you something else.":
+            jump ch1_almost_pick_boy_name
+        "I don't think anyone should be called that, but if you insist.":
+            if not prince_named_flag:
+                jump ch1_boy_asks_for_name
+            else:
+                jump ch1_accept_boy_name
+        "Alright, Boy then, not like I care.":
+            $ aloof += add_some
+            jump ch1_accept_boy_name
+        "But that can't be your true name, so why not think of something else?":
+            $ royal += add_tiny
+            jump ch1_almost_pick_boy_name
+        "...":
+            $ ellipsis()
+            
+            #jump
+
+label ch1_boy_asks_for_name:
+    boy "Good, good. And, in exchange, I'd say its only fair if you share your name too."
+    jump ch1_share_name
+
+label ch1_almost_pick_boy_name:
+    boy "it's a perfectly good name for me. Take it or leave it."
+    
+    menu:
+        "May I call you something else?":
+            jump ch1_almost2_pick_name
+        "Okay...I guess...":
+            if not prince_named_flag:
+                jump ch1_boy_asks_for_name
+            else:
+                jump ch1_accept_boy_name
+
+label ch1_almost2_pick_name:
+    boy "Call me whatever you like. I'm just saying that I prefer Boy."
+
+    menu:
+        "Okay, I'll call you ___":
+            jump ch1_pick_boy_name
+        "Fine, fine, I'll use Boy.":
+            if not prince_named_flag:
+                jump ch1_boy_asks_for_name
+            else:
+                jump ch1_accept_boy_name
+
+label ch1_pick_boy_name:
+    $ boy_name = renpy.input("Choose Boy's name")
+    
+    if not prince_named_flag:
+        jump ch1_share_name
+    else:
+        jump ch1_invite
+
+label ch1_travel_day1_question_hub:
+    python:
+        hub_key = "travel"
 
 #chapter 2
-
-
-
 #innkeeper q hub
 label innkeeper_question_hub:
     python:
@@ -177,6 +439,9 @@ label shepherd_no:
 
 label ch2_scrum:
     show boy at pos_left
+
+label ending_ch1_walk_away:
+    return
 
 #kinda just ignoring the whole ending thing
 label ending:

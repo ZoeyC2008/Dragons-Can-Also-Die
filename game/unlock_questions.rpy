@@ -1,10 +1,8 @@
 #this is to keep script clean
 #I'm using a data-driven prerequisites (understanding? No, copy & paste code form internet is good)
 
-init python:
+init 1 python:
     #the big list of questions (20/09 i wonder if it'll be longer than the script?)
-    
-    mu_my_flag = False
 
     questions = {
         #really long, but this is basically all the text i need for my question hubs
@@ -52,7 +50,7 @@ init python:
                     {"text":"Or, or maybe I don't want to.",
                     "effects:":{"royal":add_little, "decon":add_little, "aloof":add_little}},
                     {"text":"Wake up! Wake up! WAKE UP!",
-                    "jump_label":"mirror_end"}
+                    "jump_label":"ch0_mirror_end"}
                 ]}
             ],
             "hub":"mirror",
@@ -739,7 +737,7 @@ init python:
             "hub":"shepherd",
             "requires":[],
             "answer_lines":[
-                {"effects":"royal":add_some},
+                {"effects":{"royal":add_some}},
                 {"jump":"shepherd_no"}
             ]
         },
@@ -752,7 +750,7 @@ init python:
                 {"who":"shepherd",
                 "text":"Sheep for care take we, job simple."},
                 
-                {"who":"shepherd"
+                {"who":"shepherd",
                 "text":"Peaceful is it. For it like I."},
 
                 {"who":"shepherd",
@@ -823,7 +821,7 @@ init python:
             "hub":"shepherd",
             "requires":[],
             "answer_lines":[
-                {"effects":"decon":add_some},
+                {"effects":{"decon":add_some}},
                 {"jump":"shepherd_no"}
             ]
         },
@@ -974,7 +972,7 @@ init python:
                 "text":"Gossip of lot. A know not do I."},
 
                 {"who":"shepherd",
-                "text", "Maybe Sally, seamstress."}
+                "text":"Maybe Sally, seamstress."}
             ]
         },
 
@@ -984,16 +982,16 @@ init python:
             "requires":["shepherd_yes_miller"],
             "answer_lines":[
                 {"who":"shepherd",
-                "text", "Rude, very rude."},
+                "text":"Rude, very rude."},
 
                 {"who":"shepherd",
-                "text", "Books took."},
+                "text":"Books took."},
 
                 {"who":"shepherd",
-                "text", "Language wrong."},
+                "text":"Language wrong."},
 
                 {"who":"shepherd",
-                "text", "Bea annoyed, important most."}
+                "text":"Bea annoyed, important most."}
             ]
         },
 
@@ -1012,16 +1010,16 @@ init python:
             "requires":["shepherd_yes_miller"],
             "answer_lines":[
                 {"who":"shepherd",
-                "text", "Either with close? Not was."},
+                "text":"Either with close? Not was."},
 
                 {"who":"shepherd",
-                "text", "Bad not, thinks I."},
+                "text":"Bad not, thinks I."},
 
                 {"who":"shepherd",
-                "text", "Though good not also."},
+                "text":"Though good not also."},
 
                 {"who":"shepherd",
-                "text", "Shouting heard sometimes. Bea as street, same."}
+                "text":"Shouting heard sometimes. Bea as street, same."}
             ]
         },
 
