@@ -16,6 +16,10 @@ define mirror_name = "The Mirror" #In recover the past ending, The Mirror: Ilia
 define princess_name = ""
 
 #@Naomi are we putting char in front of the characters? e.g. char_boy??
+#the protagonist!
+define mc = Character("The Princess: [princess_name], the Heir to the Billyburrows, Duchess ...", color="#eee")
+
+#everyone else
 define mirror = Character(mirror_name, color="#e0dddd")
 define boy = Character("The Boy: [boy_name]", color="#ba0f0a")
 define wolf = Character("The Wolf: Llangernyw", color="#90a3b0")
@@ -80,7 +84,12 @@ init python:
     boy_renamed_flag = False
     prince_named_flag = False
     kidnap_royal_flag = False 
-    invite_reaction_flag = False 
+    invite_reaction_flag = False
+    travel_early_flag = True
+    travel_ellipsis_flag = True
+    
+    #boy needs to open up
+    boy_talk_about_himself = 0
 
     #cahpeter1/2 through line
     travel_day = 0
@@ -270,7 +279,7 @@ label ch1_invite_reaction:
     boy "I would know, I was almost eaten by wolves, you know."
     show boy -snarky
     wolf "That's not what happened!"
-    boy "Moving past that, Wolf and I, we're on a quest to kill a dragon, and we'll eventually make it to a village."
+    boy "Moving past that, Wolf and I, we're on a quest to kill a dragon, and we'll eventually make it to a village, where we'll be looking for a wizard."
     boy "So, you want to come along?"
 
     menu:
@@ -427,6 +436,8 @@ label ch1_travel_day1_question_hub:
         travel_day += 1
         hub_key = "travel"
         num_asks = 2
+        travel_early_flag = True
+    
     call hub_loop
 
 #chapter 2

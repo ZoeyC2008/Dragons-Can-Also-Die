@@ -639,15 +639,425 @@ init 1 python:
             "hub":"travel",
             "requires":[travel_day>0],
             "answer_lines":[
-                {""}
+                {"who":"boy",
+                "text":"Well, you know, the standard reward."},
+
+                {"who":"boy",
+                "text":"Half the kindgom and the heir's hand in marriage."}
+            ]
+        },
+
+        "travel_dragon_reason_two":{
+            "title":"Why are you trying to kill a dragon?",
+            "hub":"travel",
+            "requires":["travel_dragon_reason_two"],
+            "answer_lines":[
+                {"who":"boy",
+                "text":"Didn't you already ask?"},
+
+                {"who":"boy",
+                "text":"Obviously, I want half the kindgom and the heir's hand in marriage."},
+
+                {"who":"boy",
+                "text":"I mean, isn't that why everyone wants to kill a dragon?"}
+            ]
+        },
+
+        "travel_dragon_reason_three":{
+            "title":"I don't think you want the 'standard reward' Why are you trying to kill a dragon?",
+            "hub":"travel",
+            "requires":["travel_dragon_reason_three"],
+            "answer_lines":[
+                {"who":"boy",
+                "text":"Fine, fine. I don't actually want to rule a kingdom. That would be exhausting."},
+
+                {"who":"boy",
+                "text":"I have no experience in management and I can't even imagine the amount of paperwork! No, I'd leave it to the those who want it."},
+
+                {"who":"boy",
+                "text":"As for the heir's hand in marriage, I'm not interested in a romantic relationship and I don't want to force a marriage when the other party doesn't want it."},
+
+                {"who":"boy",
+                "text":"Especially since I'm rather incompetant at politicking and would hardly be a favourable match."},
+
+                {"who":"boy",
+                "text":"So, you see this is a test of skills, see if I'm good enough to slay a dragon. That's it. That's all there is to it."}
+            ]
+        },
+
+        "travel_dragon_reason_four":{
+            "title":"You don't seem like the kind of person to kill something for pride. I'll ask again, why are you on a quest to slay a dragon?",
+            "hub":"travel",
+            "requires":["travel_dragon_reason_three"],
+            "answer_lines":[
+                {"who":"boy",
+                "text":"..."},                
+
+                {"who":"boy",
+                "text":"*whispers* I want to save Wolf. The dragon's heart is said to be invigorating. I'm hoping it'll be able to heal him."},
+
+                {"who":"boy",
+                "text":"I've never seen him at his prime, when he was younger, top of the world and all that."},
+
+                {"who":"boy",
+                "text":"But I know he misses it and he's given me everything. This is the least I could do."},
+
+                {"who":"boy",
+                "text":"..."},
+
+                {"who":"boy",
+                "text":"It could help you too."},
+
+                {"who":"boy",
+                "text":"The dragon's mind can also heal minds, it'd definitly help you with your missing memories."},
+            ]
+        },
+
+        "travel_wolf_give":{
+            "title":"[boy_name], what did Llangernyw give you?",
+            "hub":"travel",
+            "requires":["travel_dragon_reason_four"],
+            "answer_lines":[
+                {"who":"boy",
+                "text":"..."},
+                
+                {"who":"boy",
+                "text":"My life I guess."},
+
+                {"who":"boy",
+                "text":"He took me in as an apprentice when I ran into him in the dark forest."},
+
+                {"who":"boy",
+                "text":"And magic shaped me in every way possible."},
+
+                {"who":"boy",
+                "text":"It is my life now."},
             ]
         },
         
+        "travel_wolf_know_reason":{
+            "title":"Does Llangernyw know what you're planning to do?",
+            "hub":"travel",
+            "requires":["travel_dragon_reason_four"],
+            "answer_lines":[
+                {"who":"boy",
+                "text":"Yes?"},
+                
+                {"who":"boy",
+                "text":"I think so?"},
+
+                {"who":"boy",
+                "text":"Wolf isn't dumb, despite all appearances."},
+
+                {"who":"boy",
+                "text":"I don't know any other reason we'd be off to kill a dragon at least."},
+            ]
+        },
+
+        "travel_tell_wolf_reason":{
+            "title":"[boy_name], you should tell Llangernyw why you're trying to kill the dragon. Now, when he's still awake.",
+            "hub":"travel",
+            "requires":["travel_wolf_know_reason", travel_early_flag],
+            "answer_lines":[
+                {"who":"boy",
+                "text":"Hey Wolf!"},
+                
+                {"who":"boy",
+                "text":"You know we're killing the dragon to get its heart right?"},
+
+                {"who":"wolf",
+                "text":"Okay?"},
+
+                {"who":"wolf",
+                "text":"I don't really care what's being harvested from the dragon."},
+
+                {"who":"boy",
+                "text":"I mean getting the heart for you."},
+
+                {"who":"wolf",
+                "text":"..."},
+
+                {"who":"wolf",
+                "text":"..."},
+
+                {"who":"wolf",
+                "text":"...Thanks."},
+
+                {"who":"wolf",
+                "text":"..."},
+
+                {"who":"wolf",
+                "text":"But there was no need."},
+
+                {"who":"wolf",
+                "text":"I am youthful as always."},
+
+                {"who":"wolf",
+                "text":"*cough* Like I said, youthful as always."},
+
+                {"who":"wolf",
+                "text":"Anyhow, my pendant and monocle are perfect focuses. Not that I'm saying no to a dragon's heart!"}
+            ]
+        },
+
+        "travel_village":{
+            "title":"What is the village we're going to?",
+            "hub":"travel",
+            "requires":[travel_day>0, travel_early_flag],
+            "answer_lines":[
+                {"who":"boy",
+                "text":"Well, I don't know all that much."},
+
+                {"who":"boy",
+                "text":"It's pretty small and they do like farming and what not. Definitly has a lot of farmers and shepherds, maybe has a lost heir and a magic sword, seeing as there's a wizard hiding over there."},
+                
+                {"who":"wolf",
+                "text":"It probably doesn't. The chances of a random town having a true magic sword is one in a million."},
+
+                {"who":"boy",
+                "text":"Well, one can dream and at least one tiny, lucky, backwater village has a magic sword that'll grant a hapless farmboy kingship."},
+
+                {"who":"boy",
+                "text":"But more on topic--the village is on the outskirts of the forest."},
+
+                {"who":"boy",
+                "text":"Whoever buildt it was either very smart or very lucky as the village is just past dragon country and I doubt no dragons ever bothered them."}
+            ]
+        },
+
+        "travel_village_wizard":{
+            "title":"Can you tell me more about this wizard we're trying to meet?",
+            "hub":"travel",
+            "requires":[travel_day>0, travel_early_flag],
+            "answer_lines":[
+                {"who":"wolf",
+                "text":"I would never mistake a magical signiture, even from this far away, and I felt one coming from the village we're heading towards."},
+                
+                {"who":"wolf",
+                "text":"It was also the only one close to the mountains and the dragons we're nearing."},
+
+                {"who":"wolf",
+                "text":"Magic users just aren't as competent as they once were."},
+
+                {"who":"wolf",
+                "text":"Back in the day, there would be a full squadron making sure dragons didn't encroach onto civillization"},
+
+                {"who":"wolf",
+                "text":"And this has been reduced to what? A single wizard?"},
+
+                {"who":"boy",
+                "text":"Anyways, I figured we should go visit them! They've been living near the dragons for so long, they must have some sort of advice on how to face fire-breathing lizards."},
+
+                {"who":"boy",
+                "text":"I also do hope they're nice and willing to help out."},
+            ]
+        },
+
+        "travel_boy_name_why":{
+            "title":"Why do you call yourself 'Boy'?",
+            "hub":"travel",
+            "requires":[travel_day>0, not boy_renamed_flag],
+            "answer_lines":[
+                {"who":"boy",
+                "text":"It's just a name I identify with."},
+                
+                {"who":"boy",
+                "text":"No more, no less."}
+            ]
+        },
+
+        "travel_boy_name_find":{
+            "title":"In that case, can I help you find a new name?",
+            "hub":"travel",
+            "requires":["travel_boy_name_why"],
+            "answer_lines":[
+                {"who":"boy",
+                "text":"..."},
+                
+                {"who":"boy",
+                "text":"I'm happy with my name as it is."},
+
+                {"who":"boy",
+                "text":"But, I guess...I guess I'll take your suggestion, but I probably, like ninety-nine percent sure, that I won't take it."}
+            ]
+        },
+
+        "travel_boy_name_epiphany":{
+            "title":"Have you got any thought on what you'd like to be called other than Boy?",
+            "hub":"travel",
+            "requires":["travel_boy_name_find", boy_talk_about_himself > 4],
+            "answer_lines":[
+                {"who":"boy",
+                "text":"Now that I think about it more, I think I'd be happy to try and choose something."},
+                
+                {"who":"boy",
+                "text":"Like something that suits me."},
+
+                {"who":"boy",
+                "text":"But I also know Boy suits me."},
+
+                {"who":"boy",
+                "text":"It sits up there now."},
+
+                {"who":"boy",
+                "text":"And that feels right. But like Wolf also had more after what feels right too."},
+
+                {"who":"boy",
+                "text":"I think I might try to find something for myself as well."}
+            ]
+        },
+
+        "travel_wolf_magic_slideshow":{
+            "title":"Llangernyw, can you teach me about magic?",
+            "hub":"travel",
+            "requires":[travel_day>0, travel_early_flag],
+            "answer_lines":[
+                {"repeat":"true"}
+                {"call":"wolf_magic_slideshow"}
+            ]
+        },
+
+        "travel_boy_wolf_relationship":{
+            "title":"[boy_name], you and Llangernyw are really close. How did meet?",
+            "hub":"travel",
+            "requires":[travel_day>1],
+            "answer_lines":[
+                {"who":"boy",
+                "text":"It wasn't anything special. I met him in the woods, obviously."},
+                
+                {"who":"boy",
+                "text":"I was running an errand for my Mama."},
+
+                {"who":"boy",
+                "text":"He was really nice and polite, well I know better now."},
+
+                {"who":"boy",
+                "text":"Wolf's only nice 'cause he wanted to make a good first impression."},
+
+                {"who":"boy",
+                "text":"Granted, he was also super frail and everything, but he didn't see it that way."},
+
+                {"who":"boy",
+                "text":"Anyway, not relevant. I became his apprentice and we've been traveling together ever since."}
+            ]
+        },
+
+        "travel_boy_errand":{
+            "title":"What errand were you doing for your Mama?",
+            "hub":"travel",
+            "requires":["travel_boy_wolf_relationship"],
+            "answer_lines":[
+                {"who":"boy",
+                "text":"Nothing much, just delivering some cookies, soup, and other what not for Grandmama."},
+                
+                {"who":"boy",
+                "text":"Grandmama insisted on living in a cottage in the middle of the Woods, you see. That never made much sense to me, I thought that was a death wish."}
+            ]
+        },
+
+        "travel_walking_song":{
+            "title":"[boy_name], where did you learn that walking song?",
+            "hub":"travel",
+            "requires":[travel_day>1],
+            "answer_lines":[
+                {"who":"boy",
+                "text":"My Mama taught it to me back when both of us would go visit Grandmama."},
+                
+                {"who":"boy",
+                "text":"These days, walking in any forest reminds of them, so I sing this song."},
+
+                {"who":"boy",
+                "text":"Those days weren't the best, and I think I'm doing better now, but I'd say my time then wasn't unhappy."}
+            ]
+        },
+
+        "travel_boy_parents":{
+            "title":"[boy_name], are your parents still--still alive?",
+            "hub":"travel",
+            "requires":["travel_walking_song"],
+            "answer_lines":[
+                {"who":"boy",
+                "text":"Father's been gone as far as I could remember."},
+
+                {"who":"boy",
+                "text":"It's always been just Mama and me as far as I could remember, while Grandmama lived in the forest, a ways from the village."},
+
+                {"who":"boy",
+                "text":"And I think Mama and Grandmama are still safe, sound, and alive."}
+            ]
+        },
+
+        "travel_wolf_teaching":{
+            "title":"Llangernyw, why are you teaching Boy?",
+            "hub":"travel",
+            "requires":[travel_day>1, travel_early_flag],
+            "answer_lines":[
+                {"who":"wolf",
+                "text":"Don't let that idiot fool you. Boy has talent."},
+
+                {"who":"wolf",
+                "text":"After only a year he was already making his own spells. Most never get there, you know. Sure it was still later than me, first pieve of magic I cast was of my own making."},
+
+                {"who":"wolf",
+                "text":"But still impressive."},
+                
+                {"who":"wolf",
+                "text":"And I guess I could do a lot worse for an apprentice. He's just a tad too chatty, but he takes care of everything else and he has a good heart."},
+
+                {"who":"wolf",
+                "text":"Now stop asking me irrelevant questions! You're ruinging my sleep."}
+            ]
+        },
+
+        "travel_wolf_sleep":{
+            "title":"",
+            "hub":"travel",
+            "requires":[travel_day>2, travel_early_flag],
+            "answer_lines":[
+                {"who":"wolf",
+                "text":"..."},
+                
+                {"who":"wolf",
+                "text":"Stop drinking coffee."},
+
+                {"who":"wolf",
+                "text":"..."},
+
+                {"who":"wolf",
+                "text":"Don't stay up all night chattering."},
+            ]
+        },
+
+        "travel_wolf_soul":{
+            "title":"Is the soul thing normal??",
+            "hub":"travel",
+            "requires":[travel_day>3, travel_early_flag],
+            "answer_lines":[
+                {"who":"boy",
+                "text":"Eh...more or less."},
+                
+                {"who":"wolf",
+                "text":"There was no soul thing!"},
+            ]
+        },
+
+        "travel_ellipsis_saga":{
+            "title":"...",
+            "hub":"travel",
+            "requires":[travel_day>0, travel_ellipsis_flag],
+            "answer_lines":[
+                {"repeat":"true"},
+                {"call":"ellipsis_saga"}
+            ]
+        },
+
         "travel":{
             "title":"",
             "hub":"travel",
             "requires":[travel_day>0],
             "answer_lines":[
+                {"who":"boy",
+                "text":""},
                 {}
             ]
         },
