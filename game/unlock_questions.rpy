@@ -7,6 +7,8 @@ init 1 python:
     questions = {
         #really long, but this is basically all the text i need for my question hubs
         #which are like, a good half? of the game, and where most of the exploration is
+        
+        #mirror hub
         "mirror_where":{
             "title":"Where am I?",
             "answer_lines":[
@@ -631,6 +633,28 @@ init 1 python:
             "requires":["mirror_but_why"]
         },
 
+        #travel hub
+        "travel_dragon_reason_one":{
+            "title":"Why are you trying to kill a dragon?",
+            "hub":"travel",
+            "requires":[travel_day>0],
+            "answer_lines":[
+                {""}
+            ]
+        },
+        
+        "travel":{
+            "title":"",
+            "hub":"travel",
+            "requires":[travel_day>0],
+            "answer_lines":[
+                {}
+            ]
+        },
+
+
+        #village hubs
+        #innnkeeper alone
         "innkeeper_no_wizard":{
             "title":"You didn't mention wizard when you were introducing everyone. Tell me about them please",
             "hub":"innkeeper",

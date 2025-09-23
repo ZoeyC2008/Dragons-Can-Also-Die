@@ -21,8 +21,7 @@ label mirror_reaction:
         show mirror big cracks
         mirror "I think I only have one question left."
     else:
-        #show mirror frame
-        show mirror
+        show mirror frame
 
     
     $ mirror_reaction_count += 1
