@@ -7,8 +7,8 @@
 define drgn_decon_color = "#000000"
 
 #make dynamic names: (i think this works?)
-define boy_name = "Boy" #Boy is namable by the player, real name is Sasha
-define boy_display_name = "The Boy: "+boy_name
+default boy_name = "" #Boy is namable by the player, real name is Sasha
+#default boy_display_name = "The Boy: "+boy_name
 define sojourn_name = "Man in Midst of Sojourn: 噩梦" #With 'e's: The Sojourner: E Meng
 define mirror_name = "The Mirror" #In recover the past ending, The Mirror: Ilia
 
@@ -16,8 +16,12 @@ define mirror_name = "The Mirror" #In recover the past ending, The Mirror: Ilia
 define princess_name = ""
 
 #@Naomi are we putting char in front of the characters? e.g. char_boy??
+#the protagonist!
+define mc = Character("The Princess: [princess_name], the Heir to the Billyburrows, Duchess ...", color="#eee")
+
+#everyone else
 define mirror = Character(mirror_name, color="#e0dddd")
-define boy = Character(boy_display_name, color="#ba0f0a")
+define boy = Character("The Boy: [boy_name]", color="#ba0f0a")
 define wolf = Character("The Wolf: Llangernyw", color="#90a3b0")
 define wizard = Character("The Wizard: Bea", color="#6f4685")
 define innkeeper = Character("The Innkeeper: Pepper", color="#028a0f")
@@ -37,6 +41,7 @@ image mirror = "mirror_0_whole.png"
 image mirror small cracks = "mirror_1_small_cracks.png"
 image mirror medium cracks = "mirror_2_medium_cracks.png"
 image mirror big cracks = "mirror_3_big_cracks.png"
+image mirror frame = "mirror_4_frame.png"
 
 #Boy!
 image boy = "boy_default.png"
@@ -48,6 +53,7 @@ image wolf = "wolf_default.png"
 
 #backgrounds (I ledgitemently think this is the hardesd part)
 image bg forest path = "bg_forest_path.png"
+image bg forest camp = "bg_forest_camp.png"
 
 #let's also define some image positions!
 define wolf_ypos = 1100
@@ -75,9 +81,18 @@ init python:
     #FLAGS
     #chapter one
     boy_named_flag = False
+    boy_renamed_flag = False
     prince_named_flag = False
     kidnap_royal_flag = False 
-    invite_reaction_flag = False 
+    invite_reaction_flag = False
+    travel_early_flag = True
+    travel_ellipsis_flag = True
+    
+    #boy needs to open up
+    boy_talk_about_himself = 0
+
+    #cahpeter1/2 through line
+    travel_day = 0
 
     #chapter two
     mu_my_flag = False
@@ -264,7 +279,7 @@ label ch1_invite_reaction:
     boy "I would know, I was almost eaten by wolves, you know."
     show boy -snarky
     wolf "That's not what happened!"
-    boy "Moving past that, Wolf and I, we're on a quest to kill a dragon, and we'll eventually make it to a village."
+    boy "Moving past that, Wolf and I, we're on a quest to kill a dragon, and we'll eventually make it to a village, where we'll be looking for a wizard."
     boy "So, you want to come along?"
 
     menu:
@@ -301,7 +316,6 @@ label ch1_invite_place:
 
 #boy naming subplot
 label ch1_wolf_name:
-    $ boy_named_flag = True
 
     wolf "I am Llangernyw, the wolf."
 
@@ -338,8 +352,11 @@ label ch1_wolf_ego:
     menu:
         "You still haven't told me your name?":
             jump ch1_boy_name
+        "(Tell them your name.)" if not prince_named_flag:
+            jump ch1_share_name
 
 label ch1_boy_name:
+    $ boy_named_flag = True
     boy "Well, like I said, I'm just Boy everyone calls me that."
 
     menu:
@@ -352,16 +369,28 @@ label ch1_boy_name:
                 jump ch1_accept_boy_name
         "Alright, Boy then, not like I care.":
             $ aloof += add_some
-            jump ch1_accept_boy_name
+            if not prince_named_flag:
+                jump ch1_boy_asks_for_name
+            else:
+                jump ch1_accept_boy_name
         "But that can't be your true name, so why not think of something else?":
             $ royal += add_tiny
             jump ch1_almost_pick_boy_name
         "...":
-            $ ellipsis()
-            
-            #jump
+            $ ellipsis()            
+            if not prince_named_flag:
+                jump ch1_boy_asks_for_name
+            else:
+                jump ch1_accept_boy_name
+
+label ch1_accept_boy_name:
+    $ boy_name = "Boy"
+    boy "Thank you!"
+    boy "Not everyone likes my name, but it's what I'm comfortable with."
+    jump ch1_invite
 
 label ch1_boy_asks_for_name:
+    $ boy_name = "Boy"
     boy "Good, good. And, in exchange, I'd say its only fair if you share your name too."
     jump ch1_share_name
 
@@ -391,15 +420,25 @@ label ch1_almost2_pick_name:
 
 label ch1_pick_boy_name:
     $ boy_name = renpy.input("Choose Boy's name")
+    $ boy_renamed_flag = True
+    if boy_name == "":
+        $ boy_name = "Boy"
+        $ boy_renamed_flag = False
     
-    if not prince_named_flag:
-        jump ch1_share_name
-    else:
-        jump ch1_invite
+    menu:
+        "(Tell them your name)" if not prince_named_flag:
+            jump ch1_share_name
+    jump ch1_invite
 
+#we do be traveling
 label ch1_travel_day1_question_hub:
     python:
+        travel_day += 1
         hub_key = "travel"
+        num_asks = 2
+        travel_early_flag = True
+    
+    call hub_loop
 
 #chapter 2
 #innkeeper q hub
