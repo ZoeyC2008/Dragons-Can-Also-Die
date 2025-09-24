@@ -53,8 +53,12 @@ image boy shock = "boy_shocked.png"
 image wolf = "wolf_default.png"
 
 #backgrounds (I ledgitemently think this is the hardesd part)
+image bg black = "#000"
 image bg forest path = "bg_forest_path.png"
 image bg forest camp = "bg_forest_camp.png"
+
+#cutscenes
+image cutscene puppet show = "cutscene_puppet_show.png"
 
 #let's also define some image positions!
 define wolf_ypos = 1100
@@ -62,6 +66,8 @@ define wolf_ypos = 1100
 define pos_slightly_left = Position(xalign=0.35, yalign=0.5)
 define pos_left = Position(xalign=0.15, yalign=0.5)
 define pos_wolf_center = Position(xalign=0.5, ypos=wolf_ypos)
+define pos_wolf_slightly_left = Position(xalign=0.35, ypos=wolf_ypos)
+define pos_slightly_right = Position(xalign=0.7, ypos=0.5)
 
 init python:
     #Game variables (the idea is that these dictate what dragon you get)
@@ -120,7 +126,7 @@ init python:
 # The game starts here.
 #Chapter 0
 label start:
-    #shadow puppet of a prince and princess
+    scene cutscene puppet show
 
     #initial choices
     "...And so they lived, happily ever after."
@@ -140,6 +146,7 @@ label start:
     jump ch0_mirror_question_hub
 
 label ch0_mirror_question_hub:
+    scene bg black
     show mirror
     
     python:

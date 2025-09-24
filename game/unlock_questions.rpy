@@ -885,7 +885,7 @@ init 1 python:
         "travel_boy_name_epiphany":{
             "title":"Have you got any thought on what you'd like to be called other than Boy?",
             "hub":"travel",
-            "requires":["travel_boy_name_find", boy_talk_about_himself > 4],
+            "requires":["travel_boy_name_find", boy_talk_about_himself_count > 4],
             "answer_lines":[
                 {"who":"boy",
                 "text":"Now that I think about it more, I think I'd be happy to try and choose something."},
@@ -912,7 +912,7 @@ init 1 python:
             "hub":"travel",
             "requires":[travel_day>0, travel_early_flag],
             "answer_lines":[
-                {"repeat":"true"}
+                {"repeat":"true"},
                 {"call":"wolf_magic_slideshow"}
             ]
         },
