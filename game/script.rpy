@@ -288,10 +288,10 @@ label ch1_invite_reaction:
         "Where is this next village anyway?":
             jump ch1_invite_place
         "Sure, I'll come along":
-            jump ch1_travel_day1_question_hub
+            jump ch1_travel_question_hub
         "...":
             $ ellipsis()
-            jump ch1_travel_day1_question_hub
+            jump ch1_travel_question_hub
 
 label ch1_invite_place:
     boy "Well, I'm not all that sure."
@@ -309,10 +309,10 @@ label ch1_invite_place:
         "I'm not going anywhere with strangers.":
             jump ending_ch1_walk_away
         "Sure, I'll come along":
-            jump ch1_travel_day1_question_hub
+            jump ch1_travel_question_hub
         "...":
             $ ellipsis()
-            jump ch1_travel_day1_question_hub
+            jump ch1_travel_question_hub
 
 #boy naming subplot
 label ch1_wolf_name:
@@ -431,7 +431,11 @@ label ch1_pick_boy_name:
     jump ch1_invite
 
 #we do be traveling
-label ch1_travel_day1_question_hub:
+label ch1_travel_question_hub:
+    scene bg forest camp
+    show boy at pos_left
+    show wolf at pos_wolf_center
+
     python:
         travel_day += 1
         hub_key = "travel"
@@ -439,6 +443,102 @@ label ch1_travel_day1_question_hub:
         travel_early_flag = True
     
     call hub_loop
+
+    python:
+        hub_key = None
+        num_asks = 0
+
+    if travel_day == 1:
+        jump ch1_travel_day1
+    elif travel_day == 2:
+        jump ch1_travel_day2
+    elif travel_day == 3:
+        jump ch1_travel_day3
+    elif travel_day == 4:
+        jump ch2_meet_innkeeper
+
+label ch1_travel_day1:
+    scene bg forest path
+    show boy at pos_left
+    show wolf at pos_wolf_center
+
+    boy "Roads go ever ever on,"
+    boy "Over rock and under tree,"
+    boy "By caves where never sun has shone,"
+    boy "By streams that never find the sea;"
+    boy "Over snow by winter sown,"
+    boy "And through the merry flowers of June,"
+    boy "Over grass and over stone,"
+    boy "And under mountains in the moon."
+
+    menu:
+        "Roads go ever ever on...":
+            $ decon += add_tiny
+        "Is that Lord of the Rings? By J. R. R. Tolkien?":
+            $ decon += add_most        
+        "...":    
+            $ ellipsis()    
+    jump ch1_travel_question_hub
+
+label ch1_travel_day2:
+    scene bg forest path
+    show boy at pos_left
+    show wolf at pos_wolf_center
+
+    boy "Roads go ever ever on"
+    boy "Under cloud and under star,"
+    boy "Yet feet that wandering have gone"
+    boy "Turn at last to home afar."
+    boy "Eyes that fire and sword have seen"
+    boy "And horror in the halls of stone"
+    boy "Look at last on meadows green"
+    boy "And trees and hills they long have known."
+
+    menu:
+        "Roads go ever ever on...":
+            $ decon += add_tiny
+        "Is that Lord of the Rings? By J. R. R. Tolkien?":
+            $ decon += add_most        
+        "...":    
+            $ ellipsis()
+    jump ch1_travel_question_hub
+
+label ch1_travel_day3:
+    scene bg forest path
+    show boy at pos_left
+    show wolf at pos_wolf_center
+
+    wolf "arrrgggghhhh"
+    boy "*sigh*"
+    boy "Fëa Llangernyw entulessë hröa. Firië vá haryatyë." #I don't think my translation is correct, but it's supposed to be Quenya
+
+    show wolf
+    menu:
+        "What just happened??":
+            jump ch1_travel_explain_soul
+        "...":
+            $ ellipsis()
+            jump ch1_travel_day3_song
+
+label ch1_travel_explain_soul:
+    wolf "Nothing you need to worry about."
+    wolf "This has no differance on my power, I'm still more that powerful enough to smite everyone in my vincity."
+    boy "Eh...Sometimes, you just need to properly shove Wolf's soul into his body."
+    boy "I mean, it works and it keeps him alive."
+    boy "So, I'm more than happy to do that."
+    jump ch1_travel_day3_song
+
+label ch1_travel_day3_song:
+    boy "The Road goes ever on and on"
+    boy "Down from the door where it began."
+    boy "Now far ahead the Road has gone,"
+    boy "And I must follow, if I can,"
+    boy "Pursuing it with eager feet,"
+    boy "Until it joins some larger way"
+    boy "Where many paths and errands meet."
+    boy "And wither then? I cannot say."
+    jump ch1_travel_question_hub
+
 
 #chapter 2
 #innkeeper q hub
