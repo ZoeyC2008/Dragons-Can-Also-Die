@@ -457,6 +457,7 @@ label ch1_travel_question_hub:
     elif travel_day == 4:
         jump ch2_meet_innkeeper
 
+#the road goes ever on
 label ch1_travel_day1:
     scene bg forest path
     show boy at pos_left
