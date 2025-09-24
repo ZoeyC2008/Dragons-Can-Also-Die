@@ -34,6 +34,8 @@ label wolf_sleep:
 
         
 label wolf_magic_slideshow:
+    python:
+        wolf_magic_slideshow_count += 1
     #we'll figure this our
 
 #the travel ellipsis saga!
