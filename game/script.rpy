@@ -476,7 +476,7 @@ label ch1_travel_question_hub:
     elif travel_day == 3:
         jump ch1_travel_day3
     elif travel_day == 4:
-        jump ch2_meet_innkeeper
+        jump ch2_titlecard
 
 #the road goes ever on
 label ch1_travel_day1:
@@ -563,9 +563,13 @@ label ch1_travel_day3_song:
 
 
 #chapter 2
+label ch2_titlecard:
+    #scene titlecard ch2
+    jump ch2_meet_innkeeper
+
 #ch 2 inn
 label ch2_meet_innkeeper:
-    #show bg inn common room
+    #scene bg inn common room
     show boy at pos_left
     show wolf at pos_wolf_slightly_left
     #show innkeeper at pos_slightly_right
@@ -1156,7 +1160,7 @@ label ch2_wizard_deny:
 label ch2_travel:
     pass
 
-label ch2_titlecard:
+label ch3_titlecard:
     pass
 
 label ending_ch1_walk_away:
