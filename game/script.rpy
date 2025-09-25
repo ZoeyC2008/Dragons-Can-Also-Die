@@ -890,7 +890,7 @@ label ch2_wizard_accept:
             $ aloof += add_little
         "...":
             $ ellipsis()
-    jump ch3_start
+    jump ch2_travel
 
 label ch2_wizard_deny:
     wizard "S-s-sorry..."
@@ -905,9 +905,12 @@ label ch2_wizard_deny:
             $ aloof += add_little
         "...":
             $ ellipsis()
-    jump ch3_start
+    jump ch2_travel
 
-label ch3_start:
+label ch2_travel:
+    pass
+
+label ch2_titlecard:
     pass
 
 label ending_ch1_walk_away:
