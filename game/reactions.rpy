@@ -36,6 +36,7 @@ label wolf_sleep:
 label wolf_magic_slideshow:
     python:
         wolf_magic_slideshow_count += 1
+    return
     #we'll figure this our
 
 #the travel ellipsis saga!
@@ -86,3 +87,5 @@ label ellipsis_saga:
         boy "I don't even know what more I could talk about right now."
         boy "You've made feel really comfortable."
         boy "Let's go to sleep, we'll make it to the village tomorrow."
+    
+    return
