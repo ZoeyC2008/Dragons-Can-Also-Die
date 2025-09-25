@@ -1152,7 +1152,7 @@ init 1 python:
             "hub":"innkeeper",
             "requires":["innkeeper_yes_wizard"],
             "answer_lines":[
-                {"jump":"innkeeper_no"}
+                {"jump":"ch2_innkeeper_no"}
             ]
         },
 
@@ -1172,7 +1172,7 @@ init 1 python:
             "requires":[],
             "answer_lines":[
                 {"effects":{"royal":add_some}},
-                {"jump":"shepherd_no"}
+                {"jump":"ch2_shepherd_no"}
             ]
         },
 
@@ -1197,7 +1197,7 @@ init 1 python:
             "hub":"shepherd",
             "requires":[],
             "answer_lines":[
-                {"jump":"shepherd_no"}
+                {"jump":"ch2_shepherd_no"}
             ]
         },
 
@@ -1206,7 +1206,7 @@ init 1 python:
             "hub":"shepherd",
             "requires":["shepherd_yes_what"],
             "answer_lines":[
-                {"jump":"shepherd_no"}
+                {"jump":"ch2_shepherd_no"}
             ]
         },
 
@@ -1215,7 +1215,7 @@ init 1 python:
             "hub":"shepherd",
             "requires":[],
             "answer_lines":[
-                {"jump":"shepherd_no"}
+                {"jump":"ch2_shepherd_no"}
             ]
         },
 
@@ -1246,7 +1246,7 @@ init 1 python:
             "hub":"shepherd",
             "requires":["shepherd_yes_watch"],
             "answer_lines":[
-                {"jump":"shepherd_no"}
+                {"jump":"ch2_shepherd_no"}
             ]
         },
 
@@ -1256,7 +1256,7 @@ init 1 python:
             "requires":[],
             "answer_lines":[
                 {"effects":{"decon":add_some}},
-                {"jump":"shepherd_no"}
+                {"jump":"ch2_shepherd_no"}
             ]
         },
 
@@ -1306,7 +1306,7 @@ init 1 python:
             "hub":"shepherd",
             "requires":["shepherd_yes_watch"],
             "answer_lines":[
-                {"jump":"shepherd_no"}
+                {"jump":"ch2_shepherd_no"}
             ]
         },
 
@@ -1337,7 +1337,7 @@ init 1 python:
             "hub":"shepherd",
             "requires":["shepherd_yes_book"],
             "answer_lines":[
-                {"jump":"shepherd_no"}
+                {"jump":"ch2_shepherd_no"}
             ]
         },
 
@@ -1346,7 +1346,7 @@ init 1 python:
             "hub":"shepherd",
             "requires":["shepherd_yes_bouquet"],
             "answer_lines":[
-                {"jump":"shepherd_no"}
+                {"jump":"ch2_shepherd_no"}
             ]
         },
 
@@ -1374,7 +1374,7 @@ init 1 python:
             "hub":"shepherd",
             "requires":[mu_my_flag],
             "answer_lines":[
-                {"jump":"shepherd_no"}
+                {"jump":"ch2_shepherd_no"}
             ]
         },
 
@@ -1387,7 +1387,7 @@ init 1 python:
                 "text":"No all at well not, thinks I."},
 
                 {"who":"shepherd",
-                "text":"Juniper to was marriage future."},
+                "text":"Pepper to was marriage future."},
 
                 {"who":"shepherd",
                 "text":"Son his like not, also"},
@@ -1434,12 +1434,12 @@ init 1 python:
             "hub":"shepherd",
             "requires":["shepherd_yes_miller"],
             "answer_lines":[
-                {"jump":"shepherd_no"}
+                {"jump":"ch2_shepherd_no"}
             ]
         },
 
         "shepherd_yes_relation":{
-            "title":"Relationship? Miller and Juniper",
+            "title":"Relationship? Miller and Pepper",
             "hub":"shepherd",
             "requires":["shepherd_yes_miller"],
             "answer_lines":[
@@ -1458,11 +1458,11 @@ init 1 python:
         },
 
         "shepherd_no_relation":{
-            "title":"Do you know anything about Juniper and Miller's relationship?",
+            "title":"Do you know anything about Pepper and Miller's relationship?",
             "hub":"shepherd",
             "requires":["shepherd_yes_miller"],
             "answer_lines":[
-                {"jump":"shepherd_no"}
+                {"jump":"ch2_shepherd_no"}
             ]
         },
 
@@ -1471,7 +1471,7 @@ init 1 python:
             "hub":"shepherd",
             "requires":["shepherd_yes_miller"],
             "answer_lines":[
-                {"jump":"shepherd_no"}
+                {"jump":"ch2_shepherd_no"}
             ]
         }
 

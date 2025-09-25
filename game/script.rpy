@@ -105,6 +105,10 @@ init python:
     #chapter two
     mu_my_flag = False
 
+    #For the scrum
+    assignement_boy = ""
+    assignement_wolf = ""
+
     #bread!
     bread_aquired = False
     #wizard stuff
@@ -559,8 +563,245 @@ label ch1_travel_day3_song:
 
 
 #chapter 2
+#ch 2 inn
+label ch2_meet_innkeeper:
+    #show bg inn common room
+    show boy at pos_left
+    show wolf at pos_wolf_slightly_left
+    #show innkeeper at pos_slightly_right
+
+    innkeeper "Hello, hello. This is The Foolish Flamingo!"
+    innkeeper "Are you staying the night, or just here to grab a bite?"
+    boy "Thank you, Innkeeper. We'll take two rooms, just tonight and hopefully we'll be out of you hair by tomorrow."
+    innkeeper "I hold you to no blame, but just so you know Pepper's the name; you'll be enjoy your two rooms and I claim: they're both one and the same."
+    innkeeper "Stay in the common room 'till onset of night, I'll bring over some soup so you won't be feeling light."
+
+    #hide innkeeper
+
+    wolf "Finally being a good apprentice, eh Boy? This Wold definitly needs his privacy and I imagine you two youngsters will want your own room."
+
+    menu:
+        "I'd rather share with you, I like your lectures on magic.":
+            jump ch2_room_wolf
+        "I don't really care how the rooms are distributed":
+            $ aloof += add_some
+            jump ch2_room_aloof
+        "Absolutely not! As royalty, I demand my own room!":
+            $ royal += add_some
+            jump ch2_room_royal
+        "I prefer to be alone.":
+            jump ch2_room_alone
+        "*Shrug* I'd be fine to room with [boy_name].":
+            jump ch2_room_boy
+        "Well at least it's better than having one room. And we probably won't have to go through a 'there's only one bed' trope.":
+            $ decon += add_some
+            jump ch2_room_decon
+        "...":
+            $ ellipsis()
+            jump ch2_room_aloof
+
+label ch2_room_wolf:
+    wolf "Why I never! It's wonderful to see someone half as enthusiastic as I was back when I was an apprentice."
+    wolf "I had derived all of Maxwell's equations on my own and gotten quite deep into quantum in just the fist year! Why I feel so invigorated, I want to go out right now and take a great leap to acertain gravity's continued existance!"
+    wolf "Boy you could stand to learn a thing or two from [princess_name] here."
+    boy "*whispers* Prince, sorry to ask this of you, but make sure Wolf sleeps on a bed, otherwise his joints'll be chilled come morning and he won't like that."
+    menu:
+        "I'll do that.":
+            $ royal += add_tiny
+        "I don't really care...":
+            $ aloof += add_some
+        "...":
+            $ ellipsis()
+    boy "Thanks in advance, hupoefully, I won't wake to Wolf's complaining tomorrow."
+    call wolf_magic_slideshow
+    jump ch2_innkeeper_demo
+
+label ch2_room_royal:
+    boy "Calm down, calm down."
+    jump ch2_room_aloof
+
+label ch2_room_alone:
+    boy "No problem."
+    jump ch2_room_aloof
+
+label ch2_room_decon:
+    boy "I wanted to avoid that. I think each room has two beds so no matter how we split it we should be fine."
+    jump ch2_room_aloof
+
+label ch2_room_aloof:
+    boy "I got the rooms with the thought that Wolf and I will share and Prince gets their own room."
+    wolf "Why do they get their own room! How's that fair!"
+    wolf "I'm famous, and this tiny backwater inn should be grateful its hosting me and giving me my own sperate suit."
+    boy "*whispers* We have this conversation everytime we get to an inn. It's no big deal."
+    boy "Wolf, we're used to sharing, let's take a single room like we always do and give Prince some privacy, something they've been sorrowly lacking while we've been on the road."
+    wolf "I should huff and blow this inn down!"
+    wolf "But fine, fine. Little [princess_name] gets their own room and the two of us will share."
+    boy "Great!"
+    boy "Here's the key to 217. Try to get lots of sleep in, we'll have a productive day tomorrow."
+    jump ch2_innkeeper_demo
+
+label ch2_room_boy:
+    boy "Oh!"
+    boy "Um...That's not..."
+    boy "You know what? This works too."
+    boy "Wolf, here's the key to 217, sleep in the bed and don't turn on the AC and keep the windows closed."
+    boy "Prince and I will be right across the hall in 216. If you need anything, knock."
+    boy "Anyways, Prince, let's go to sleep for tonight. Busy day tomorrow and all that."
+    jump ch2_innkeeper_demo
+
+#demo round
+label ch2_innkeeper_demo:
+    scene bg black
+    boy "Rise and shine!"
+    boy "Sun's up, so we're up!"
+    boy "I'll be in the common room soon with wolf."
+
+    #scene bg inn common room
+    show boy at pos_left
+    show wolf at pos_wolf_slightly_left
+    #show innkeeper at pos_slightly_right
+    boy "Sorry about last noght when we barged in rudely; it was late and we were all tired, truely."
+    wolf "I don't--"
+    boy "*whispers* Shut up!"
+    boy "I'm handleing this."
+    innkeeper "It's no problem, no problem what so ever. Plenty of stress and rudness though I'd never!"
+    wolf "Why--"
+    boy "*whispers* Shut up!"
+    boy "We're in this little town, can you give us some guidance so we won't look like a clown."
+    innkeeper "Given the sheer scale of your dog's lack of fur, it's hard not to mistake him for a jester all covered in myrrh."
+    wolf "Wolf!"
+    wolf "I am last of my--"
+    boy "That's enough. I'm sorry for Wolf's a little gruff."
+    wolf "I--"
+    boy "Innkeeper, please tell us about the folks 'round here! I even heard there's a magician who I'd love to watch and give them a cheer."
+    innkeeper "Bea! Everyone calls her a delight, house right next to  a street light."
+    innkeeper "Her admirer the Shepherd finds work in the fields; \nServel the Smith makes the greatest shields;"
+    innkeeper "Baltrice the Baker is lazy and lives next to hte mill; \nWren the Weaver has pet spiders along with skill;"
+    innkeeper "Benjy the Butcher has knife in hand and tears in eyes; \nSirra the Spinner is dreamy and gives advice that's wise;"
+    innkeeper "Sally the Seamstress is a hateful woman with nothing to addd; \nCandice the Cobbler can't finish their work and leaves their clients sad;"
+    innkeeper "Tinden the Tanner is forever fair and honourable and just; \nCorry the Candlestick maker is almost snuffed out with every gust;"
+    innkeeper "Miller the Miller--Miller the Miller has recently passed; \nMuch the Miller's Son doesn't know why he's so very aghast."
+    innkeeper "Have you any questions? I'm open to more suggestions."
+
+    menu:
+        "No, nothing.":
+            jump ch2_innkeeper_demo_reaction_nothing
+        "Can you tell us about the Shepherd?":
+            jump ch2_innkeeper_demo_reaction_tell
+        "Can you tell us about Serval the Smith?":
+            jump ch2_innkeeper_demo_reaction_tell
+        "Can you tell us about Baltrice the Baker?":
+            jump ch2_innkeeper_demo_reaction_tell
+        "Can you tell us about Wren the Weaver?":
+            jump ch2_innkeeper_demo_reaction_tell
+        "Can you tell us about Benjy the Butcher?":
+            jump ch2_innkeeper_demo_reaction_tell
+        "Can you tell us about Sirra the Spinner?":
+            jump ch2_innkeeper_demo_reaction_tell
+        "Can you tell us about Sally the Seamstress?":
+            jump ch2_innkeeper_demo_reaction_tell  
+        "Can you tell us about Candice the Cobbler?":
+            jump ch2_innkeeper_demo_reaction_tell 
+        "Can you tell us about Tinden the Tanner?":
+            jump ch2_innkeeper_demo_reaction_tell
+        "Can you tell us about Corry the Candlestick maker?":
+            jump ch2_innkeeper_demo_reaction_tell       
+        "How did Miller the Miller die? I understand his son doesn't know, but maybe you know why?":
+            jump ch2_innkeepre_demo_reaction_miller
+
+label ch2_innkeeper_demo_reaction_nothing:
+    boy "we don't intend to  be rude or trite, please forgive our slight."
+    innkeeper "I shall leave you three alone; I have sheets to wash as they're quite suliness prone."
+    jump ch2_assignments
+
+label ch2_innkeeper_demo_reaction_tell:
+    boy "we don't intend to  be rude or trite, please forgive our slight.But also please help us with our plight."
+    innkeeper "Don't fo around asking, no one deserves this much prodding."
+    innkeeper "I shall leave you three alone; I have sheets to wash as they're quite suliness prone."
+    jump ch2_assignments
+
+label ch2_innkeepre_demo_reaction_miller:
+    $ mu_my_flag = True
+    innkeeper "All I know is my other guest is trapped, everyone thinks he's a murderer which I do not find apt."
+    jump ch2_assignments
+
+label ch2_assignments:
+    #hide innkeeper
+    boy "Everyone's much friendlier if you're nice,"
+    boy "Yes, Wolf that means you."
+    boy "Also, we should try to match them, it's the least we could do seeing as we're guests in the village."
+    boy "Prince, this means you too."
+    boy "From what Innkeeper told us, it's the Shepherd that'll be the most familliar with that wizard. Prince why don't you get first pick?"
+
+    menu:
+        "I want to talk to Pepper again, I feel like she hasn't told us everything. I'll just wait around the inn after her tasks, I guess.":
+            jump ch2_assignments_innkeeper
+        "Pepper mentioned another guest. Maybe they'll know something?":
+            jump ch2_assignments_sojourn
+        "The shepherd is the most direct source of information, so I suppose I'll go to the fields.":
+            jump ch2_assignments_shepherd
+        "I can try asking around on the steets.":
+            jump ch2_assignments_miller_son
+        "I want to find this Miller's son, I'm curious about what happened to his father." if mu_my_flag:
+            jump ch2_assignments_miller_son
+        "i think you should get first pick.":
+            jump ch2_assignments_boy_pick
+
+label ch2_assignments_innkeeper:
+    python:
+        assignement_boy = "miller_son"
+        assignement_wolf = "shepherd"
+    
+    boy "Alright, great."
+    boy "Wolf?"
+    wolf "I'll need to stretch my old legs. I'll talk to this 'shepherd'."
+    boy "That means I'll take to the streets."
+    boy "Good luck to all of us, we'll meet back here an hour before sunset."
+    jump ch2_innkeeper_question_hub
+
+label ch2_assignments_sojourn:
+    python:
+        assignement_boy = "miller_son"
+        assignement_wolf = "shepherd"
+    
+    boy "Alright, great."
+    boy "Wolf?"
+    wolf "I'll need to stretch my old legs. I'll talk to this 'shepherd'."
+    boy "That means I'll take to the streets."
+    boy "Good luck to all of us, we'll meet back here an hour before sunset."
+    jump ch2_sojourn_question_hub
+
+label ch2_assignments_shepherd:
+    python:
+        assignement_boy = "miller_son"
+        assignement_wolf = "innkeeper"
+    
+    boy "Alright, great."
+    boy "Wolf, i want you to stay at the inn and talk to either Innkeeper or that other guest she mentioned. I'll take to the streets and make inquireies that way."
+    boy "Good luck to all of us, we'll meet back here an hour before sunset."
+
+    #scene bg street
+
+    boy "I'm glad Wolf's staying at the inn. I'd be worried about him running into trouble on the streets."
+
+    jump ch2_shepherd_question_hub
+
+label ch2_assignments_miller_son:
+    python:
+        assignement_boy = "sojourn"
+        assignement_wolf = "shepherd"
+    
+    boy "Wolf?"
+    wolf "I'll need to stretch my old legs. I'll talk to this 'shepherd'."
+    boy "Alright I'll stay behind and talk to that other guest Innkeeper mentioned."
+    boy "Good luck to all of us, we'll meet back here an hour before sunset."
+    jump ch2_miller_son_question_hub
+
+
+
+
 #innkeeper q hub
-label innkeeper_question_hub:
+label ch2_innkeeper_question_hub:
     python:
         hub_key = "innkeeper"
         num_asks = 2
@@ -572,7 +813,7 @@ label innkeeper_question_hub:
 
     jump innkeeper_end
 
-label innkeeper_no:
+label ch2_innkeeper_no:
     python:
         hub_key = None
         num_asks = 0
@@ -582,10 +823,15 @@ label innkeeper_no:
 
     jump ch2_scrum
 
-label innkeeper_end:
+label ch2_innkeeper_end:
     innkeeper ""
 
-label shepherd_question_hub:
+label ch2_sojourn_question_hub:
+    pass
+label ch2_miller_son_question_hub:
+    pass
+
+label ch2_shepherd_question_hub:
     python:
         hub_key = "shepherd"
         num_asks = 4
@@ -596,7 +842,7 @@ label shepherd_question_hub:
 
     jump ch2_scrum
 
-label shepherd_no:
+label ch2_shepherd_no:
     shepherd "Strangers' foolish. For no time have."
     shepherd "Sheep mine. To return must I."
 
