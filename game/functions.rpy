@@ -17,18 +17,30 @@ init 2 python:
 
     # Check whether all requirements in req_list are met.
     def meets_requirements(req_list):
-        #empty list is good
         if not req_list:
             return True
-        # req_list is a list of ids; return True only if every item in asked_questions
-        
+    
         for req in req_list:
             if isinstance(req, str):
-                if req not in asked_questions:
-                    return False
-            if not req:
+                # first preference: is it a asked question id?
+                if req in asked_questions:
+                    continue
+                # else, treat it as a store boolean variable name
+                if hasattr(renpy.store, req):
+                    if not getattr(renpy.store, req):
+                        return False
+                    else:
+                        continue
+                # if neither, requirement not met
                 return False
-        #everything else evaluates to true        
+
+            if callable(req):
+                if not req():
+                    return False
+
+            elif not req:
+                return False
+        
         return True
 
     # Return unlocked questions for a given hub

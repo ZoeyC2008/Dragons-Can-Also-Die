@@ -637,7 +637,7 @@ init 1 python:
         "travel_dragon_reason_one":{
             "title":"Why are you trying to kill a dragon?",
             "hub":"travel",
-            "requires":[travel_day>0],
+            "requires":["travel_day_one"],
             "answer_lines":[
                 {"who":"boy",
                 "text":"Well, you know, the standard reward."},
@@ -650,7 +650,7 @@ init 1 python:
         "travel_dragon_reason_two":{
             "title":"Why are you trying to kill a dragon?",
             "hub":"travel",
-            "requires":["travel_dragon_reason_two"],
+            "requires":["travel_dragon_reason_one"],
             "answer_lines":[
                 {"who":"boy",
                 "text":"Didn't you already ask?"},
@@ -666,7 +666,7 @@ init 1 python:
         "travel_dragon_reason_three":{
             "title":"I don't think you want the 'standard reward' Why are you trying to kill a dragon?",
             "hub":"travel",
-            "requires":["travel_dragon_reason_three"],
+            "requires":["travel_dragon_reason_two"],
             "answer_lines":[
                 {"who":"boy",
                 "text":"Fine, fine. I don't actually want to rule a kingdom. That would be exhausting."},
@@ -757,7 +757,7 @@ init 1 python:
         "travel_tell_wolf_reason":{
             "title":"[boy_name], you should tell Llangernyw why you're trying to kill the dragon. Now, when he's still awake.",
             "hub":"travel",
-            "requires":["travel_wolf_know_reason", travel_early_flag],
+            "requires":["travel_wolf_know_reason", "travel_early_flag"],
             "answer_lines":[
                 {"who":"boy",
                 "text":"Hey Wolf!"},
@@ -803,7 +803,7 @@ init 1 python:
         "travel_village":{
             "title":"What is the village we're going to?",
             "hub":"travel",
-            "requires":[travel_day>0, travel_early_flag],
+            "requires":["travel_day_one", "travel_early_flag"],
             "answer_lines":[
                 {"who":"boy",
                 "text":"Well, I don't know all that much."},
@@ -828,7 +828,7 @@ init 1 python:
         "travel_village_wizard":{
             "title":"Can you tell me more about this wizard we're trying to meet?",
             "hub":"travel",
-            "requires":[travel_day>0, travel_early_flag],
+            "requires":["travel_day_one", "travel_early_flag"],
             "answer_lines":[
                 {"who":"wolf",
                 "text":"I would never mistake a magical signiture, even from this far away, and I felt one coming from the village we're heading towards."},
@@ -856,7 +856,7 @@ init 1 python:
         "travel_boy_name_why":{
             "title":"Why do you call yourself 'Boy'?",
             "hub":"travel",
-            "requires":[travel_day>0, not boy_renamed_flag],
+            "requires":["travel_day_one", not "boy_renamed_flag"],
             "answer_lines":[
                 {"who":"boy",
                 "text":"It's just a name I identify with."},
@@ -885,7 +885,7 @@ init 1 python:
         "travel_boy_name_epiphany":{
             "title":"Have you got any thought on what you'd like to be called other than Boy?",
             "hub":"travel",
-            "requires":["travel_boy_name_find", boy_talk_about_himself_count > 4],
+            "requires":["travel_boy_name_find"], #boy_talk_about_himself_count > 4
             "answer_lines":[
                 {"who":"boy",
                 "text":"Now that I think about it more, I think I'd be happy to try and choose something."},
@@ -910,7 +910,7 @@ init 1 python:
         "travel_wolf_magic_slideshow":{
             "title":"Llangernyw, can you teach me about magic?",
             "hub":"travel",
-            "requires":[travel_day>0, travel_early_flag],
+            "requires":["travel_day_one", "travel_early_flag"],
             "answer_lines":[
                 {"repeat":"true"},
                 {"call":"wolf_magic_slideshow"}
@@ -920,7 +920,7 @@ init 1 python:
         "travel_boy_wolf_relationship":{
             "title":"[boy_name], you and Llangernyw are really close. How did meet?",
             "hub":"travel",
-            "requires":[travel_day>1],
+            "requires":["travel_day_two"],
             "answer_lines":[
                 {"who":"boy",
                 "text":"It wasn't anything special. I met him in the woods, obviously."},
@@ -958,7 +958,7 @@ init 1 python:
         "travel_walking_song":{
             "title":"[boy_name], where did you learn that walking song?",
             "hub":"travel",
-            "requires":[travel_day>1],
+            "requires":["travel_day_two"],
             "answer_lines":[
                 {"who":"boy",
                 "text":"My Mama taught it to me back when both of us would go visit Grandmama."},
@@ -990,7 +990,7 @@ init 1 python:
         "travel_wolf_teaching":{
             "title":"Llangernyw, why are you teaching Boy?",
             "hub":"travel",
-            "requires":[travel_day>1, travel_early_flag],
+            "requires":["travel_day_two", "travel_early_flag"],
             "answer_lines":[
                 {"who":"wolf",
                 "text":"Don't let that idiot fool you. Boy has talent."},
@@ -1012,7 +1012,7 @@ init 1 python:
         "travel_wolf_sleep":{
             "title":"",
             "hub":"travel",
-            "requires":[travel_day>2, travel_early_flag],
+            "requires":["travel_day_three", "travel_early_flag"],
             "answer_lines":[
                 {"who":"wolf",
                 "text":"..."},
@@ -1031,7 +1031,7 @@ init 1 python:
         "travel_wolf_soul":{
             "title":"Is the soul thing normal??",
             "hub":"travel",
-            "requires":[travel_day>3, travel_early_flag],
+            "requires":["travel_day_four", "travel_early_flag"],
             "answer_lines":[
                 {"who":"boy",
                 "text":"Eh...more or less."},
@@ -1044,7 +1044,7 @@ init 1 python:
         "travel_ellipsis_saga":{
             "title":"...",
             "hub":"travel",
-            "requires":[travel_day>0, travel_ellipsis_flag],
+            "requires":["travel_day_one", "travel_ellipsis_flag"],
             "answer_lines":[
                 {"repeat":"true"},
                 {"call":"ellipsis_saga"}
@@ -1054,7 +1054,7 @@ init 1 python:
         "travel":{
             "title":"",
             "hub":"travel",
-            "requires":[travel_day>0],
+            "requires":[not "travel_day_one"],
             "answer_lines":[
                 {"who":"boy",
                 "text":""},
@@ -1077,7 +1077,7 @@ init 1 python:
         "innkeeper_no_miller":{
             "title":"Were you involved in the Miller's death in any way, shape, or form?",
             "hub":"innkeeper",
-            "requires":[mu_my_flag],
+            "requires":["mu_my_flag"],
             "answer_lines":[
                 {"jump":"innkeeper_no_rhyme"}
             ]
@@ -1128,7 +1128,7 @@ init 1 python:
         "innkeeper_yes_miller":{
             "title":"I just wanted to ask about something from the past, what was your relation with the Miller that passed?",
             "hub":"innkeeper",
-            "requires":[mu_my_flag],
+            "requires":["mu_my_flag"],
             "answer_lines":[
                 {"who":"innkeeper",
                 "text":"Miller is-was my fiancee, my husband-to-be; I would never kill him don't you see? I'm just as much as a victem, this what I plea."},
@@ -1372,7 +1372,7 @@ init 1 python:
         "shepherd_no_miller":{
             "title":"I am curious, did you know the Miller?",
             "hub":"shepherd",
-            "requires":[mu_my_flag],
+            "requires":["mu_my_flag"],
             "answer_lines":[
                 {"jump":"ch2_shepherd_no"}
             ]
@@ -1381,7 +1381,7 @@ init 1 python:
         "shepherd_yes_miller":{
             "title":"The-Miller know? You did? Curious am I.",
             "hub":"shepherd",
-            "requires":[mu_my_flag],
+            "requires":["mu_my_flag"],
             "answer_lines":[
                 {"who":"shepherd",
                 "text":"No all at well not, thinks I."},

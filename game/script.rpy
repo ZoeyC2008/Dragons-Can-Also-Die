@@ -37,44 +37,59 @@ define extra = Character ("???", color="#eee")
 
 #define all the images (the way renpy handles this is so weird, like why are there spaces, please get rid of the spaces in my variables)
 
+#characters
 #mirror
-image mirror = "mirror_0_whole.png"
-image mirror small cracks = "mirror_1_small_cracks.png"
-image mirror medium cracks = "mirror_2_medium_cracks.png"
-image mirror big cracks = "mirror_3_big_cracks.png"
-image mirror frame = "mirror_4_frame.png"
+image mirror = "images/characters/mirror/mirror_0_whole.png"
+image mirror small cracks = "images/characters/mirror/mirror_1_small_cracks.png"
+image mirror medium cracks = "images/characters/mirror/mirror_2_medium_cracks.png"
+image mirror big cracks = "images/characters/mirror/mirror_3_big_cracks.png"
+image mirror frame = "images/characters/mirror/mirror_4_frame.png"
 
 #Boy!
-image boy = "boy_default.png"
-image boy snarky = "boy_snarky.png"
-image boy shock = "boy_shocked.png"
+image boy = "images/characters/boy/boy_default.png"
+image boy snarky = "images/characters/boy/boy_snarky.png"
+image boy shock = "images/characters/boy/boy_shocked.png"
 
 #Wolf
-image wolf = "wolf_default.png"
+image wolf = "images/characters/wolf/wolf_default.png"
+
+#Wizard
+image wizard = "images/characters/wizard/wizard_default.png"
 
 #backgrounds (I ledgitemently think this is the hardesd part)
 image bg black = "#000"
-image bg forest path = "bg_forest_path.png"
-image bg forest camp = "bg_forest_camp.png"
+image bg forest path = "images/backgrounds/bg_forest_path.png"
+image bg forest camp = "images/backgrounds/bg_forest_camp.png"
+image bg pasture = "images/backgrounds/bg_pasture.png"
+
+#titlecards
+image titlecard ch0 = "images/titlecards/ch0.png"
+image titlecard ch1 = "images/titlecards/ch1.png"
+image titlecard ch2 = "images/titlecards/ch2.png"
+image titlecard ch3 = "images/titlecards/ch3.png"
 
 #cutscenes
-image cutscene puppet show = "cutscene_puppet_show.png"
+image cutscene puppet show = "images/cutscenes/puppet_show.png"
 
 #let's also define some image positions!
 define wolf_ypos = 1100
+define wizard_ypos = 1100
 
 define pos_slightly_left = Position(xalign=0.35, yalign=0.5)
-define pos_left = Position(xalign=0.15, yalign=0.5)
+define pos_left = Position(xalign=0.07, yalign=0.5)
 define pos_wolf_center = Position(xalign=0.5, ypos=wolf_ypos)
-define pos_wolf_slightly_left = Position(xalign=0.35, ypos=wolf_ypos)
+define pos_wolf_slightly_left = Position(xalign=0.4, ypos=wolf_ypos)
 define pos_slightly_right = Position(xalign=0.7, ypos=0.5)
+define pos_wizard_slightly_right = Position(xalign=0.7, ypos=wizard_ypos)
 
+#Variable and falgs default 
+
+#these need to be before the questions
 init python:
     #Game variables (the idea is that these dictate what dragon you get)
     royal = 0 #depressed, a classic subversion for a classic prince/ss
     aloof = 0 #happy, you have to be grounded to enjoy life, don't be aloof all the time
     decon = 0 #classic, it's not a proper deconstruction if everything is different
-    
     #if none of the thresholds are met, deconstructed since you haven't made personality choices
 
     #amount to add
@@ -85,44 +100,49 @@ init python:
     subtract_tiny = -2
     threshold = 40
 
-    #FLAGS
-    #chapter one
-    boy_named_flag = False
-    boy_renamed_flag = False
-    prince_named_flag = False
-    kidnap_royal_flag = False 
-    invite_reaction_flag = False
-    travel_early_flag = True
-    travel_ellipsis_flag = True
-    
-    #boy needs to open up
-    boy_talk_about_himself_count = 0
-    wolf_magic_slideshow_count = 0
-
-    #cahpeter1/2 through line
-    travel_day = 0
-
-    #chapter two
-    mu_my_flag = False
-
-    #For the scrum
-    assignement_boy = ""
-    assignement_wolf = ""
-
-    #bread!
-    bread_aquired = False
-    #wizard stuff
-    wizard_door = 0
-    wizard_convinced = 0
-    wizard_threshold = 4
-    wizard_joined = False
-
-    #this is a vaiable affecting function
     def ellipsis():
         global royal, decon, aloof
         royal += subtract_tiny
         decon += subtract_tiny
         aloof += subtract_tiny
+
+    #FLAGS
+    #chapter one
+default boy_named_flag = False
+default boy_renamed_flag = False
+default prince_named_flag = False
+default kidnap_royal_flag = False 
+default invite_reaction_flag = False
+default travel_early_flag = True
+default travel_ellipsis_flag = True
+    
+    #boy needs to open up
+default boy_talk_about_himself_count = 0
+default wolf_magic_slideshow_count = 0
+
+    #cahpeter1/2 through line
+default travel_day = 0
+default travel_day_one = False
+default travel_day_two = False
+default travel_day_three = False
+default travel_day_four = False
+
+    #chapter two
+default mu_my_flag = False
+
+    #For the scrum
+default assignement_boy = ""
+default assignement_wolf = ""
+
+    #bread!
+default bread_aquired = False
+    #wizard stuff
+default wizard_door = 0
+default wizard_convinced = 0
+default wizard_threshold = 4
+default wizard_joined = False
+
+
 
     
 
@@ -133,7 +153,10 @@ label start:
     jump ch0_titlecard
 
 label ch0_titlecard:
-    #scene titlecard ch0
+    scene titlecard ch0
+    
+    pause
+
     jump ch0_puppet_show
 
 
@@ -185,8 +208,10 @@ label ch0_mirror_end:
 
 #Chapter 1
 label ch1_titlecard:
-    #scene
-    #scene titlecard ch1
+    scene titlecard ch1
+
+    pause
+    
     jump ch1_wake_up
 
 #boy shows up
@@ -465,11 +490,19 @@ label ch1_travel_question_hub:
     show boy at pos_left
     show wolf at pos_wolf_center
 
-    python:
-        travel_day += 1
-        hub_key = "travel"
-        num_asks = 2
-        travel_early_flag = True
+    $ travel_day += 1
+    $ hub_key = "travel"
+    $ num_asks = 2
+    $ travel_early_flag = True
+
+    if travel_day == 1:
+        $ travel_day_one = True
+    elif travel_day == 2:
+        $ travel_day_two = True
+    elif travel_day == 3:
+        $ travel_day_three = True
+    elif travel_day == 4:
+        $ travel_day_four = True
     
     call hub_loop
 
@@ -572,7 +605,10 @@ label ch1_travel_day3_song:
 
 #chapter 2
 label ch2_titlecard:
-    #scene titlecard ch2
+    scene titlecard ch2
+
+    pause
+    
     jump ch2_meet_innkeeper
 
 #ch 2 inn
@@ -847,6 +883,8 @@ label ch2_shepherd_question_hub:
     python:
         hub_key = "shepherd"
         num_asks = 4
+
+    scene bg pasture
     
     shepherd "Field's humble. My to you brings what?"
 
@@ -880,9 +918,9 @@ label ch2_random_door:
 
 label ch2_wizard_start:
     #show scene right door
-    #show boy at pos_left
-    #show wolf at pos_wolf_slightly_left
-    #show wizard at pos_slightly_right
+    show boy at pos_left
+    show wolf at pos_wolf_slightly_left
+    show wizard at pos_wizard_slightly_right
 
     boy "Hello?"
     wizard "H-h-hello..."
@@ -1169,6 +1207,13 @@ label ch2_travel:
     pass
 
 label ch3_titlecard:
+    show titlecard ch3
+
+    pause
+
+    jump ch3_decide
+
+label ch3_decide:
     pass
 
 label ending_ch1_walk_away:
