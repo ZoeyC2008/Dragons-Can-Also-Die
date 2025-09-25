@@ -53,10 +53,14 @@ image boy shock = "images/characters/boy/boy_shocked.png"
 #Wolf
 image wolf = "images/characters/wolf/wolf_default.png"
 
+#Wizard
+image wizard = "images/characters/wizard/wizard_default.png"
+
 #backgrounds (I ledgitemently think this is the hardesd part)
 image bg black = "#000"
 image bg forest path = "images/backgrounds/bg_forest_path.png"
 image bg forest camp = "images/backgrounds/bg_forest_camp.png"
+image bg pasture = "images/backgrounds/bg_pasture.png"
 
 #titlecards
 image titlecard ch0 = "images/titlecards/ch0.png"
@@ -69,12 +73,14 @@ image cutscene puppet show = "images/cutscenes/puppet_show.png"
 
 #let's also define some image positions!
 define wolf_ypos = 1100
+define wizard_ypos = 1100
 
 define pos_slightly_left = Position(xalign=0.35, yalign=0.5)
-define pos_left = Position(xalign=0.15, yalign=0.5)
+define pos_left = Position(xalign=0.07, yalign=0.5)
 define pos_wolf_center = Position(xalign=0.5, ypos=wolf_ypos)
-define pos_wolf_slightly_left = Position(xalign=0.35, ypos=wolf_ypos)
+define pos_wolf_slightly_left = Position(xalign=0.4, ypos=wolf_ypos)
 define pos_slightly_right = Position(xalign=0.7, ypos=0.5)
+define pos_wizard_slightly_right = Position(xalign=0.7, ypos=wizard_ypos)
 
 #Variable and falgs default 
 
@@ -877,6 +883,8 @@ label ch2_shepherd_question_hub:
     python:
         hub_key = "shepherd"
         num_asks = 4
+
+    scene bg pasture
     
     shepherd "Field's humble. My to you brings what?"
 
@@ -910,9 +918,9 @@ label ch2_random_door:
 
 label ch2_wizard_start:
     #show scene right door
-    #show boy at pos_left
-    #show wolf at pos_wolf_slightly_left
-    #show wizard at pos_slightly_right
+    show boy at pos_left
+    show wolf at pos_wolf_slightly_left
+    show wizard at pos_wizard_slightly_right
 
     boy "Hello?"
     wizard "H-h-hello..."
