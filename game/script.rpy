@@ -130,6 +130,14 @@ init python:
 # The game starts here.
 #Chapter 0
 label start:
+    jump ch0_titlecard
+
+label ch0_titlecard:
+    #scene titlecard ch0
+    jump ch0_puppet_show
+
+
+label ch0_puppet_show:    
     scene cutscene puppet show
 
     #initial choices
