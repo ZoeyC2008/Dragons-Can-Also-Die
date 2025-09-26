@@ -854,6 +854,9 @@ label ch2_innkeeper_question_hub:
         hub_key = "innkeeper"
         num_asks = 2
     
+    #scene inn common room
+    #show innkeeper at center
+
     innkeeper "What are you doing here? is there anything you hope to hear?"
     innkeeper "Well, I haven't got much time; I'll take a question or two so long as there's a rhyme."
 
@@ -872,10 +875,26 @@ label ch2_innkeeper_no:
     jump ch2_scrum
 
 label ch2_innkeeper_end:
-    innkeeper ""
+    innkeeper "..."
 
 label ch2_sojourn_question_hub:
-    pass
+    python:
+        hub_key = "sojourn"
+        num_asks = 4
+
+    #scene inn common room
+    #show sojourn at center
+    sojourn "You had stuff you want to ask about?"
+    sojourn "I'm happy to talk with you."
+    sojourn "To the Flamingo's common room..."
+
+    sojourn "I am 噩梦, just a man in midst of a sojourn, unluckly in town during a tad bit of hardship."
+    sojourn "So, what did you want to ask about."
+
+    call hub_loop
+
+    jump ch2_scrum
+
 label ch2_miller_son_question_hub:
     pass
 

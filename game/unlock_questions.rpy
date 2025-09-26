@@ -1475,12 +1475,33 @@ init 1 python:
             ]
         }
 
+        #sojourn!!
+        "sojourn_story_one":{
+            "title":"Would you talk of your sojourn? And what of many story you saw.",
+            "hub":"sojourn",
+            "requires":[],
+            "answer_lines":[
+                {"repeat":"true"},
+                {"call":"sojourn_story_one"}
+            ]
+        },
+
+        "sojourn_story":{
+            "title":"Talk of your many story. I enjoy it.",
+            "hub":"sojourn",
+            "requires":["sojourn_story_one"],
+            "answer_lines":[
+                {"repeat":"true"},
+                {"call":"sojourn_story"}
+            ]
+        },
+
     }
 
     """
         "":{
             "title":"",
-            "hub":"",
+            "hub":"sojourn",
             "requires":[],
             "answer_lines":[
                 {}

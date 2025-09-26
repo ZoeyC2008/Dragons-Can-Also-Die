@@ -88,6 +88,19 @@ init 2 python:
         renpy.log(f"Created followup question {fid}")
         return fid
 
+    def random_call_from_list(scene_list, randomize=True):
+        if not scene_list:
+            renpy.notify("No more scenes in this list.")
+            return
+
+        if randomize:
+            idx = random.randrange(len(scene_list))
+        else:
+            idx = 0
+
+        label_name = scene_list.pop(idx)
+        renpy.call(label_name)
+
 # --- label to play topic with nested-choices support ---
 label show_topic_answer:
     $ topic_id = _current_topic
