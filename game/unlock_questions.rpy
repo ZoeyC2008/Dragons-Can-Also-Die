@@ -1496,6 +1496,206 @@ init 1 python:
             ]
         },
 
+        "sojourn_no_elaborate":{
+            "title":"Can you elaborate? Like explain more about the harship you mentioned/",
+            "hub":"sojourn",
+            "requires":[],
+            "answer_lines":[
+                {"jump":"sojourn_no"}
+            ]
+        },
+
+        "sojourn_yes_wizard":{
+            "title":"Do you know of this town's wizard?",
+            "hub":"sojourn",
+            "requires":[],
+            "answer_lines":[
+                {"who":"sojourn",
+                "text":"I don't know anybody in town."},
+                
+                {"who":"sojourn",
+                "text":"I'm similar to you, I'm also looking for things."},
+
+                {"who":"sojourn"
+                "text":"For you it may be this wizard, but I am looking for a story of worlds."},
+
+                {"who":"sojourn"
+                "text":"It sounds as if your wizard might know about that."},
+
+                {"who":"sojourn"
+                "text":"So if you do find your wizard, do inform this man in midst of sojourn on what that wizard tolf you."}
+            ]
+        },
+
+        "sojourn_yes_future":{
+            "title":"And if you go on? Past this village, that is?",
+            "hub":"sojourn",
+            "requires":["sojourn_story"],
+            "answer_lines":[
+                {"who":"sojourn"
+                "text":"I think I shall go to the south. Lord knows it is far too cold for my bofy and I had a wish of warming up to a point."},
+
+                {"who":"sojourn",
+                "text":"I know sands hid many a story, but I shall still find it anyhow."}
+            ]
+        },
+
+        "sojourn_yes_why":{
+            "title":"Why did you go out on a sojourn?",
+            "hub":"sojourn",
+            "requires":["sojourn_story"],
+            "answer_lines":[
+                {"who":"sojourn"
+                "text":"I want to know a world. For it is knowable, at least in part, and I know not to follow what is not."},
+
+                {"who":"sojourn"
+                "text":"It may not show it in laws or karma."},
+
+                {"who":"sojourn"
+                "text":"But it shows in a story. An always growing story. And I wish to know just a bit of that."}
+            ]
+        },
+
+        "sojourn_yes_reason":{
+            "title":"Why do you think Innkeep's almost husband was found cold?",
+            "hub":"sojourn",
+            "requires":["mu_my_flag"],
+            "answer_lines":[
+                {"who":"sojourn"
+                "text":"I think it was just plain bad luck. Not a killing by anybody."},
+
+                {"who":"sojourn"
+                "text":"As in not Miss 椒 nor I, as I know Miss 椒 didn't maintain a good relationship with that man, but it isn't as if any of us any grounds for killing or maiming."},
+
+                {"who":"sojourn",
+                "text": "Anyhow, that man took a fall, but not a push."},
+
+                {"who":"sojourn",
+                "text":"In fact, I had to go to Miss 椒, for Miss 椒 was soundly in a think quilt, so much so that Miss 椒 did miss that trial."},
+
+                {"who":"sojourn",
+                "text":"Miss 椒 did cry, you know. I think it hurt, that a man, any man, was found cold in this inn."}
+            ]
+        },
+
+        "sojourn_no_discovery":{
+            "title":"How was the desceased discovered?",
+            "hub":"sojourn",
+            "requires":["mu_my_flag"],
+            "answer_lines":[
+                {"jump":"sojourn_no"}
+            ]
+        },
+
+        "sojourn_no_location":{
+            "title":"Do you know the place of the death?",
+            "hub":"sojourn",
+            "requires":["mu_my_flag"],
+            "answer_lines":[
+                {"jump":"sojourn_no"}
+            ]
+        },
+
+        "sojourn_yes_motive":{
+            "title":"Anybody in town got a motivation to kill that man and toss you into this situation?",
+            "hub":"sojourn",
+            "requires":["mu_my_flag"],
+            "answer_lines":[
+                {"who":"sojourn"
+                "text":"Why no, I don't think so."},
+
+                {"who":"sojourn"
+                "text":"I'd just did get to this town so I don't know most."},
+
+                {"who":"sojourn"
+                "text":"As for Miss 椒, I think folks fancy Miss 椒 and ain't got a loathing toward Flamingo nor its host."}
+            ]
+        },
+
+        "sojourn_no_hear":{
+            "title":"How did you hear the Miller's fall?",
+            "hub":"sojourn",
+            "requires":["sojourn_yes_reason"],
+            "answer_lines":[
+                {"jump":"sojourn_no"}
+            ]
+        },
+
+        "sojourn_yes_hear":{
+            "title":"What about you? Anything you did that night?",
+            "hub":"sojourn",
+            "requires":["sojourn_yes_reason"],
+            "answer_lines":[
+                {"who":"sojourn"
+                "text":"I was journaling. I always find joy in writing about my sojourn."},
+
+                {"who":"sojourn"
+                "text":"lt was kind of Miss 椒 for on the day I did show up at this town I was all out of ink."},
+
+                {"who":"sojourn"
+                "text":"Miss 椒 did aid in finding a pot along with a quill."}
+            ]
+        },
+
+        "sojourn_yes_inn_motive":{
+            "title":"But do you or that Miss got a motivation to kill?",
+            "hub":"sojourn",
+            "requires":["sojourn_yes_motive"],
+            "answer_lines":[
+                {"who":"sojourn"
+                "text":"No, I don't think so."},
+
+                {"who":"sojourn"
+                "text":"I don't know that man at all, so I ain't got motivation to kill him."},
+
+                {"who":"sojourn"
+                "text":"Miss 椒 and that man had a flirtation, I think, but I don't think Miss Juniper would kill him if it had a quandary in that."},
+
+                {"who":"sojourn"
+                "text":"Miss 椒 is a kind to talk to about it and not go killing, you know."},
+            ]
+        },
+
+        "sojourn_no_inn_motive":{
+            "title":"Have either of you got a reason to? Kill the Miller, that is.",
+            "hub":"sojourn",
+            "requires":["sojourn_yes_motive"],
+            "answer_lines":[
+                {"jump":"sojourn_no"}
+            ]
+        },
+
+        "sojourn_no_journal":{
+            "title":"You kind of went off topic. I meant was there anything special you or Miss Pepper did the night of the murder.",
+            "hub":"sojourn",
+            "requires":["sojourn_yes_inn_motive"],
+            "answer_lines":[
+                {"jump":"sojourn_no"}
+            ]
+        },
+
+        "sojourn_yes_journal":{
+            "title":"Which room did you do your journaling? And do you know whst stairs that man had his fall?",
+            "hub":"sojourn",
+            "requires":["sojourn_yes_inn_motive"],
+            "answer_lines":[
+                {"who":"sojourn"
+                "text":"I was upon floor two in room 230."},
+
+                {"who":"sojourn"
+                "text":"Miss 椒 and that man a floor up, third room from that stairs."},
+
+                {"who":"sojourn"
+                "text":"I got out to look for a a loud 'thump' is hard to turn my back on."},
+
+                {"who":"sojourn"
+                "text":"Which was how I found that man's body, with blood all around."},
+
+                {"who":"sojourn"
+                "text":"Miss 椒 did scrub that spot for so long, what wood is in that spot must almost rot away by now."},
+            ]
+        },
+
     }
 
     """
@@ -1505,6 +1705,8 @@ init 1 python:
             "requires":[],
             "answer_lines":[
                 {}
+                {"who":"sojourn"
+                "text":""}
             ]
         },
     

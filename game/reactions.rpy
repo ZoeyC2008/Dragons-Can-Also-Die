@@ -93,7 +93,8 @@ label ellipsis_saga:
 label sojourn_story_one:
     $ sojourn_name = "The Sojourner: E Meng"
     sojourn "Thank Heavens, thank Earth."
-    sojourn "It's only when I speak of my journey, my voyage, that I can freely use all sounds without anticipating a new nightmare to come upon me in the dead of night."
+    sojourn "I'm pretty sure only Miss Pepper has asked about my journey so far."
+    sojourn "And it's only when I speak of my journey, my voyage, that I can freely use all sounds without anticipating a new nightmare to come upon me in the dead of night."
     sojourn "So was their anything specific you wanted to ask about?"
     $ sojourn_name = "Man in Midst of Sojourn: 噩梦"
     return

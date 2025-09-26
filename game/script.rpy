@@ -893,7 +893,15 @@ label ch2_sojourn_question_hub:
 
     call hub_loop
 
+    sojourn "Hours draw, I'm going and you should to."
+
     jump ch2_scrum
+
+label sojourn_no:
+    sojourn "What an atrocious sound."
+    sojourn "I'm afraid I'll only rally againn around dusk."
+    sojourn "If you're still curious mayhaps I'll talk to you again after that hour."
+    sojourn "Now, good day."
 
 label ch2_miller_son_question_hub:
     pass
@@ -908,6 +916,8 @@ label ch2_shepherd_question_hub:
     shepherd "Field's humble. My to you brings what?"
 
     call hub_loop
+
+    shepherd "Sheep mine. To return must I."
 
     jump ch2_scrum
 
