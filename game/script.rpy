@@ -566,7 +566,7 @@ label ch1_travel_day2:
     menu:
         "Roads go ever ever on...":
             $ decon += add_tiny
-        "Is that Lord of the Rings? By J. R. R. Tolkien?":
+        "You're singing the same thinh...And it's still Tolkien.":
             $ decon += add_most        
         "...":    
             $ ellipsis()
@@ -595,6 +595,7 @@ label ch1_travel_explain_soul:
     boy "Eh...Sometimes, you just need to properly shove Wolf's soul into his body."
     boy "I mean, it works and it keeps him alive."
     boy "So, I'm more than happy to do that."
+    boy "Anyhow, it's time we set off."
     jump ch1_travel_day3_song
 
 label ch1_travel_day3_song:

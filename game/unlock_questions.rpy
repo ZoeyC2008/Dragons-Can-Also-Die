@@ -811,8 +811,8 @@ init 1 python:
                 {"who":"boy",
                 "text":"It's pretty small and they do like farming and what not. Definitly has a lot of farmers and shepherds, maybe has a lost heir and a magic sword, seeing as there's a wizard hiding over there."},
                 
-                {"who":"wolf",
-                "text":"It probably doesn't. The chances of a random town having a true magic sword is one in a million."},
+                {"who":"boy",
+                "text":"ALthough it probably doesn't. The chances of a random town having a true magic sword is one in a million."},
 
                 {"who":"boy",
                 "text":"Well, one can dream and at least one tiny, lucky, backwater village has a magic sword that'll grant a hapless farmboy kingship."},
