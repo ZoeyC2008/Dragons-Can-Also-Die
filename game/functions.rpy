@@ -244,7 +244,7 @@ label hub_loop:
         if hub_key == "mirror":
             call mirror_reaction
         
-        if hub_key == "travel" and num_asks == 0:
+        if hub_key == "travel" and hub_loop_num == 0:
             $ travel_early_flag = False
             call wolf_sleep
 

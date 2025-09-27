@@ -811,8 +811,8 @@ init 1 python:
                 {"who":"boy",
                 "text":"It's pretty small and they do like farming and what not. Definitly has a lot of farmers and shepherds, maybe has a lost heir and a magic sword, seeing as there's a wizard hiding over there."},
                 
-                {"who":"wolf",
-                "text":"It probably doesn't. The chances of a random town having a true magic sword is one in a million."},
+                {"who":"boy",
+                "text":"ALthough it probably doesn't. The chances of a random town having a true magic sword is one in a million."},
 
                 {"who":"boy",
                 "text":"Well, one can dream and at least one tiny, lucky, backwater village has a magic sword that'll grant a hapless farmboy kingship."},
@@ -1473,7 +1473,7 @@ init 1 python:
             "answer_lines":[
                 {"jump":"ch2_shepherd_no"}
             ]
-        }
+        },
 
         #sojourn!!
         "sojourn_story_one":{
@@ -1516,13 +1516,13 @@ init 1 python:
                 {"who":"sojourn",
                 "text":"I'm similar to you, I'm also looking for things."},
 
-                {"who":"sojourn"
+                {"who":"sojourn",
                 "text":"For you it may be this wizard, but I am looking for a story of worlds."},
 
-                {"who":"sojourn"
+                {"who":"sojourn",
                 "text":"It sounds as if your wizard might know about that."},
 
-                {"who":"sojourn"
+                {"who":"sojourn",
                 "text":"So if you do find your wizard, do inform this man in midst of sojourn on what that wizard tolf you."}
             ]
         },
@@ -1532,7 +1532,7 @@ init 1 python:
             "hub":"sojourn",
             "requires":["sojourn_story"],
             "answer_lines":[
-                {"who":"sojourn"
+                {"who":"sojourn",
                 "text":"I think I shall go to the south. Lord knows it is far too cold for my bofy and I had a wish of warming up to a point."},
 
                 {"who":"sojourn",
@@ -1545,13 +1545,13 @@ init 1 python:
             "hub":"sojourn",
             "requires":["sojourn_story"],
             "answer_lines":[
-                {"who":"sojourn"
+                {"who":"sojourn",
                 "text":"I want to know a world. For it is knowable, at least in part, and I know not to follow what is not."},
 
-                {"who":"sojourn"
+                {"who":"sojourn",
                 "text":"It may not show it in laws or karma."},
 
-                {"who":"sojourn"
+                {"who":"sojourn",
                 "text":"But it shows in a story. An always growing story. And I wish to know just a bit of that."}
             ]
         },
@@ -1561,10 +1561,10 @@ init 1 python:
             "hub":"sojourn",
             "requires":["mu_my_flag"],
             "answer_lines":[
-                {"who":"sojourn"
+                {"who":"sojourn",
                 "text":"I think it was just plain bad luck. Not a killing by anybody."},
 
-                {"who":"sojourn"
+                {"who":"sojourn",
                 "text":"As in not Miss 椒 nor I, as I know Miss 椒 didn't maintain a good relationship with that man, but it isn't as if any of us any grounds for killing or maiming."},
 
                 {"who":"sojourn",
@@ -1601,13 +1601,13 @@ init 1 python:
             "hub":"sojourn",
             "requires":["mu_my_flag"],
             "answer_lines":[
-                {"who":"sojourn"
+                {"who":"sojourn",
                 "text":"Why no, I don't think so."},
 
-                {"who":"sojourn"
+                {"who":"sojourn",
                 "text":"I'd just did get to this town so I don't know most."},
 
-                {"who":"sojourn"
+                {"who":"sojourn",
                 "text":"As for Miss 椒, I think folks fancy Miss 椒 and ain't got a loathing toward Flamingo nor its host."}
             ]
         },
@@ -1626,13 +1626,13 @@ init 1 python:
             "hub":"sojourn",
             "requires":["sojourn_yes_reason"],
             "answer_lines":[
-                {"who":"sojourn"
+                {"who":"sojourn",
                 "text":"I was journaling. I always find joy in writing about my sojourn."},
 
-                {"who":"sojourn"
+                {"who":"sojourn",
                 "text":"lt was kind of Miss 椒 for on the day I did show up at this town I was all out of ink."},
 
-                {"who":"sojourn"
+                {"who":"sojourn",
                 "text":"Miss 椒 did aid in finding a pot along with a quill."}
             ]
         },
@@ -1642,16 +1642,16 @@ init 1 python:
             "hub":"sojourn",
             "requires":["sojourn_yes_motive"],
             "answer_lines":[
-                {"who":"sojourn"
+                {"who":"sojourn",
                 "text":"No, I don't think so."},
 
-                {"who":"sojourn"
+                {"who":"sojourn",
                 "text":"I don't know that man at all, so I ain't got motivation to kill him."},
 
-                {"who":"sojourn"
+                {"who":"sojourn",
                 "text":"Miss 椒 and that man had a flirtation, I think, but I don't think Miss Juniper would kill him if it had a quandary in that."},
 
-                {"who":"sojourn"
+                {"who":"sojourn",
                 "text":"Miss 椒 is a kind to talk to about it and not go killing, you know."},
             ]
         },
@@ -1679,19 +1679,19 @@ init 1 python:
             "hub":"sojourn",
             "requires":["sojourn_yes_inn_motive"],
             "answer_lines":[
-                {"who":"sojourn"
+                {"who":"sojourn",
                 "text":"I was upon floor two in room 230."},
 
-                {"who":"sojourn"
+                {"who":"sojourn",
                 "text":"Miss 椒 and that man a floor up, third room from that stairs."},
 
-                {"who":"sojourn"
+                {"who":"sojourn",
                 "text":"I got out to look for a a loud 'thump' is hard to turn my back on."},
 
-                {"who":"sojourn"
+                {"who":"sojourn",
                 "text":"Which was how I found that man's body, with blood all around."},
 
-                {"who":"sojourn"
+                {"who":"sojourn",
                 "text":"Miss 椒 did scrub that spot for so long, what wood is in that spot must almost rot away by now."},
             ]
         },
@@ -1701,7 +1701,7 @@ init 1 python:
     """
         "":{
             "title":"",
-            "hub":"sojourn",
+            "hub":"miller_son",
             "requires":[],
             "answer_lines":[
                 {}
