@@ -52,9 +52,15 @@ image boy shock = "images/characters/boy/boy_shocked.png"
 
 #Wolf
 image wolf = "images/characters/wolf/wolf_default.png"
+image wolf dying = "images/characters/wolf/wolf_dying.png"
 
 #Wizard
 image wizard = "images/characters/wizard/wizard_default.png"
+
+#Villagers
+image innkeeper = "images/characters/villagers/innkeeper_default.png"
+image miller_son = "images/characters/villagers/miller_son_default.png"
+image sojourn = "images/characters/villagers/sojourn_default.png"
 
 #backgrounds (I ledgitemently think this is the hardesd part)
 image bg black = "#000"
@@ -569,7 +575,7 @@ label ch1_travel_day2:
 label ch1_travel_day3:
     scene bg forest path
     show boy at pos_left
-    show wolf at pos_wolf_center
+    show wolf dying at pos_wolf_center
 
     wolf "arrrgggghhhh"
     boy "*sigh*"
@@ -616,7 +622,7 @@ label ch2_meet_innkeeper:
     #scene bg inn common room
     show boy at pos_left
     show wolf at pos_wolf_slightly_left
-    #show innkeeper at pos_slightly_right
+    show innkeeper at pos_slightly_right
 
     innkeeper "Hello, hello. This is The Foolish Flamingo!"
     innkeeper "Are you staying the night, or just here to grab a bite?"
@@ -707,7 +713,7 @@ label ch2_innkeeper_demo:
     #scene bg inn common room
     show boy at pos_left
     show wolf at pos_wolf_slightly_left
-    #show innkeeper at pos_slightly_right
+    show innkeeper at pos_slightly_right
     boy "Sorry about last noght when we barged in rudely; it was late and we were all tired, truely."
     wolf "I don't--"
     boy "*whispers* Shut up!"
@@ -855,7 +861,7 @@ label ch2_innkeeper_question_hub:
         num_asks = 2
     
     #scene inn common room
-    #show innkeeper at center
+    show innkeeper at center
 
     innkeeper "What are you doing here? is there anything you hope to hear?"
     innkeeper "Well, I haven't got much time; I'll take a question or two so long as there's a rhyme."
@@ -883,7 +889,7 @@ label ch2_sojourn_question_hub:
         num_asks = 4
 
     #scene inn common room
-    #show sojourn at center
+    show sojourn at center
     sojourn "You had stuff you want to ask about?"
     sojourn "I'm happy to talk with you."
     sojourn "To the Flamingo's common room..."
