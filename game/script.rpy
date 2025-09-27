@@ -28,9 +28,9 @@ define innkeeper = Character("The Innkeeper: Pepper", color="#028a0f")
 define shepherd = Character("Herd Shep: Rath'la Dnar", color="#ffda03")
 define sojourn = Character(sojourn_name, color="#001f3d")
 define miller_son = Character("Miller's Mischieveous Moppet: Much", color="#be5504")
-define drgn_classic = Character("Traditional Dragon", color="#ff2400") #@Naomi is Furious better than Classic or Traditional?
+define drgn_classic = Character("Furious Dragon", color="#ff2400") #@Naomi is Furious better than Classic or Traditional?
 define drgn_sad = Character("Depressed Dragon", color="#2c3e4c") #logic here is that decon also starts with d
-define drgn_happy = Character("Joyous Dragon", color="#0492c2")
+define drgn_hobby = Character("Joyous Dragon", color="#0492c2")
 define degn_decon = Character("drgn_decon", color=drgn_decon_color) #I think it makes sense for decon to use her code name instead of a descriptor
 
 define extra = Character ("???", color="#eee")
@@ -62,11 +62,22 @@ image innkeeper = "images/characters/villagers/innkeeper_default.png"
 image miller_son = "images/characters/villagers/miller_son_default.png"
 image sojourn = "images/characters/villagers/sojourn_default.png"
 
+#dragons
+image drgn_hobby = "images/characters/dragons/hobby_default.png"
+
 #backgrounds (I ledgitemently think this is the hardesd part)
+#ch0
 image bg black = "#000"
+
+#ch1 forest
 image bg forest path = "images/backgrounds/bg_forest_path.png"
 image bg forest camp = "images/backgrounds/bg_forest_camp.png"
+
+#ch2 village
 image bg pasture = "images/backgrounds/bg_pasture.png"
+
+#ch3 dragons
+image bg lair hobby = "images/backgrounds/lairs/bg_hobby.png"
 
 #titlecards
 image titlecard ch0 = "images/titlecards/ch0.png"
@@ -94,8 +105,8 @@ define pos_wizard_slightly_right = Position(xalign=0.7, ypos=wizard_ypos)
 init python:
     #Game variables (the idea is that these dictate what dragon you get)
     royal = 0 #depressed, a classic subversion for a classic prince/ss
-    aloof = 0 #happy, you have to be grounded to enjoy life, don't be aloof all the time
     decon = 0 #classic, it's not a proper deconstruction if everything is different
+    aloof = 0 #hobby, you have to be grounded to enjoy life, don't be aloof all the time
     #if none of the thresholds are met, deconstructed since you haven't made personality choices
 
     #amount to add
@@ -148,14 +159,16 @@ default wizard_convinced = 0
 default wizard_threshold = 4
 default wizard_joined = False
 
-
-
+#chapter 3
+default which_drgn = ""
     
 
 
 # The game starts here.
 #Chapter 0
 label start:
+    #testing
+
     jump ch0_titlecard
 
 label ch0_titlecard:
@@ -1250,7 +1263,38 @@ label ch3_titlecard:
     jump ch3_decide
 
 label ch3_decide:
-    pass
+    scene bg black
+    boy "This is it. Through this tunnel is the dragon."
+
+    python:
+        snapshot = [royal, decon, aloof]
+        best_value = max(snapshot)
+        best_index = snapshot.index(best_value)
+
+    if (best_value > threshold):
+        if (best_index == 0):
+            $ which_drgn = "sad"
+            jump ch3_drgn_sad
+        elif (best_index == 1):
+            $ which_drgn = "classic"
+            jump ch3_drgn_classic
+        elif (best_index == 2):
+            $ which_drgn = "hobby"
+            jump ch3_drgn_hobby
+    else:
+        $ which_drgn = "decon"
+        jump ch3_drgn_decon
+
+label ch3_drgn_hobby:
+    scene bg lair hobby
+    show boy at pos_left
+    show wolf at pos_wolf_slightly_left
+    show drgn_hobby at pos_slightly_right
+    
+    #debug the images!!!
+
+    pause
+
 
 label ending_ch1_walk_away:
     return
