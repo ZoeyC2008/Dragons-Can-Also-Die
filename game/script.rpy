@@ -172,8 +172,15 @@ default which_drgn = ""
 #Chapter 0
 label start:
     #testing
+    jump test
 
     jump ch0_titlecard
+
+label test:
+    # we do be testing art
+
+    pause
+    return
 
 label ch0_titlecard:
     scene titlecard ch0
@@ -1658,7 +1665,25 @@ label ch3_classic_bread:
     jump ch3_dead_drgn
 
 label ch3_hobby_start:
-    pass
+    boy "We are here to..."
+    boy "...slay you"
+    drgn_hobby "Hi!!"
+    drgn_hobby "It's been so long since I had any visitors!!"
+    drgn_hobby "Sit!!"
+
+    #cutscene
+
+    boy "Erm... Hello?"
+    drgn_hobby "Just wait a moment as I get my guitar!"
+    if wizard_joined:
+        wizard "Are we still slaying her?"
+    else:
+        wolf "Are we still slaying her?"
+
+    menu:
+        "Surely"
+
+
 
 label ch3_decon_start:
     pass  
