@@ -928,6 +928,9 @@ label sojourn_no:
 label ch2_miller_son_question_hub:
     pass
 
+label ch2_miller_son_no:
+    miller_son "May you be less rude when you next open your mouth."
+
 label ch2_shepherd_question_hub:
     python:
         hub_key = "shepherd"
@@ -939,7 +942,7 @@ label ch2_shepherd_question_hub:
 
     call hub_loop
 
-    shepherd "Sheep mine. To return must I."
+    shepherd "Sheep mine. To rmieturn must I."
 
     jump ch2_scrum
 
