@@ -328,7 +328,7 @@ label ch1_prince_name_deny:
 label ch1_invite:
     boy "Anyways, Prince, if you're not busy, why don't you come with the two of us?"
     menu:
-        "I don't even know you." if not boy_named_flag:
+        "I don't even know you." if (boy_named_flag == False):
             jump ch1_wolf_name
         "Are you trying to kidnap royalty? And maybe hold them hostage?":
             $ royal += add_some
@@ -408,7 +408,7 @@ label ch1_wolf_name:
     boy "As for me, I'm not all that impressive. I'm just a boy."
 
     menu:
-        "(Tell them your name.)" if not prince_named_flag:
+        "(Tell them your name.)" if (prince_named_flag == False):
             jump ch1_share_name
         "Aren't you just inflating Llangernyw's ego?":
             jump ch1_wolf_ego
@@ -427,7 +427,7 @@ label ch1_wolf_ego:
     menu:
         "You still haven't told me your name?":
             jump ch1_boy_name
-        "(Tell them your name.)" if not prince_named_flag:
+        "(Tell them your name.)" if (prince_named_flag==False):
             jump ch1_share_name
 
 label ch1_boy_name:
@@ -501,7 +501,7 @@ label ch1_pick_boy_name:
         $ boy_renamed_flag = False
     
     menu:
-        "(Tell them your name)" if not prince_named_flag:
+        "(Tell them your name)" if (prince_named_flag == False):
             jump ch1_share_name
     jump ch1_invite
 
@@ -512,8 +512,11 @@ label ch1_travel_question_hub:
     show wolf at pos_wolf_center
 
     $ travel_day += 1
-    $ hub_key = "travel"
-    $ num_asks = 2
+    
+    python:
+        hub_key = "travel"
+        num_asks = 2
+    
     $ travel_early_flag = True
 
     if travel_day == 1:
@@ -812,7 +815,7 @@ label ch2_assignments:
             jump ch2_assignments_shepherd
         "I can try asking around on the steets.":
             jump ch2_assignments_miller_son
-        "I want to find this Miller's son, I'm curious about what happened to his father." if mu_my_flag:
+        "I want to find this Miller's son, I'm curious about what happened to his father." if (mu_my_flag == True):
             jump ch2_assignments_miller_son
         "i think you should get first pick.":
             jump ch2_assignments_boy_pick
@@ -883,21 +886,18 @@ label ch2_innkeeper_question_hub:
     innkeeper "Well, I haven't got much time; I'll take a question or two so long as there's a rhyme."
 
     call hub_loop
-
-    jump innkeeper_end
-
-label ch2_innkeeper_no:
-    python:
-        hub_key = None
-        num_asks = 0
     
+    innkeeper "I don't have more time left, and no one has hands quite as deft."
+    
+    jump ch2_scrum
+
+
+label ch2_innkeeper_no:    
     innkeeper "I told you already, my day was quite unsteady."
     innkeeper "I must return to my inn, it's not like I have any other kin."
 
     jump ch2_scrum
 
-label ch2_innkeeper_end:
-    innkeeper "..."
 
 label ch2_sojourn_question_hub:
     python:
@@ -925,11 +925,28 @@ label sojourn_no:
     sojourn "If you're still curious mayhaps I'll talk to you again after that hour."
     sojourn "Now, good day."
 
+    jump ch2_scrum
+
 label ch2_miller_son_question_hub:
-    pass
+    python:
+        hub_key = "miller_son"
+        num_asks = 0
+
+    #scene village street
+
+    show miller_son at center
+
+    miller_son "Man, man, woman, person, stranger, whatever. What are you doing wandering round here?"
+
+    call hub_loop
+
+    jump ch2_scrum
+
 
 label ch2_miller_son_no:
     miller_son "May you be less rude when you next open your mouth."
+
+    jump ch2_scrum
 
 label ch2_shepherd_question_hub:
     python:
@@ -953,6 +970,12 @@ label ch2_shepherd_no:
     jump ch2_scrum
 
 label ch2_scrum:
+    python:
+        hub_key = None
+        num_asks = 0
+        if assignment_boy == "miller_son" and mu_my_flag:
+            miller_son_coming = True
+
     #scene inn common room
     show boy at pos_left
     show wolf at pos_wolf_center
@@ -970,13 +993,11 @@ label ch2_scrum:
     boy "Prince?"
     menu:
         "(Tell them what you know.)":
-            jump ch2_scrum2
+            prince "That's good info."
         "...":
             $ ellipsis()
-            jump ch2_scrum2
 
-label ch2_scrum2:
-    boy "Okay, that's fine."
+    boy "Okay, so here's what I learned."
     if assignment_boy == "sojourn":
         boy "The guest, Sojourn, doesn't really know all that much about Wizard, which makes sense since he's just arrived."
         if mu_my_flag:
@@ -984,6 +1005,8 @@ label ch2_scrum2:
             boy "Even if Innkeeper and Miller didn't have the best of relations she didn't push him, and Sojourn can testify."
     elif assignment_boy == "miller_son":
         boy "Wizard lives on the same street as Miller's Son, Cyclamen street."
+        boy "Although I don't know where he used to live, Wizard lives to the across the street and to the right from Miller's Son's former house."
+        boy "He remembers that the numbers are probably bronze and that there are winchimes"
         boy "In fact, he just took flowers from her home to put in a vase and actually plans to give it back to her with the bread he's getting."
         if mu_my_flag:
             boy "My understanding of his understanding of the whole murder situation is that he has no idea what happened."
@@ -1016,7 +1039,7 @@ label ch2_choose_door:
         miller_son "Wait!"
         # show miller_son at pos
         miller_son "I talked with Sojourn and am really grateful that mess has been cleaned up."
-        miller_son "I was hoping you'd accept the bread my boyfriend made!"
+        miller_son "I was hoping you'd accept the bread my partner, Basil, made!"
         menu:
             "Thank you! You didn't need to , but thank you.":
                 miller_son "It was no problem."
@@ -1140,7 +1163,7 @@ label ch2_wizard_b2_start:
         "...":
             $ ellipsis()
             jump ch2_wizard_b2_ellipsis
-        "Dont worry! We'll have fresh-well, sort of fresh-bread with us!" if bread_aquired == True:
+        "Dont worry! We'll have fresh-well, sort of fresh-bread with us!" if (bread_aquired == True):
             $ wizard_convinced += 2
             jump ch2_wizard_b2_bread
         "Tell us about dragons.":
