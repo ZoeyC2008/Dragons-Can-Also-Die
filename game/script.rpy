@@ -3,6 +3,7 @@
 # Declare characters used by this game. The color argument colorizes the
 # name of the character.
 
+
 #make dynamic colour, cause deconstructed wants to be weird
 define drgn_decon_color = "#000000"
 
@@ -24,7 +25,7 @@ define innkeeper = Character("The Innkeeper: Pepper", color="#028a0f")
 define shepherd = Character("Herd Shep: Rath'la Dnar", color="#ffda03")
 define sojourn = Character(sojourn_name, color="#001f3d")
 define miller_son = Character("Miller's Mischieveous Moppet: Much", color="#be5504")
-define drgn_classic = SmallCapsCharacter("Furious Dragon", color="#ff2400") #@Naomi is Furious better than Classic or Traditional?
+define drgn_classic = Character("Furious Dragon", color="#ff2400") #@Naomi is Furious better than Classic or Traditional?
 define drgn_sad = Character("Depressed Dragon", color="#2c3e4c") #logic here is that decon also starts with d
 define drgn_hobby = Character("Joyous Dragon", color="#0492c2")
 define degn_decon = Character("drgn_decon", color=drgn_decon_color) #I think it makes sense for decon to use her code name instead of a descriptor
@@ -1807,7 +1808,10 @@ label ending_remember_mirror:
         "Yes. Somehting you most certainly did not arrange for, dropping me in the middle of a dragon hunting quest.":
             mirror "Well, coincidences happen."
     menu:
-        "Ilia"
+        "Ilia, Ilia my best friend":
+            mirror "What!"
+    
+    return
 
 #kinda just ignoring the whole ending thing
 label ending:

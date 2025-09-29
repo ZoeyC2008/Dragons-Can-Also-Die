@@ -1732,7 +1732,7 @@ init 1 python:
             "hub":"miller_son",
             "requires":[],
             "answer_lines":[
-                {"who":"miller_son"
+                {"who":"miller_son",
                 "text":"'Magician', what bull. Bea's a full wizard!"}
             ]
         },
@@ -1751,10 +1751,10 @@ init 1 python:
             "hub":"miller_son",
             "requires":["miller_son_yes_wizard"],
             "answer_lines":[
-                {"who":"miller_son"
+                {"who":"miller_son",
                 "text":"Mmm...So I don't really remember, she used to be across my street and a bit to the right from me."},
 
-                {"who":"miller_son"
+                {"who":"miller_son",
                 "text":"Might also be 'cause I located her by hearing the bronze winchimes which are just like the little bronze numbers, I think."}
             ]
         },
@@ -1764,10 +1764,10 @@ init 1 python:
             "hub":"miller_son",
             "requires":["miller_son_yes_wizard", "miller_son_yes_flowers"],
             "answer_lines":[
-                {"who":"miller_son"
+                {"who":"miller_son",
                 "text":"Mail like that doesn't deserve to rot and I'm even helping out Roth'la, she's the one that leaves the flowers, by the way."},
 
-                {"who":"miller_son"
+                {"who":"miller_son",
                 "text":"Mona, Basil and I are also taking turns leaving bread by her door and we make sure she gets her mail as well, even if the amil is flowers."}
             ]
         },
@@ -1795,13 +1795,13 @@ init 1 python:
             "hub":"miller_son",
             "requires":[],
             "answer_lines":[
-                {"who":"miller_son"
+                {"who":"miller_son",
                 "text":"Mona and Basil, they're Baltrice the Baker's children, they begged Baltrice to let me live with them."},
 
-                {"who":"miller_son"
+                {"who":"miller_son",
                 "text":"Moving's going great. Basil's been helping me and I'm rooming with them, since they're my partner and its been really great actually."},
 
-                {"who":"miller_son"
+                {"who":"miller_son",
                 "text":"Mostly since Da wasn't the happiest that I'd been seeing Basil."}
             ]
         },
@@ -1811,10 +1811,10 @@ init 1 python:
             "hub":"miller_son",
             "requires":["mu_my_flag"],
             "answer_lines":[
-                {"who":"miller_son"
+                {"who":"miller_son",
                 "text":"My Da...well, I don't think he was murdered for one."},
 
-                {"who":"miller_son"
+                {"who":"miller_son",
                 "text":"Most people in town are blaming Pepper, but I don't think so even if I don't think they should get married and all, I think the whole died in an inn think was an accident."}
             ]
         },
@@ -1833,8 +1833,8 @@ init 1 python:
             "hub":"miller_son",
             "requires":["mu_my_flag"],
             "answer_lines":[
-                {"effects":"miller_son_coming":True}
-                {"who":"miller_son"
+                {"effects":{"miller_son_coming":True}},
+                {"who":"miller_son",
                 "text":"Mmm...Sure, I guess, it can't hurt at least"}
             ]
         }
