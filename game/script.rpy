@@ -349,7 +349,7 @@ label ch1_invite:
             $ ellipsis()
             jump ch1_invite_reaction
         "No thank you.":
-            jump ending_ch1_walk_away
+            jump ending_walk_away
 
 label ch1_invite_reaction:
     $ invite_reaction_flag = True
@@ -368,7 +368,7 @@ label ch1_invite_reaction:
 
     menu:
         "I'm not going anywhere with strangers.":
-            jump ending_ch1_walk_away
+            jump ending_walk_away
         "Where is this next village anyway?":
             jump ch1_invite_place
         "Sure, I'll come along":
@@ -391,7 +391,7 @@ label ch1_invite_place:
     
     menu:
         "I'm not going anywhere with strangers.":
-            jump ending_ch1_walk_away
+            jump ending_walk_away
         "Sure, I'll come along":
             jump ch1_travel_question_hub
         "...":
@@ -1714,43 +1714,84 @@ label ch3_hobby_start:
     drgn_hobby "Lady, runnin' down to the riptide\nTaken away to the dark side"
     drgn_hobby "I wanna be your left-hand man\nI love you when you're singin' that song"
     drgn_hobby "And I got a lump in my throat 'cause\nYou're gonna sing the words wrong"
-    drgn_hobby "\n"
-    drgn_hobby "\n"
-    drgn_hobby "\n"
-    drgn_hobby "\n"
-    drgn_hobby "\n"
-    drgn_hobby "\n"
-    drgn_hobby "\n"
-    drgn_hobby "\n"
-    drgn_hobby "\n"
-    drgn_hobby "\n"
-    drgn_hobby "\n"
-    drgn_hobby "\n"
-    drgn_hobby "\n"
-    drgn_hobby "\n"
-
-
+    drgn_hobby "Lady, runnin' down to the riptide\nTaken away to the dark side"
+    drgn_hobby "I wanna be your left-hand man\nI love you when you're singin' that song"
+    drgn_hobby "And I got a lump in my throat 'cause\nYou're gonna sing the words wrong"
+    drgn_hobby "Lady, runnin' down to the riptide\nTaken away to the dark side"
+    drgn_hobby "I wanna be your left-hand man\nI love you when you're singin' that song"
+    drgn_hobby "And I got a lump in my throat 'cause\nYou're gonna sing the words wrong, yeah"
+    drgn_hobby "I got a lump in my throat 'cause\nYou're gonna sing the words wrong"
     #song ends
 
     drgn_hobby "That was my performance of Riptide by Vance Joy!! It's one of my favourite songs!!"
-    
+    drgn_hobby "So what did you think!!"
+    menu:
+        "I was good!":
+            boy "I agree!"
+        "I didn't like it.":
+            boy "Which isn't to say it wasn't good! Just not to Prince's taste."
+            boy "Personally, I like it a lot"
+    drgn_hobby "I'm just happy to have an audience!!"
+    boy "We can spread the word about you."
+    boy "That there's a dragon looking for an audience and the she's won't hurt anybody."
+    drgn_hobby "Would you!! I'd be so grateful!!"
+    drgn_hobby "I find that a lot of people are kind of aloof. They don't really care about the world and I hope that at least some people will care about my music."
+    wolf "Kid, lot's of people like it."
+    drgn_hobby "I'm thinking about moving out and getting more of an audience!"
+    wolf "Not a decision to be taken likely."
+    drgn_hobby "I know."
+    drgn_hobby "And I know I'm not ready yet."
+    drgn_hobby "But I want more people to listen, get used to having an audience and all that."
+    drgn_hobby "My parents have already told me, when I let myself touch the world, the world will reach back and hurt me. I don't want to be hurt, so I'm going to touch the world a little and see if that does happen."
+    boy "I hope that goes well!"
+    boy "We'll definitly send people your way!"
 
-
+    jump ch3_alive_drgn
 
 label ch3_decon_start:
-    pass  
+    pass
 
 
 #post drgn meeting
+label ch3_dead_drgn:
+    
+    if wizard_joined:
+        boy "Wizard's asleep."
+    boy "Wolf's eating the dragon's heart right now. He's sleeping it off right now and I'm hoping he'll feel better in the morning."
+    boy "Waste not."
+    boy "So, do you want the brain?"
+    boy "It's very grey and drippy, but I'm sure it'll help you with your memories."
+    menu:
+        "Yes, I'll take it.":
+            jump ending_remember_mirror
+        "Want not. By which I mean I don't want it and I'm sure you'll find some magical use for it.":
+            jump ch3_question_hub
+        "I don't know, I think I'm happy and I don't exactly miss my memories.":
+            jump ch3_question_hub
+
+
 label ch3_alive_drgn:
     pass
 
-label ch3_dead_drgn:
+label ch3_question_hub:
     pass
 
-
-label ending_ch1_walk_away:
+label ending_walk_away:
     return
+
+label ending_stay_with_sad:
+
+    wizard "Do you want me to tell you stories?"
+    drgn_sad "Yes... That sounds good."
+    wizard "Then, that's what we'll do unitl [boy_name] and Llangernyw return."
+    wizard "Once upon a time there was a dragon..."
+    return
+
+label ending_remember_mirror:
+    menu:
+        "Arrrggghhh":
+            boy "Are you alright?"
+    
 
 #kinda just ignoring the whole ending thing
 label ending:
