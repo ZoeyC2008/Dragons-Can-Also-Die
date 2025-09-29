@@ -1791,7 +1791,23 @@ label ending_remember_mirror:
     menu:
         "Arrrggghhh":
             boy "Are you alright?"
-    
+    menu:
+        "Yes, I feel fine, good even.":
+            boy "And your memories?"
+    menu:
+        "It's back all of it. Even sharper and clearer than before. It's just...am I still me?":
+            boy "No doubt, that, everyone is still themselves in their heart of hearts, that they are themselves."
+            boy "We've travelled together for weeks, I'd like to think I at least know a part of you."
+    menu:
+        "(Inscribe Ilia.)":
+            $ mirror_name = "The Mirror: Ilia"
+            mirror "Keeper!"
+            mirror "You remember?"
+    menu:
+        "Yes. Somehting you most certainly did not arrange for, dropping me in the middle of a dragon hunting quest.":
+            mirror "Well, coincidences happen."
+    menu:
+        "Ilia"
 
 #kinda just ignoring the whole ending thing
 label ending:
