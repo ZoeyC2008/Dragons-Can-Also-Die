@@ -148,10 +148,12 @@ default travel_day_four = False
 default mu_my_flag = False
 
     #For the scrum
-default assignement_boy = ""
-default assignement_wolf = ""
+default assignment_boy = ""
+default assignment_wolf = ""
 
-    #bread!
+#bread!
+default miller_son_coming = False
+default miller_son_bread = False
 default bread_aquired = False
     #wizard stuff
 default wizard_door = 0
@@ -784,7 +786,7 @@ label ch2_innkeeper_demo_reaction_nothing:
 
 label ch2_innkeeper_demo_reaction_tell:
     boy "we don't intend to  be rude or trite, please forgive our slight.But also please help us with our plight."
-    innkeeper "Don't fo around asking, no one deserves this much prodding."
+    innkeeper "Don't go around asking, no one deserves this much prodding."
     innkeeper "I shall leave you three alone; I have sheets to wash as they're quite suliness prone."
     jump ch2_assignments
 
@@ -817,8 +819,8 @@ label ch2_assignments:
 
 label ch2_assignments_innkeeper:
     python:
-        assignement_boy = "miller_son"
-        assignement_wolf = "shepherd"
+        assignment_boy = "miller_son"
+        assignment_wolf = "shepherd"
     
     boy "Alright, great."
     boy "Wolf?"
@@ -829,8 +831,8 @@ label ch2_assignments_innkeeper:
 
 label ch2_assignments_sojourn:
     python:
-        assignement_boy = "miller_son"
-        assignement_wolf = "shepherd"
+        assignment_boy = "miller_son"
+        assignment_wolf = "shepherd"
     
     boy "Alright, great."
     boy "Wolf?"
@@ -841,8 +843,8 @@ label ch2_assignments_sojourn:
 
 label ch2_assignments_shepherd:
     python:
-        assignement_boy = "miller_son"
-        assignement_wolf = "innkeeper"
+        assignment_boy = "miller_son"
+        assignment_wolf = "innkeeper"
     
     boy "Alright, great."
     boy "Wolf, i want you to stay at the inn and talk to either Innkeeper or that other guest she mentioned. I'll take to the streets and make inquireies that way."
@@ -856,8 +858,8 @@ label ch2_assignments_shepherd:
 
 label ch2_assignments_miller_son:
     python:
-        assignement_boy = "sojourn"
-        assignement_wolf = "shepherd"
+        assignment_boy = "sojourn"
+        assignment_wolf = "shepherd"
     
     boy "Wolf?"
     wolf "I'll need to stretch my old legs. I'll talk to this 'shepherd'."
@@ -926,6 +928,9 @@ label sojourn_no:
 label ch2_miller_son_question_hub:
     pass
 
+label ch2_miller_son_no:
+    miller_son "May you be less rude when you next open your mouth."
+
 label ch2_shepherd_question_hub:
     python:
         hub_key = "shepherd"
@@ -937,7 +942,7 @@ label ch2_shepherd_question_hub:
 
     call hub_loop
 
-    shepherd "Sheep mine. To return must I."
+    shepherd "Sheep mine. To rmieturn must I."
 
     jump ch2_scrum
 
@@ -952,7 +957,80 @@ label ch2_scrum:
     show boy at pos_left
     show wolf at pos_wolf_center
 
+    boy "So what did everyone learn?"
+    boy "Wolf?"
+    if assignment_wolf == "shepherd":
+        wolf "A fat load of nothing."
+        wolf "That shepherd hates me, all they want is to look after their sheep."
+        wolf "Doesn't even try to entertain that I might be safe and just looking for a conversation."
+    elif assignment_wolf == "innkeeper":
+        wolf "I think the Innkeeper hates me."
+        wolf "All she does is laundry all day."
+        wolf "But she can't even spare a second to talk!"
+    boy "Prince?"
+    menu:
+        "(Tell them what you know.)":
+            jump ch2_scrum2
+        "...":
+            $ ellipsis()
+            jump ch2_scrum2
+
+label ch2_scrum2:
+    boy "Okay, that's fine."
+    if assignment_boy == "sojourn":
+        boy "The guest, Sojourn, doesn't really know all that much about Wizard, which makes sense since he's just arrived."
+        if mu_my_flag:
+            boy "But what I did learn if that Miller's death is an accident."
+            boy "Even if Innkeeper and Miller didn't have the best of relations she didn't push him, and Sojourn can testify."
+    elif assignment_boy == "miller_son":
+        boy "Wizard lives on the same street as Miller's Son, Cyclamen street."
+        boy "In fact, he just took flowers from her home to put in a vase and actually plans to give it back to her with the bread he's getting."
+        if mu_my_flag:
+            boy "My understanding of his understanding of the whole murder situation is that he has no idea what happened."
+            boy "But I think he doesn't want to blame Innkeeper."
+    boy "Alright, let's go find Wizard's door, knock, and see if she wants to come along."
+
+    if miller_son_coming:
+        #show miller_son at pos idk
+
+        miller_son "So, what have you learned about Da's death?"
+        menu:
+            "I think Innkeeper Pepper might have done it.":
+                miller_son "That doesn' sound right..."
+            "I think you should talk to Sojourn, he'll know.":
+                $ miller_son_bread = True
+                miller_son "Okay. I shall see what he thinks."
+            "I don't know.":
+                miller_son "...Alright, I'll keep searching."
+            "...":
+                $ ellipsis()
+                miller_son "So you don't know either."
+
+        
+
 label ch2_choose_door:
+    #show scene village street
+    pause
+    if miller_son_bread:
+        $ bread_aquired = True
+        miller_son "Wait!"
+        # show miller_son at pos
+        miller_son "I talked with Sojourn and am really grateful that mess has been cleaned up."
+        miller_son "I was hoping you'd accept the bread my boyfriend made!"
+        menu:
+            "Thank you! You didn't need to , but thank you.":
+                miller_son "It was no problem."
+            "We couldn't possibly...":
+                miller_son "No, I insist."
+                miller_son "Here take it."
+            "...":
+                $ ellipsis()
+                boy "Thank you."
+                boy "We're happy your situation was fixed. The truth is usually revealed in the end."
+                miller_son "And thank you for helping find it."
+
+
+    
     #show scene doors
     $ wizard_door = renpy.input("Choose which door to knock on:")
     if wizard_door == 11:
