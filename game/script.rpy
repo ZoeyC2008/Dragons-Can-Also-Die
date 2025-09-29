@@ -1675,13 +1675,65 @@ label ch3_hobby_start:
 
     boy "Erm... Hello?"
     drgn_hobby "Just wait a moment as I get my guitar!"
+    # hide dragon
+
     if wizard_joined:
         wizard "Are we still slaying her?"
     else:
         wolf "Are we still slaying her?"
 
     menu:
-        "Surely"
+        "Surely, she lives. Right, [boy_name]?":
+            boy "Yes!"
+        "Surely, we're still slaying her. Right, [boy_name]?":
+            boy "No."
+            boy "She's harmless. We don't need to kill her."
+            boy "We'll find other solutions."
+            boy "And we don't need the--the glory."
+
+    # show cutscene
+    drgn_hobby "I'm back!"
+    drgn_hobby "You'll have to tell me what you think of my performance!!"
+    
+    #song begins
+    drgn_hobby "I was scared of dentists and the dark\nI was scared of pretty girls and starting conversations"
+    drgn_hobby "Oh, all my friends are turnin' green\nYou're the magician's assistant in their dream"
+    drgn_hobby "Ah-ooh, ah-oh\nAnd they come unstuck"
+    drgn_hobby "Lady, runnin' down to the riptide\nTaken away to the dark side"
+    drgn_hobby "I wanna be your left-hand man\nI love you when you're singin' that song"
+    drgn_hobby "And I got a lump in my throat 'cause\nYou're gonna sing the words wrong"
+    drgn_hobby "There's this movie that I think you'll like\nThis guy decides to quit his job and heads to New York City"
+    drgn_hobby "This cowboy's runnin' from himself\nAnd she's been livin' on the highest shelf"
+    drgn_hobby "Ah-ooh, ah-oh\nAnd they come unstuck"
+    drgn_hobby "Lady, runnin' down to the riptide\nTaken away to the dark side"
+    drgn_hobby "I wanna be your left-hand man\nI love you when you're singin' that song"
+    drgn_hobby "And I got a lump in my throat 'cause\nYou're gonna sing the words wrong"
+    drgn_hobby "I just wanna, I just wanna know\nIf you're gonna, if you're gonna stay"
+    drgn_hobby "I just gotta, I just gotta know\nI can't have it, I can't have it any other way"
+    drgn_hobby "I swear she's destined for the screen\nClosest thing to Michelle Pfeiffer that you've ever seen, oh"
+    drgn_hobby "Lady, runnin' down to the riptide\nTaken away to the dark side"
+    drgn_hobby "I wanna be your left-hand man\nI love you when you're singin' that song"
+    drgn_hobby "And I got a lump in my throat 'cause\nYou're gonna sing the words wrong"
+    drgn_hobby "\n"
+    drgn_hobby "\n"
+    drgn_hobby "\n"
+    drgn_hobby "\n"
+    drgn_hobby "\n"
+    drgn_hobby "\n"
+    drgn_hobby "\n"
+    drgn_hobby "\n"
+    drgn_hobby "\n"
+    drgn_hobby "\n"
+    drgn_hobby "\n"
+    drgn_hobby "\n"
+    drgn_hobby "\n"
+    drgn_hobby "\n"
+
+
+    #song ends
+
+    drgn_hobby "That was my performance of Riptide by Vance Joy!! It's one of my favourite songs!!"
+    
 
 
 
