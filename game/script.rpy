@@ -13,13 +13,9 @@ define sojourn_name = "Man in Midst of Sojourn: 噩梦" #With 'e's: The Sojourne
 define mirror_name = "The Mirror" #In recover the past ending, The Mirror: Ilia
 
 #protag name
-define princess_name = ""
+define princess_name = "Fensediaiwe"
 
 #@Naomi are we putting char in front of the characters? e.g. char_boy??
-#the protagonist!
-define mc = Character("The Princess: [princess_name], the Heir to the Billyburrows, Duchess ...", color="#eee")
-
-#everyone else
 define mirror = Character(mirror_name, color="#e0dddd")
 define boy = Character("The Boy: [boy_name]", color="#ba0f0a")
 define wolf = Character("The Wolf: Llangernyw", color="#90a3b0")
@@ -33,6 +29,7 @@ define drgn_sad = Character("Depressed Dragon", color="#2c3e4c") #logic here is 
 define drgn_hobby = Character("Joyous Dragon", color="#0492c2")
 define degn_decon = Character("drgn_decon", color=drgn_decon_color) #I think it makes sense for decon to use her code name instead of a descriptor
 
+#I don't think we use this
 define extra = Character ("???", color="#eee")
 
 #define all the images (the way renpy handles this is so weird, like why are there spaces, please get rid of the spaces in my variables)
@@ -99,7 +96,10 @@ define pos_wolf_slightly_left = Position(xalign=0.4, ypos=wolf_ypos)
 define pos_slightly_right = Position(xalign=0.7, ypos=0.5)
 define pos_wizard_slightly_right = Position(xalign=0.7, ypos=wizard_ypos)
 
-#Variable and falgs default 
+#chanting, this is something to be figured out
+define chanting = ""
+
+#Variable and flags default 
 
 #these need to be before the questions
 init python:
@@ -308,7 +308,7 @@ label ch1_name_prince_react:
         "But I'm not a Prince?? At least no one's told me that? Including the labels?":
             $ decon += add_little
             jump ch1_prince_name_deny
-        "I guess I accept...It's not like it matters...":
+        "I guess I accept... It's not like it matters...":
             $ aloof += add_little
             jump ch1_prince_name_accept
         "...":
@@ -475,7 +475,7 @@ label ch1_almost_pick_boy_name:
     menu:
         "May I call you something else?":
             jump ch1_almost2_pick_name
-        "Okay...I guess...":
+        "Okay... I guess...":
             if not prince_named_flag:
                 jump ch1_boy_asks_for_name
             else:
@@ -584,7 +584,7 @@ label ch1_travel_day2:
     menu:
         "Roads go ever ever on...":
             $ decon += add_tiny
-        "You're singing the same thinh...And it's still Tolkien.":
+        "You're singing the same thing... And it's still Tolkien.":
             $ decon += add_most        
         "...":    
             $ ellipsis()
@@ -610,7 +610,7 @@ label ch1_travel_day3:
 label ch1_travel_explain_soul:
     wolf "Nothing you need to worry about."
     wolf "This has no differance on my power, I'm still more that powerful enough to smite everyone in my vincity."
-    boy "Eh...Sometimes, you just need to properly shove Wolf's soul into his body."
+    boy "Eh... Sometimes, you just need to properly shove Wolf's soul into his body."
     boy "I mean, it works and it keeps him alive."
     boy "So, I'm more than happy to do that."
     boy "Anyhow, it's time we set off."
@@ -715,7 +715,7 @@ label ch2_room_aloof:
 
 label ch2_room_boy:
     boy "Oh!"
-    boy "Um...That's not..."
+    boy "Um... That's not..."
     boy "You know what? This works too."
     boy "Wolf, here's the key to 217, sleep in the bed and don't turn on the AC and keep the windows closed."
     boy "Prince and I will be right across the hall in 216. If you need anything, knock."
@@ -1075,7 +1075,7 @@ label ch2_wizard_start:
     boy "Hello?"
     wizard "H-h-hello..."
     boy "We were wondering if this is the local wizard."
-    wizard "I-I_I. Y-y-yes...I-I-I am."
+    wizard "I-I_I. Y-y-yes... I-I-I am."
     wolf "Boy, tell her to return us inside."
     wizard "C-c-come in."
     wizard "S-s-sorry, I h-h-heard you, um..."
@@ -1290,7 +1290,7 @@ label ch2_wizard_b4_see_world:
     jump ch2_wizard_decide
 
 label ch2_wizard_b4_not_forever:
-    wizard "No...No, I'm not."
+    wizard "No... No, I'm not."
     wizard "This is my home, isn;t it..."
     wizard "And I can always return to it."
     jump ch2_wizard_decide
@@ -1375,16 +1375,16 @@ label ch3_decide:
     if (best_value > threshold):
         if (best_index == 0):
             $ which_drgn = "sad"
-            jump ch3_drgn_sad
+            jump ch3_sad_start
         elif (best_index == 1):
             $ which_drgn = "classic"
-            jump ch3_drgn_classic
+            jump ch3_classic_start
         elif (best_index == 2):
             $ which_drgn = "hobby"
-            jump ch3_drgn_hobby
+            jump ch3_hobby_start
     else:
         $ which_drgn = "decon"
-        jump ch3_drgn_decon
+        jump ch3_decon_start
 
 label ch3_drgn_hobby:
     scene bg lair hobby
@@ -1395,6 +1395,206 @@ label ch3_drgn_hobby:
     #debug the images!!!
 
     pause
+
+label ch3_sad_start:
+    if wizard_joined:
+        jump ch3_sad_wizard
+    else:
+        jump ch3_sad_no_wizard
+
+label ch3_sad_wizard:
+    drgn_sad "..."
+    boy "Hello."
+    boy "We are here to slay you."
+    drgn_sad "..."
+    wolf "..."
+    wolf "Boy, you see that. Don't you?"
+    boy "She's already dead."
+    wizard "She i-i-isn't."
+    drgn_sad "..."
+    wizard "You a-a-aren't a c-c-corpse."
+    wizard "Not yet."
+    drgn_sad "I... want... to... be..."
+    wizard "Many do. I wanted to."
+    wizard "But you're not alone right now."
+    wizard "We can help."
+    boy "And we want to."
+    wolf "Seconded."
+    menu:
+        "Yes. We'll definitly help.":
+            wizard "See."
+        "*whisper* Wait, what happened to killing the dragon?":
+            wizard "We don't."
+            wizard "We don't kill her."
+            boy "That was before."
+            boy "It's obvious she's not killing anyone."
+            boy "We'll find another solution to our problems."
+            boy "But later."
+            wizard "For now, we help."
+    #cutscene
+
+
+    #script cont
+    wizard "We are here for you."
+    wizard "Why don't you explain and tell us why you're here."
+    drgn_sad "The world is wrong..."
+    drgn_sad "Or I am wrong..."
+    wizard "The world can be wrong."
+    drgn_sad "It wants be to me..."
+    drgn_sad "To be like the other dragons..."
+    drgn_sad "Terrifying... furious... angry..."
+    drgn_sad "But I don't think I am..."
+    drgn_sad "Those things."
+    boy "You aren't."
+    boy "Even just seeing you, we know."
+    wolf "Easiest remedy, we can spread your story."
+    wolf "Emphasize that you're looking for a friend."
+    wizard "I'll be that friend."
+    boy "Yeah, Wolf, Prince, and I can spread those stories, in the meantime you'll help her, right?"
+    wizard "Yes."
+
+    menu:
+        "I'll stay with you.": #do we keep this??
+            jump ending_stay_with_sad
+        "We'll make sure the whole world knows you're kind.":
+            jump ch3_alive_drgn    
+
+label ch3_sad_no_wizard:
+    #art
+
+
+    #script
+    drgn_sad "..."
+    boy "Hello."
+    boy "We are here to slay you."
+    drgn_sad "..."
+    wolf "..."
+    wolf "Boy, you see that. Don't you?"
+    boy "She's already dead."
+    boy "..."
+    boy "That can't be right."
+    boy "Dragons don't just--just--"
+    wolf "Dragons don't just kneel over and die."
+    drgn_sad "Soon..."
+    boy "Soon what?"
+    drgn_sad "Death..."
+    drgn_sad "Always... soon... but... never..."
+    drgn_sad "But... never... now..."
+    drgn_sad "Wish... it... were... now..."
+    drgn_sad "I... do... not... want... to... see..."
+    drgn_sad "See... another... dawn..."
+    wolf "Boy, are we killing her?"
+    boy "...I don't know."
+    wolf "Whatever you decide, I'll support it."
+    wolf "You're my best student and if you want the dragon's materials, which are still active, and, of course, the bragging rights, I won't fault you. But if you don't want to stain your soul, I most certainly won't fault you either."
+    boy "..."
+    drgn_sad "My... death..."
+    drgn_sad "Today... is... a..."
+    drgn_sad "Is... a... good... day..."
+    boy "Prince, what do you think?"
+    menu:
+        "She's miserable, and we can help her by killing her... right? It'd be a mercy... wouldn't it?":
+            jump ch3_sad_no_wizard_kill
+        "I think we can help her... surely she can still be saved?":
+            jump ch3_sad_no_wizard_save
+
+label ch3_sad_no_wizard_kill:
+    #art
+
+    #script
+    boy "I think you might be right."
+    wolf "You'll still need to use that spell"
+    boy "...we'd planned on that."
+    boy "This'll take a moment."
+    boy "Depressed Dragon, I hope you won't mind."
+    
+    #art
+
+
+    #script cont
+    wolf "May thine soul find freedom outside this pale imitation of thine brilliance..."
+    boy "...[chanting]"
+    drgn_sad "Thank... you..."
+    
+    pause
+    
+    jump ch3_dead_drgn
+
+label ch3_sad_no_wizard_save:
+    boy "Okay."
+    drgn_sad "No... I... want... to..."
+    drgn_sad "Want... to.. die..."
+    menu:
+        "(Give her bread.)":
+            jump ch3_sad_no_wizard_save_bread
+        "...":
+            jump ch3_sad_no_wizard_save_no_bread
+
+label ch3_sad_no_wizard_save_bread:
+    wolf "Bread. It's the heart of life."
+    boy "Why don't you try it."
+
+    #cutscene
+
+
+    #script cont
+    boy "There's more to live for."
+    boy "You don't have to just stay in your cave and die."
+    boy "It's okay if you don't want to."
+    boy "But there's a lot out there, there's bread and other things that can be disovered, that can be found."
+    drgn_sad "..."
+    drgn_sad "One day..."
+    drgn_sad "One day, I might try..."
+    boy "If you want, I'll come back with things from outside your cave."
+    drgn_sad "I think..."
+    drgn_sad "I'd like that..."
+    drgn_sad "I want..."
+    drgn_sad "To find more of myself..."
+    wolf "Good luck to that."
+    boy "?"
+    wolf "Good luck to finding yourself and doing soul serching and all that."
+    wolf "Unlike Boy, most people don't, not for a long, long, time that is."
+    wolf "So, good luck."
+    drgn_sad "..."
+    drgn_sad "Thank you."
+
+    pause
+    
+    jump ch3_alive_drgn
+
+label ch3_sad_no_wizard_save_no_bread:
+    #cutscene death
+
+
+    #script
+    drgn_sad "This... is... a... good..."
+    drgn_sad "A... good... day..."
+    drgn_sad "A... good... death..."
+    wolf "May thine soul find freedom outside this pale imitation of thine brilliance..."
+    drgn_sad "Thank... you... for..."
+    drgn_sad "For... being... a... spectator..."
+
+    pause
+
+    jump ch3_dead_drgn
+
+
+label ch3_classic_start:
+    pass
+
+label ch3_hobby_start:
+    pass
+
+label ch3_decon_start:
+    pass  
+
+
+#post drgn meeting
+label ch3_alive_drgn:
+    pass
+
+label ch3_dead_drgn:
+    pass
 
 
 label ending_ch1_walk_away:
