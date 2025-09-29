@@ -1590,17 +1590,17 @@ label ch3_sad_no_wizard_save_no_bread:
 
 
 label ch3_classic_start:
-    drgn_classic "Who dares enter my lair!"
+    drgn_classic "WHO DARES ENTER MY LAIR!"
     boy "Nobody. Just some people who are here to slay you."
     wolf "What he said."
-    drgn_classic "And who do you think you are?"
+    drgn_classic "AND WHO DO YOU THINK YOU ARE?"
     wolf "I am Llangernyw, Scion of the True Wolves, last of my kind. Archmage."
     boy "I'm just a boy, call me [boy_name]."
     if wizard_joined:
         wizard "I'm... j-j-just Bea."
     boy "And that's Prince."
-    drgn_classic "So a new set of adventures have come for gold."
-    drgn_classic "Well I am here to stop you."
+    drgn_classic "SO A NEW SET OF ADVENTURES HAVE COME FOR GOLD."
+    drgn_classic "WELL I AM HERE TO STOP YOU."
 
     #show fire
 
@@ -1647,10 +1647,10 @@ label ch3_classic_wolf:
 
 label ch3_classic_wizard:
     wizard "[butterfly_chant]."
-    drgn_clasic "Annoying bug!!"
+    drgn_classic "ANNOYING BUG!!"
     # cutscene
     boy "[kill_drgn_chant]!!!"
-    drgn_clasic "Arrggghhh!!"
+    drgn_classic "ARRRGGGGHHHHH"
     pause
 
     jump ch3_dead_drgn
@@ -1658,9 +1658,9 @@ label ch3_classic_wizard:
 label ch3_classic_bread:
     #show cutscene
 
-    drgn_classic "What!?"
+    drgn_classic "WHAT!?"
     boy "[kill_drgn_chant]!!!"
-    drgn_clasic "Arrggghhh!!"
+    drgn_classic "ARRRGGGGHHHHH"
     pause
 
     jump ch3_dead_drgn
@@ -1808,7 +1808,7 @@ label ending_remember_mirror:
         "Yes. Somehting you most certainly did not arrange for, dropping me in the middle of a dragon hunting quest.":
             mirror "Well, coincidences happen."
     menu:
-        "Ilia, Ilia my best friend":
+        "Ilia, Ilia my best friend, there was a reason":
             mirror "What!"
     
     return
