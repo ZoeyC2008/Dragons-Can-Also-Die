@@ -1719,7 +1719,7 @@ init 1 python:
             "hub":"miller_son",
             "requires":[],
             "answer_lines":[
-                {"who":"miller_son"
+                {"who":"miller_son",
                 "text":"Magnolias, and also chrysanthemums and roses. Shepherd dropped them off for Bea."},
 
                 {"who":"miller_son",
