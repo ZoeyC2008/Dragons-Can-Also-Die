@@ -174,7 +174,7 @@ label start:
     #testing
     jump test
 
-    jump ch0_titlecard
+    #jump ch0_titlecard
 
 label test:
     # we do be testing art
