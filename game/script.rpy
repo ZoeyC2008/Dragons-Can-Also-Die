@@ -24,7 +24,7 @@ define innkeeper = Character("The Innkeeper: Pepper", color="#028a0f")
 define shepherd = Character("Herd Shep: Rath'la Dnar", color="#ffda03")
 define sojourn = Character(sojourn_name, color="#001f3d")
 define miller_son = Character("Miller's Mischieveous Moppet: Much", color="#be5504")
-define drgn_classic = Character("Furious Dragon", color="#ff2400") #@Naomi is Furious better than Classic or Traditional?
+define drgn_classic = SmallCapsCharacter("Furious Dragon", color="#ff2400") #@Naomi is Furious better than Classic or Traditional?
 define drgn_sad = Character("Depressed Dragon", color="#2c3e4c") #logic here is that decon also starts with d
 define drgn_hobby = Character("Joyous Dragon", color="#0492c2")
 define degn_decon = Character("drgn_decon", color=drgn_decon_color) #I think it makes sense for decon to use her code name instead of a descriptor
@@ -97,7 +97,9 @@ define pos_slightly_right = Position(xalign=0.7, ypos=0.5)
 define pos_wizard_slightly_right = Position(xalign=0.7, ypos=wizard_ypos)
 
 #chanting, this is something to be figured out
-define chanting = ""
+define kill_drgn_chant = ""
+define butterfly_chant = ""
+define teleport_chant = ""
 
 #Variable and flags default 
 
@@ -1513,7 +1515,7 @@ label ch3_sad_no_wizard_kill:
 
     #script cont
     wolf "May thine soul find freedom outside this pale imitation of thine brilliance..."
-    boy "...[chanting]"
+    boy "...[kill_drgn_chant]"
     drgn_sad "Thank... you..."
     
     pause
@@ -1580,7 +1582,80 @@ label ch3_sad_no_wizard_save_no_bread:
 
 
 label ch3_classic_start:
-    pass
+    drgn_classic "Who dares enter my lair!"
+    boy "Nobody. Just some people who are here to slay you."
+    wolf "What he said."
+    drgn_classic "And who do you think you are?"
+    wolf "I am Llangernyw, Scion of the True Wolves, last of my kind. Archmage."
+    boy "I'm just a boy, call me [boy_name]."
+    if wizard_joined:
+        wizard "I'm... j-j-just Bea."
+    boy "And that's Prince."
+    drgn_classic "So a new set of adventures have come for gold."
+    drgn_classic "Well I am here to stop you."
+
+    #show fire
+
+    boy "Cauma!"
+
+    #hide fire
+
+    boy "We are not here for gold or treasures."
+    boy "Dragon, we have already told you. We are here to slay you."
+    boy "Everyone, distract the dragon!"
+    boy "I'll start the spell!"
+
+    menu:
+        "(Run and distract the dragon.)":
+            jump ch3_classic_run
+        "(Ask Llangernyw if he can make a shield.)":
+            jump ch3_classic_wolf
+        "(Ask Bea to summon an the illusory butterfly.)" if (wizard_joined == True):
+            jump ch3_classic_wizard
+        "(Throw bread at the dragon.)" if (bread_aquired == True):
+            jump ch3_classic_bread
+
+label ch3_classic_run:
+    boy "What are you doing!!"
+
+    #cutscene
+
+    boy "[teleport_chant]!!"
+
+    pause
+
+    jump ch3_alive_drgn
+
+label ch3_classic_wolf:
+    wolf "I haven't the strength!!"
+
+    #cutscene
+
+    boy "[teleport_chant]!!"
+
+    pause
+
+    jump ch3_alive_drgn
+
+label ch3_classic_wizard:
+    wizard "[butterfly_chant]."
+    drgn_clasic "Annoying bug!!"
+    # cutscene
+    boy "[kill_drgn_chant]!!!"
+    drgn_clasic "Arrggghhh!!"
+    pause
+
+    jump ch3_dead_drgn
+
+label ch3_classic_bread:
+    #show cutscene
+
+    drgn_classic "What!?"
+    boy "[kill_drgn_chant]!!!"
+    drgn_clasic "Arrggghhh!!"
+    pause
+
+    jump ch3_dead_drgn
 
 label ch3_hobby_start:
     pass
