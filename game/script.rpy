@@ -1807,7 +1807,7 @@ label ending_remember_mirror:
         "Yes. Somehting you most certainly did not arrange for, dropping me in the middle of a dragon hunting quest.":
             mirror "Well, coincidences happen."
     menu:
-        "Ilia"
+        "Ilia, Ilia my best friend"
 
 #kinda just ignoring the whole ending thing
 label ending:
