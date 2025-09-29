@@ -1026,6 +1026,7 @@ label ch2_choose_door:
                 boy "We're happy your situation was fixed. The truth is usually revealed in the end."
                 miller_son "And thank you for helping find it."
 
+
     
     #show scene doors
     $ wizard_door = renpy.input("Choose which door to knock on:")
