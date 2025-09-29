@@ -169,8 +169,14 @@ label show_topic_answer:
                     renpy.say(None, text, interact=interact_flag)
                 
                 if "effects" in line:
-                    for stat, amount in selected["effects"].items():
-                        setattr(renpy.store, stat, getattr(renpy.store, stat, 0) + amount) 
+                    for stat, amount in line["effects"].items():
+                        # If the effect value is boolean, set the flag directly
+                        if isinstance(amount, bool):
+                            setattr(renpy.store, stat, amount)
+                        else:
+                            # Otherwise treat it as numeric and add (supports ints/floats)
+                            setattr(renpy.store, stat, getattr(renpy.store, stat, 0) + amount)
+
                 
                 # if this line has choices, present them
                 if "choices" in line:
@@ -200,7 +206,13 @@ label show_topic_answer:
                     #if there are any effects
                     if "effects" in selected:
                         for stat, amount in selected["effects"].items():
-                            setattr(renpy.store, stat, getattr(renpy.store, stat, 0) + amount)  
+                            # If effect is boolean, set directly
+                            if isinstance(amount, bool):
+                                setattr(renpy.store, stat, amount)
+                            else:
+                                # Otherwise treat it as a number and add
+                                setattr(renpy.store, stat, getattr(renpy.store, stat, 0) + amount)
+                    
                     # otherwise continue to next line
                     i += 1
                     continue

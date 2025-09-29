@@ -1162,7 +1162,7 @@ init 1 python:
             "requires":["innkeeper_yes_wizard"],
             "answer_lines":[
                 {"who":"innkeeper",
-                "text":"Can't quite remember, but it was the left side of the cul-de-sac. And I do think her house number was prime, though I thinkit's closer to a shack."}
+                "text":"Can't quite remember, but it was the left side of the cul-de-sac. And I do think her house number was prime, though I think it's closer to a shack."}
             ]
         },
 
@@ -1297,7 +1297,7 @@ init 1 python:
                 "text":"I not did you told? Already I."},
 
                 {"who":"shepherd",
-                "text":"Chrysanthemums and poppies and roses. Some got I today."}
+                "text":"Chrysanthemums and magnolias and roses. Some got I today."}
             ]
         },
 
@@ -1696,6 +1696,148 @@ init 1 python:
             ]
         },
 
+        "miller_son_no_wizard":{
+            "title":"Can you tell me about the wizard in this town?",
+            "hub":"miller_son",
+            "requires":[],
+            "answer_lines":[
+                {"jump":"miller_son_no"}
+            ]
+        },
+
+        "miller_son_no_flowers":{
+            "title":"Is there a reason your holding flowers?",
+            "hub":"miller_son",
+            "requires":[],
+            "answer_lines":[
+                {"jump":"miller_son_no"}
+            ]
+        },
+
+        "miller_son_yes_flowers":{
+            "title":"Magnolia, those flowers you're holding, I mean. Where did you get them?",
+            "hub":"miller_son",
+            "requires":[],
+            "answer_lines":[
+                {"who":"miller_son"
+                "text":"Magnolias, and also chrysanthemums and roses. Shepherd dropped them off for Bea."},
+
+                {"who":"miller_son",
+                "text":"Me, though, all I'm doing is putting them in a vase, make sure they last more than two days and all that."}
+            ]
+        },
+
+        "miller_son_yes_wizard":{
+            "title":"Magician in this town, right? Can you explain more?",
+            "hub":"miller_son",
+            "requires":[],
+            "answer_lines":[
+                {"who":"miller_son"
+                "text":"'Magician', what bull. Bea's a full wizard!"}
+            ]
+        },
+
+        "miller_son_no_living":{
+            "title":"So, I heard about your Dad, does that mean you live alone?",
+            "hub":"miller_son",
+            "requires":[],
+            "answer_lines":[
+                {"jump":"miller_no"}
+            ]
+        },
+
+        "miller_son_yes_where":{
+            "title":"Maybe you can tell me where Bea lives? I wanted to talk magic with her.",
+            "hub":"miller_son",
+            "requires":["miller_son_yes_wizard"],
+            "answer_lines":[
+                {"who":"miller_son"
+                "text":"Mmm...So I don't really remember, she used to be across my street and a bit to the right from me."},
+
+                {"who":"miller_son"
+                "text":"Might also be 'cause I located her by hearing the bronze winchimes which are just like the little bronze numbers, I think."}
+            ]
+        },
+
+        "miller_son_yes_stuff":{
+            "title":"May I ask why you're changing the flowers for the wizard?",
+            "hub":"miller_son",
+            "requires":["miller_son_yes_wizard", "miller_son_yes_flowers"],
+            "answer_lines":[
+                {"who":"miller_son"
+                "text":"Mail like that doesn't deserve to rot and I'm even helping out Roth'la, she's the one that leaves the flowers, by the way."},
+
+                {"who":"miller_son"
+                "text":"Mona, Basil and I are also taking turns leaving bread by her door and we make sure she gets her mail as well, even if the amil is flowers."}
+            ]
+        },
+
+        "miller_no_stuff":{
+            "title":"Do you do anything else for the wizard other than bring her flowers?",
+            "hub":"miller_son",
+            "requires":["miller_son_yes_wizard", "miller_son_yes_flowers"],
+            "answer_lines":[
+                {"jump":"miller_son_no"}
+            ]
+        },
+
+        "miller_son_no_where":{
+            "title":"So can you specify where ",
+            "hub":"miller_son",
+            "requires":["miller_son_yes_wizard"],
+            "answer_lines":[
+                {"jump":"miller_son_no"}
+            ]
+        },
+
+        "miller_son_yes_living":{
+            "title":"Moving fine? I didn't mean to assume, it's just I heard your Dad died recently so you must either be moving or living alone, right?",
+            "hub":"miller_son",
+            "requires":[],
+            "answer_lines":[
+                {"who":"miller_son"
+                "text":"Mona and Basil, they're Baltrice the Baker's children, they begged Baltrice to let me live with them."},
+
+                {"who":"miller_son"
+                "text":"Moving's going great. Basil's been helping me and I'm rooming with them, since they're my partner and its been really great actually."},
+
+                {"who":"miller_son"
+                "text":"Mostly since Da wasn't the happiest that I'd been seeing Basil."}
+            ]
+        },
+
+        "miller_son_yes_murder":{
+            "title":"Murdered, right? Your Dad, I mean, how are you holding up.",
+            "hub":"miller_son",
+            "requires":["mu_my_flag"],
+            "answer_lines":[
+                {"who":"miller_son"
+                "text":"My Da...well, I don't think he was murdered for one."},
+
+                {"who":"miller_son"
+                "text":"Most people in town are blaming Pepper, but I don't think so even if I don't think they should get married and all, I think the whole died in an inn think was an accident."}
+            ]
+        },
+
+        "miller_son_no_murder":{
+            "title":"What do you know about the Miller's death?",
+            "hub":"miller_son",
+            "requires":["mu_my_flag"],
+            "answer_lines":[
+                {"jump":"miller_son_no"}
+            ]
+        },
+
+        "miller_son_meet":{
+            "title":"My friends and I are investiagating the Miller's death, you want to meet us in the inn around an hour before sunset and see what we find?",
+            "hub":"miller_son",
+            "requires":["mu_my_flag"],
+            "answer_lines":[
+                {"effects":"miller_son_coming":True}
+                {"who":"miller_son"
+                "text":"Mmm...Sure, I guess, it can't hurt at least"}
+            ]
+        }
     }
 
     """
@@ -1705,31 +1847,13 @@ init 1 python:
             "requires":[],
             "answer_lines":[
                 {}
-                {"who":"sojourn"
+                {"who":"miller_son"
                 "text":""}
             ]
         },
     
-    //basically variables that go in answer_lines, in this order, repeat is to only be used with call and jump, trust
+    //basically variables that go in answer_lines, in this order, no idea if repeat can be used with stuff except call and jump
     "repeat"
     "call"
     "jump"
-    
-
-    "story_hour": {
-    "title": "Tell me a story",
-    # top-level answer_lines can be empty or default; we'll use variants
-    "hub": "mirror",
-    "variants": [
-        [   # variant 0 (list of lines)
-            {"who": "mirror", "text": "Once upon a time..."},
-            {"who": "mirror", "text": "They lived happily ever after."}
-        ],
-        [   # variant 1
-            {"who": "mirror", "text": "A different tale begins..."},
-            {"who": "mirror", "text": "And so it goes."}
-        ],
-        # ...more variants...
-    ],
-    requirements: []
     """
