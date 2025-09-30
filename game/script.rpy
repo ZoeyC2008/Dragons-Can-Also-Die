@@ -146,9 +146,9 @@ define pos_dragon_right = Position(xalign=0.9, ypos=1100)
 define pos_drgn_decon_center = Position(xalign = 0.5, yalign = 0.5)
 
 #chanting, this is something to be figured out
-define kill_drgn_chant = "humanahumanahumanahumanhumana"
-define butterfly_chant = "archeus oh pokemon god please come down before us and summon a feable butterfree"
-define teleport_chant = "RAHHHHHHHHHHHHHHHHHHHHH"
+define kill_drgn_chant = "Si Long, Draco Mori, Umeret' Drakon, Der Drache Sterben, Morire Draco, Sei Lung"
+define butterfly_chant = "Arceus, oh Pokemon God, please allow me to summon a feable Butterfree."
+define teleport_chant = "Save us 3cc of mouth blood and ram head and HEX!"
 
 #Variable and flags default 
 
