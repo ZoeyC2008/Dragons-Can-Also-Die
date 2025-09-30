@@ -1810,11 +1810,11 @@ label ch3_classic_wolf:
 label ch3_classic_wizard:
     wizard "[butterfly_chant]."
     drgn_classic "ANNOYING BUG!!"
-    hide window
     scene cutscene classic die1
-    scene cutscene classsic die2
     boy "[kill_drgn_chant]!!!"
     drgn_classic "ARRRGGGGHHHHH"
+    hide window
+    scene cutscene classsic die2
     pause
 
     jump ch3_dead_drgn
