@@ -1097,7 +1097,7 @@ label ch2_choose_door:
         $ bread_aquired = True
         miller_son "Wait!"
         
-        show miller_son at pos_drgaon_right
+        show miller_son at pos_dragon_right
         
         miller_son "I talked with Sojourn and am really grateful that mess has been cleaned up."
         miller_son "I was hoping you'd accept the bread my partner, Basil, made!"
