@@ -108,9 +108,9 @@ image titlecard ch3 = "images/titlecards/ch3.png"
 image cutscene_puppet_show = "images/cutscenes/puppet_show.png"
 
 #decon drgn stuff (at the end of photos)
-image drgn_decon_one = "images/drgn_decon/drgn_decon_1.png"
-image drgn_decon_two = "images/drgn_decon/drgn_decon_2.png"
-image drgn_decon_three = "images/drgn_decon/drgn_decon_3.png"
+image drgn_decon one = "images/drgn_decon/drgn_decon_1.png"
+image drgn_decon two = "images/drgn_decon/drgn_decon_2.png"
+image drgn_decon three = "images/drgn_decon/drgn_decon_3.png"
 
 image code1 = "images/drgn_decon/code1.png"
 image code2 = "images/drgn_decon/code2.png"
@@ -225,6 +225,7 @@ label start:
     #jump ch0_titlecard
 
 label test:
+    
     jump ch0_titlecard    
 
     return
@@ -1945,7 +1946,7 @@ label ch3_decon_start:
     
     drgn_decon "Sorry, that was the last decision for you to make."
 
-    degn_decon "Now, just click forwards."
+    drgn_decon "Now, just click forwards."
     
 
     $ start_random_pile_blocking(code_list)
