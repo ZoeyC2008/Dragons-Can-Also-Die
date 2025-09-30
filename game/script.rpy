@@ -18,13 +18,12 @@ define princess_name = "Fensediaiwe"
 
 #@Naomi are we putting char in front of the characters? e.g. char_boy??
 define mirror = Character("[mirror_name]", color="#e0dddd")
-define mirror = Character(mirror_name, color="#e0dddd")
 define boy = Character("The Boy: [boy_name]", color="#ba0f0a")
 define wolf = Character("The Wolf: Llangernyw", color="#90a3b0")
-define wizard = Character("The Wizard: Bea", color="#6f4685")
+define wizard = Character("The Wizard: Bea", color="#9642c3")
 define innkeeper = Character("The Innkeeper: Pepper", color="#028a0f")
 define shepherd = Character("Herd Shep: Rath'la Dnar", color="#ffda03")
-define sojourn = Character("[sojourn_name]", color="#001f3d")
+define sojourn = Character("[sojourn_name]", color="#0151a2")
 define miller_son = Character("Miller's Mischieveous Moppet: Much", color="#be5504")
 define drgn_classic = Character("Furious Dragon", color="#ff2400") #@Naomi is Furious better than Classic or Traditional?
 define drgn_sad = Character("Depressed Dragon", color="#2c3e4c") #logic here is that decon also starts with d
@@ -52,14 +51,17 @@ image boy shock = "images/characters/boy/boy_shocked.png"
 #Wolf
 image wolf = "images/characters/wolf/wolf_default.png"
 image wolf dying = "images/characters/wolf/wolf_dying.png"
+image wolf party = "images/characters/wolf/wolf_party.png"
 
 #Wizard
 image wizard = "images/characters/wizard/wizard_default.png"
+image wizard party = "images/characters/wizard/wizard_face_right.png"
 
 #Villagers
 image innkeeper = "images/characters/villagers/innkeeper_default.png"
 image miller_son = "images/characters/villagers/miller_son_default.png"
 image sojourn = "images/characters/villagers/sojourn_default.png"
+image shepherd = "images/characters/villagers/shepherd.png"
 
 #dragons
 image drgn_hobby = "images/characters/dragons/hobby.png"
@@ -68,39 +70,44 @@ image drgn_sad = "images/characters/dragons/depressed.png"
 
 #backgrounds (I ledgitemently think this is the hardesd part)
 #ch0
-image bg_black = "#000"
+image bg black = "#000"
+image bg white = "#fff"
 
 #ch1 forest
-image bg_forest_path = "images/backgrounds/bg_forest_path.png"
-image bg_forest_camp = "images/backgrounds/bg_forest_camp.png"
+image bg forest path = "images/backgrounds/bg_forest_path.png"
+image bg forest camp = "images/backgrounds/bg_forest_camp.png"
 
 #ch2 village
-image bg_pasture = "images/backgrounds/bg_pasture.png"
-image bg_village_street = "images/backgrounds/bg_village_street.png"
-image bg_inn = "images/backgrounds/bg_inn.png"
-image bg_doors = "images/backgrounds/bg_doors.png"
-image bg_wizard_tower = "images/backgrounds/bg_wizard_tower.png"
+image bg pasture = "images/backgrounds/bg_pasture.png"
+image bg village street = "images/backgrounds/bg_village_street.png"
+image bg inn = "images/backgrounds/bg_inn.png"
+image bg doors = "images/backgrounds/bg_doors.png"
+image bg wizard tower = "images/backgrounds/bg_wizard_tower.png"
 
 #ch3 dragons
-image bg_lair_hobby = "images/backgrounds/lairs/bg_hobby.png"
+image bg lair hobby = "images/backgrounds/lairs/bg_hobby.png"
+image bg lair sad = "images/backgrounds/lairs/bg_depressed.png"
+image bg lair classic = "images/backgrounds/lairs/bg_classic.png"
 
 #ch3 dragon endings
-image cut_classic_run_no_wizard = "images/cutscenes/cut_classic_run_no_wizard.png"
+image cutscene classic run = "images/cutscenes/cut_classic_run_no_wizard.png"
+image cutscene sad bread = "images/cutscenes/cut_depressed_bread.png"
+image cutscene sad dead = "images/cutscenes/cut_depressed_dead.png"
+image cutscene sad wizard = "images/cutscenes/cut_depressed_wizard.png"
+image cutscene hobby song = "images/cutscenes/cut_hobby_song.png"
 
-#ch3 dragon endings
-image cut_classic_run_no_wizard = "images/cutscenes/cut_classic_run_no_wizard.png"
+
 
 #titlecards
-image titlecard_ch0 = "images/titlecards/ch0.png"
-image titlecard_ch1 = "images/titlecards/ch1.png"
-image titlecard_ch2 = "images/titlecards/ch2.png"
-image titlecard_ch3 = "images/titlecards/ch3.png"
+image titlecard ch0 = "images/titlecards/ch0.png"
+image titlecard ch1 = "images/titlecards/ch1.png"
+image titlecard ch2 = "images/titlecards/ch2.png"
+image titlecard ch3 = "images/titlecards/ch3.png"
 
 #cutscenes
 image cutscene_puppet_show = "images/cutscenes/puppet_show.png"
 
 #decon drgn stuff (at the end of photos)
-image bg white = "#fff"
 image drgn_decon_one = "images/drgn_decon/drgn_decon_1.png"
 image drgn_decon_two = "images/drgn_decon/drgn_decon_2.png"
 image drgn_decon_three = "images/drgn_decon/drgn_decon_3.png"
@@ -125,8 +132,12 @@ define pos_slightly_left = Position(xalign=0.35, yalign=0.5)
 define pos_left = Position(xalign=0.07, yalign=0.5)
 define pos_wolf_center = Position(xalign=0.5, ypos=wolf_ypos)
 define pos_wolf_slightly_left = Position(xalign=0.4, ypos=wolf_ypos)
+define pos_wolf_party = Position(xalign=0.3, ypos=wolf_ypos)
+
 define pos_slightly_right = Position(xalign=0.7, ypos=0.5)
+
 define pos_wizard_slightly_right = Position(xalign=0.7, ypos=wizard_ypos)
+define pos_wizard_party = Position(xalign=0.5, ypos=1100)
 
 define pos_dragon_right = Position(xalign=0.9, ypos=1100)
 
@@ -195,6 +206,7 @@ default miller_son_bread = False
 default bread_aquired = False
     #wizard stuff
 default wizard_door = 0
+default wizard_door_num = 7 #pray this throws an error
 default wizard_convinced = 0
 default wizard_threshold = 4
 default wizard_joined = False
@@ -213,18 +225,13 @@ label start:
     #jump ch0_titlecard
 
 label test:
-    # we do be testing art
-    scene black
-    show innkeeper at pos_dragon_right
-
-    pause
 
     jump ch0_titlecard    
 
     return
 
 label ch0_titlecard:
-    scene titlecard_ch0
+    scene titlecard ch0
     
     pause
 
@@ -232,7 +239,7 @@ label ch0_titlecard:
 
 
 label ch0_puppet_show:    
-    scene cutscene_puppet_show
+    scene cutscene puppet show
 
     #initial choices
     "...And so they lived, happily ever after."
@@ -252,7 +259,7 @@ label ch0_puppet_show:
     jump ch0_mirror_question_hub
 
 label ch0_mirror_question_hub:
-    scene bg_black
+    scene bg black
     show mirror
     
     python:
@@ -287,7 +294,7 @@ label ch1_titlecard:
 
 #boy shows up
 label ch1_wake_up:
-    scene bg_forest_path
+    scene bg forest path
     show boy at pos_left
     
 
@@ -556,7 +563,7 @@ label ch1_pick_boy_name:
 
 #we do be traveling
 label ch1_travel_question_hub:
-    scene bg_forest_camp
+    scene bg forest camp
     show boy at pos_left
     show wolf at pos_wolf_center
 
@@ -594,7 +601,7 @@ label ch1_travel_question_hub:
 
 #the road goes ever on
 label ch1_travel_day1:
-    scene bg_forest_path
+    scene bg forest path
     show boy at pos_left
     show wolf at pos_wolf_center
 
@@ -617,7 +624,7 @@ label ch1_travel_day1:
     jump ch1_travel_question_hub
 
 label ch1_travel_day2:
-    scene bg_forest_path
+    scene bg forest path
     show boy at pos_left
     show wolf at pos_wolf_center
 
@@ -640,7 +647,7 @@ label ch1_travel_day2:
     jump ch1_travel_question_hub
 
 label ch1_travel_day3:
-    scene bg_forest_path
+    scene bg forest path
     show boy at pos_left
     show wolf dying at pos_wolf_center
 
@@ -679,7 +686,7 @@ label ch1_travel_day3_song:
 
 #chapter 2
 label ch2_titlecard:
-    scene titlecard_ch2
+    scene titlecard ch2
 
     pause
     
@@ -687,7 +694,7 @@ label ch2_titlecard:
 
 #ch 2 inn
 label ch2_meet_innkeeper:
-    scene bg_inn
+    scene bg inn
     show boy at pos_left
     show wolf at pos_wolf_slightly_left
     show innkeeper at pos_dragon_right
@@ -778,7 +785,7 @@ label ch2_innkeeper_demo:
     boy "Sun's up, so we're up!"
     boy "I'll be in the common room soon with wolf."
 
-    scene bg_inn
+    scene bg inn
     show innkeeper at pos_dragon_right
     show boy at pos_left
     show wolf at pos_wolf_slightly_left
@@ -848,7 +855,8 @@ label ch2_innkeepre_demo_reaction_miller:
     jump ch2_assignments
 
 label ch2_assignments:
-    #hide innkeeper
+    hide innkeeper
+    
     boy "Everyone's much friendlier if you're nice,"
     boy "Yes, Wolf that means you."
     boy "Also, we should try to match them, it's the least we could do seeing as we're guests in the village."
@@ -902,7 +910,8 @@ label ch2_assignments_shepherd:
     boy "Wolf, i want you to stay at the inn and talk to either Innkeeper or that other guest she mentioned. I'll take to the streets and make inquireies that way."
     boy "Good luck to all of us, we'll meet back here an hour before sunset."
 
-    scene bg_village_street
+    scene bg village street
+    hide wolf
 
     boy "I'm glad Wolf's staying at the inn. I'd be worried about him running into trouble on the streets."
 
@@ -919,16 +928,13 @@ label ch2_assignments_miller_son:
     boy "Good luck to all of us, we'll meet back here an hour before sunset."
     jump ch2_miller_son_question_hub
 
-
-
-
 #innkeeper q hub
 label ch2_innkeeper_question_hub:
     python:
         hub_key = "innkeeper"
         num_asks = 2
     
-    scene bg_inn
+    scene bg inn
     show innkeeper at center
 
     innkeeper "What are you doing here? is there anything you hope to hear?"
@@ -947,13 +953,12 @@ label ch2_innkeeper_no:
 
     jump ch2_scrum
 
-
 label ch2_sojourn_question_hub:
     python:
         hub_key = "sojourn"
         num_asks = 4
 
-    scene bg_inn
+    scene bg inn
     show sojourn at center
     sojourn "You had stuff you want to ask about?"
     sojourn "I'm happy to talk with you."
@@ -981,7 +986,7 @@ label ch2_miller_son_question_hub:
         hub_key = "miller_son"
         num_asks = 0
 
-    scene bg_village_street
+    scene bg village street
 
     show miller_son at center
 
@@ -990,7 +995,6 @@ label ch2_miller_son_question_hub:
     call hub_loop
 
     jump ch2_scrum
-
 
 label ch2_miller_son_no:
     miller_son "May you be less rude when you next open your mouth."
@@ -1002,7 +1006,8 @@ label ch2_shepherd_question_hub:
         hub_key = "shepherd"
         num_asks = 4
 
-    scene bg_pasture
+    scene bg pasture
+    show shepherd at center
     
     shepherd "Field's humble. My to you brings what?"
 
@@ -1025,9 +1030,9 @@ label ch2_scrum:
         if assignment_boy == "miller_son" and mu_my_flag:
             miller_son_coming = True
 
-    scene bg_inn
+    scene bg inn
     show boy at pos_left
-    show wolf at pos_wolf_center
+    show wolf at pos_wolf_slightly_left
 
     boy "So what did everyone learn?"
     boy "Wolf?"
@@ -1063,7 +1068,7 @@ label ch2_scrum:
     boy "Alright, let's go find Wizard's door, knock, and see if she wants to come along."
 
     if miller_son_coming:
-        #show miller_son at pos idk
+        show miller_son at pos_dragon_right
 
         miller_son "So, what have you learned about Da's death?"
         menu:
@@ -1078,15 +1083,18 @@ label ch2_scrum:
                 $ ellipsis()
                 miller_son "So you don't know either."
 
-        
-
 label ch2_choose_door:
-    scene bg_village_street
+    scene bg village street
+    show boy at pos_left
+    show wolf at pos_wolf_slightly_left
+    
     pause
     if miller_son_bread:
         $ bread_aquired = True
         miller_son "Wait!"
-        # show miller_son at pos
+        
+        show miller_son at pos_drgaon_right
+        
         miller_son "I talked with Sojourn and am really grateful that mess has been cleaned up."
         miller_son "I was hoping you'd accept the bread my partner, Basil, made!"
         menu:
@@ -1105,19 +1113,19 @@ label ch2_choose_door:
     
     scene bg_doors
     $ wizard_door = renpy.input("Choose which door to knock on:")
-    if wizard_door == 7:
+    if wizard_door == wizard_door_num:
         jump ch2_wizard_start
     else:
         jump ch2_random_door
 
 label ch2_random_door:
-    #show scene wrong door
+    scene bg black
     extra "Get away!"
     extra "And stay away from this village and our wizard!"
     jump ch2_travel
 
 label ch2_wizard_start:
-    scene bg_wizard_tower
+    scene bg wizard tower
     show boy at pos_left
     show wolf at pos_wolf_slightly_left
     show wizard at pos_wizard_slightly_right
@@ -1130,7 +1138,7 @@ label ch2_wizard_start:
     wizard "C-c-come in."
     wizard "S-s-sorry, I h-h-heard you, um..."
 
-    #show scene wizard room
+    scene bg inn
     boy "I'm Boy, that's Wolf, and this is Prince."
     wolf "I am Llangernyw, the Wolf. That is what you will call me, and nothing less."
     wizard "Llangernyw!! Y-y-you have a-a-amazing m-m-magic."
@@ -1172,7 +1180,7 @@ label ch2_wizard_b1_wizard_right:
     boy "Prine! Why would you say that!"
     boy "I'd expect something like this from Wolf, not you."
     wolf "They're not wrong though."
-    show boy -snark
+    show boy -shock
     boy "NO. They're both wrong. Bea, I know you know something unique about magic, every practitioner does."
     boy "Just because you aren't good at it in a traditional sense doesn't eman you don't have a magical perspective honed through practice."
     boy "Something that I, for one, don't have."
@@ -1409,8 +1417,10 @@ label ch2_travel:
 
 #we do be traveling
 label ch2_travel_question_hub:
-    scene bg_forest_camp
+    scene bg forest camp
     show boy at pos_left
+    if wizard_joined:
+        show wizard at pos_wizard_slightly_right
     show wolf at pos_wolf_center
 
     $ travel_day += 1
@@ -1438,8 +1448,10 @@ label ch2_travel_question_hub:
 
 #the road goes ever on
 label ch2_travel_day1:
-    scene bg_forest_path
+    scene bg forest path
     show boy at pos_left
+    if wizard_joined:
+        show wizard at pos_wizard_slightly_right
     show wolf at pos_wolf_center
     if wizard_joined:
         show wizard at pos_wizard_slightly_right
@@ -1460,8 +1472,10 @@ label ch2_travel_day1:
     jump ch2_travel_question_hub
 
 label ch2_travel_day2:
-    scene bg_forest_path
+    scene bg forest path
     show boy at pos_left
+    if wizard_joined:
+        show wizard at pos_wizard_slightly_right
     show wolf at pos_wolf_center
     if wizard_joined:
         show wizard at pos_wizard_slightly_right
@@ -1482,8 +1496,10 @@ label ch2_travel_day2:
     jump ch2_travel_question_hub
 
 label ch2_travel_day3:
-    scene bg_forest_path
+    scene bg forest path
     show boy at pos_left
+    if wizard_joined:
+        show wizard at pos_wizard_slightly_right
     show wolf at pos_wolf_center
 
     boy "We'll be arriving tomorrow."
@@ -1501,14 +1517,14 @@ label ch2_travel_day3_song:
 
 
 label ch3_titlecard:
-    show titlecard_ch3
+    show titlecard ch3
 
     pause
 
     jump ch3_decide
 
 label ch3_decide:
-    scene bg_black
+    scene bg black
     boy "This is it. Through this tunnel is the dragon."
 
     python:
@@ -1530,17 +1546,15 @@ label ch3_decide:
         $ which_drgn = "decon"
         jump ch3_decon_start
 
-label ch3_drgn_hobby:
-    scene bg_lair_hobby
-    show boy at pos_left
-    show wolf at pos_wolf_slightly_left
-    show drgn_hobby at pos_dragon_right
-    
-    #debug the images!!!
-
-    pause
-
 label ch3_sad_start:
+    scene bg lair sad
+    show boy at pos_left
+    if wizard_joined:
+        show wizard party at pos_wizard_party
+    show wolf party at pos_wolf_party   
+
+    show drgn_sad
+
     if wizard_joined:
         jump ch3_sad_wizard
     else:
@@ -1575,7 +1589,8 @@ label ch3_sad_wizard:
             boy "We'll find another solution to our problems."
             boy "But later."
             wizard "For now, we help."
-    #cutscene
+    
+    scene cutscene sad wizard
 
 
     #script cont
@@ -1599,17 +1614,13 @@ label ch3_sad_wizard:
 
     menu:
         "I'll stay with you.": #do we keep this??
+            pause
             jump ending_stay_with_sad
         "We'll make sure the whole world knows you're kind.":
+            pause
             jump ch3_alive_drgn    
 
 label ch3_sad_no_wizard:
-    #art
-    show boy at pos_left
-    show wolf at pos_wolf_slightly_left
-    show drgn_hobby at pos_dragon_right
-
-
     #script
     drgn_sad "..."
     boy "Hello."
@@ -1646,8 +1657,6 @@ label ch3_sad_no_wizard:
             jump ch3_sad_no_wizard_save
 
 label ch3_sad_no_wizard_kill:
-    #art
-
     #script
     boy "I think you might be right."
     wolf "You'll still need to use that spell"
@@ -1656,7 +1665,7 @@ label ch3_sad_no_wizard_kill:
     boy "Depressed Dragon, I hope you won't mind."
     
     #art
-
+    scene cutscene sad dead
 
     #script cont
     wolf "May thine soul find freedom outside this pale imitation of thine brilliance..."
@@ -1682,6 +1691,7 @@ label ch3_sad_no_wizard_save_bread:
     boy "Why don't you try it."
 
     #cutscene
+    scene cutscene sad bread
 
 
     #script cont
@@ -1711,7 +1721,7 @@ label ch3_sad_no_wizard_save_bread:
 
 label ch3_sad_no_wizard_save_no_bread:
     #cutscene death
-
+    scene cutscene sad dead
 
     #script
     drgn_sad "This... is... a... good..."
@@ -1727,7 +1737,13 @@ label ch3_sad_no_wizard_save_no_bread:
 
 
 label ch3_classic_start:
-    show drgn_classic at pos_dragon_right
+    scene bg lair classic
+    show boy at pos_left
+    if wizard_joined:
+        show wizard party at pos_wizard_party
+    show wolf party at pos_wolf_party
+
+    show drgn_classic
 
     drgn_classic "WHO DARES ENTER MY LAIR!"
     boy "Nobody. Just some people who are here to slay you."
@@ -1765,7 +1781,7 @@ label ch3_classic_start:
 label ch3_classic_run:
     boy "What are you doing!!"
 
-    scene cut_classic_run_no_wizard
+    scene cutscene classic run
 
     boy "RUNNNNNNNNNN!!"
 
@@ -1776,9 +1792,9 @@ label ch3_classic_run:
 label ch3_classic_wolf:
     wolf "I haven't the strength!!"
 
-    #cutscene
+    scene cutscene classic run
 
-    boy "[teleport_chant]!!"
+    boy "RUNNNNNNNNNN!!"
 
     pause
 
@@ -1805,25 +1821,29 @@ label ch3_classic_bread:
     jump ch3_dead_drgn
 
 label ch3_hobby_start:
+    scene bg lair hobby
     show boy at pos_left
-    scene bg_hobby
+    if wizard_joined:
+        show wizard party at pos_wizard_party
+    show wolf party at pos_wolf_party
     
     boy "We are here to..."
     boy "...slay you"
+    
     show drgn_hobby at pos_dragon_right
+    
     drgn_hobby "Hi!!"
     drgn_hobby "It's been so long since I had any visitors!!"
     drgn_hobby "Sit!!"
 
     boy "Erm... Hello?"
     drgn_hobby "Just wait a moment as I get my guitar!"
+    
     hide drgn_hobby
 
     if wizard_joined:
-        show wizard at pos_slightly_left
         wizard "Are we still slaying her?"
     else:
-        show wolf at pos_wolf_slightly_left
         wolf "Are we still slaying her?"
 
     menu:
@@ -1839,11 +1859,7 @@ label ch3_hobby_start:
     drgn_hobby "I'm back!"
     drgn_hobby "You'll have to tell me what you think of my performance!!"
     
-    hide drgn_hobby
-    hide boy
-    hide wolf
-    hide wizard
-    show cut_hobby_song
+    scene cutscene hobby song
     drgn_hobby "I was scared of dentists and the dark\nI was scared of pretty girls and starting conversations"
     drgn_hobby "Oh, all my friends are turnin' green\nYou're the magician's assistant in their dream"
     drgn_hobby "Ah-ooh, ah-oh\nAnd they come unstuck"
@@ -1871,7 +1887,6 @@ label ch3_hobby_start:
     drgn_hobby "I got a lump in my throat 'cause\nYou're gonna sing the words wrong"
     #song ends
 
-    scene bg_hobby
     drgn_hobby "That was my performance of Riptide by Vance Joy!! It's one of my favourite songs!!"
     drgn_hobby "So what did you think!!"
     menu:
@@ -1895,6 +1910,8 @@ label ch3_hobby_start:
     boy "I hope that goes well!"
     boy "We'll definitly send people your way!"
 
+    pause
+
     jump ch3_alive_drgn
 
 label ch3_decon_start:
@@ -1913,7 +1930,6 @@ label ch3_decon_start:
 
     drgn_decon "So what do you think?"
 
-    pause
 
     menu:
         "I think this is weird??":
@@ -1940,7 +1956,9 @@ label ch3_decon_start:
 
 #post drgn meeting
 label ch3_dead_drgn:
-    
+    scene bg forest camp
+    show boy at center
+
     if wizard_joined:
         boy "Wizard's asleep."
     boy "Wolf's eating the dragon's heart right now. He's sleeping it off right now and I'm hoping he'll feel better in the morning."
@@ -1957,10 +1975,18 @@ label ch3_dead_drgn:
 
 
 label ch3_alive_drgn:
+    scene bg forest camp
+    show boy at pos_left
+    if wizard_joined:
+        show wizard at pos_wizard_slightly_right
+    show wolf at pos_wolf_center
+
     boy "So... talk now?"
     wolf "I'm going to sleep, that took way to much from me and I need my precious rest."
+    hide wolf
     if wizard_joined:
         wizard "I think, I'll follow him. Sorry, Boy."
+        hide wizard
     menu:
         "I have some questions":
             jump ch3_question_hub
@@ -1989,7 +2015,12 @@ label ending_walk_away:
     return
 
 label ending_stay_with_sad:
-    #art
+    scene bg lair sad
+
+    show wizard party at pos_left
+    show drgn_sad
+
+
 
     wizard "Do you want me to tell you stories?"
     drgn_sad "Yes... That sounds good."
@@ -2065,6 +2096,8 @@ label ending_decon_crash:
     "Sometimes, it's okay that things do weird things and start crashing."
     "That is the reality of code."
     "Have you tried turning it off an restarting?"
+
+    return
 
 #kinda just ignoring the whole ending thing
 label ending:
