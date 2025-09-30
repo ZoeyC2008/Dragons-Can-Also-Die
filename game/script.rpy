@@ -17,13 +17,13 @@ define mirror_name = "The Mirror" #In recover the past ending, The Mirror: Ilia
 define princess_name = "Fensediaiwe"
 
 #@Naomi are we putting char in front of the characters? e.g. char_boy??
-define mirror = Character(mirror_name, color="#e0dddd")
+define mirror = Character("[mirror_name]", color="#e0dddd")
 define boy = Character("The Boy: [boy_name]", color="#ba0f0a")
 define wolf = Character("The Wolf: Llangernyw", color="#90a3b0")
 define wizard = Character("The Wizard: Bea", color="#6f4685")
 define innkeeper = Character("The Innkeeper: Pepper", color="#028a0f")
 define shepherd = Character("Herd Shep: Rath'la Dnar", color="#ffda03")
-define sojourn = Character(sojourn_name, color="#001f3d")
+define sojourn = Character("[sojourn_name]", color="#001f3d")
 define miller_son = Character("Miller's Mischieveous Moppet: Much", color="#be5504")
 define drgn_classic = Character("Furious Dragon", color="#ff2400") #@Naomi is Furious better than Classic or Traditional?
 define drgn_sad = Character("Depressed Dragon", color="#2c3e4c") #logic here is that decon also starts with d
@@ -118,7 +118,7 @@ init python:
     add_little = 6
     add_tiny = 2
     subtract_tiny = -2
-    threshold = 40
+    threshold = 20
 
     def ellipsis():
         global royal, decon, aloof
@@ -181,6 +181,9 @@ label test:
     # we do be testing art
 
     pause
+
+    jump ch2_sojourn_question_hub
+
     return
 
 label ch0_titlecard:
@@ -1003,7 +1006,7 @@ label ch2_scrum:
     boy "Prince?"
     menu:
         "(Tell them what you know.)":
-            prince "That's good info."
+            boy "That's good info."
         "...":
             $ ellipsis()
 
@@ -1772,20 +1775,49 @@ label ch3_dead_drgn:
 
 
 label ch3_alive_drgn:
-    pass
+    boy "So... talk now?"
+    wolf "I'm going to sleep, that took way to much from me and I need my precious rest."
+    wizard "I think, I'll follow him. Sorry, Boy."
+    menu:
+        "I have some questions":
+            jump ch3_question_hub
+        "Sorry, I think I'll sleep too.":
+            jump ending_sweet_sleep
 
 label ch3_question_hub:
-    pass
+    python:
+        hub_key = "drgn"
+        num_asks = 4
+    
+    boy "I'll do my best to answer them."
+    call hub_loop
+
+    python:
+        hub_key = None
+        num_asks = 0
+
+
+    jump ending_ask_questions
 
 label ending_walk_away:
+    scene bg black
+    "Sometimes, dragons don't die, even if they can. That's okay."
+    "Sometimes, you don't want to go a quest, even if you can. That's also okay."
     return
 
 label ending_stay_with_sad:
+    #art
 
     wizard "Do you want me to tell you stories?"
     drgn_sad "Yes... That sounds good."
     wizard "Then, that's what we'll do unitl [boy_name] and Llangernyw return."
     wizard "Once upon a time there was a dragon..."
+
+    scene bg black
+    "Sometimes, the monsters at the end of stories can be killed, but..."
+    "Sometimes, they are also just looking for a little help."
+    "Sometimes, often even, they can also be our friends."
+    "Sometimes, we just need to reach out first."
     return
 
 label ending_remember_mirror:
@@ -1800,7 +1832,7 @@ label ending_remember_mirror:
             boy "No doubt, that, everyone is still themselves in their heart of hearts, that they are themselves."
             boy "We've travelled together for weeks, I'd like to think I at least know a part of you."
     menu:
-        "(Inscribe Ilia.)":
+        "(Inscribe Ilia into the air.)":
             $ mirror_name = "The Mirror: Ilia"
             mirror "Keeper!"
             mirror "You remember?"
@@ -1808,9 +1840,40 @@ label ending_remember_mirror:
         "Yes. Somehting you most certainly did not arrange for, dropping me in the middle of a dragon hunting quest.":
             mirror "Well, coincidences happen."
     menu:
-        "Ilia, Ilia my best friend, there was a reason":
+        "Ilia, Ilia my best friend, there was a reason I forgot you know. Not all thing should be known, and I do not wish to know the truth of this world--this game.":
             mirror "What!"
+    boy "Oh that."
+    boy "It's not that bad."
+    boy "Us being in a game and technically not 'real' doesn't matter."
+    boy "To us everything is 'real' and that's what matters. I see the clouds, I hear the burbling stream, I smell the fresh flowers, I feel the rock beneath me, and I know that I am myself."
+    boy "So what if I'm fake in another universe. I can't touch it and it can't touch me."
+    boy "You can live your life with this knowledge. I do. Travel with Wolf and I, we'll see more of our world, and we'll be, if not happy, then at least together."
+    menu:
+        "I accept.":
+            boy "Welcome!"
     
+    scene bg black
+    "Sometimes, the dragons do die. The monsters at the end of a story can be killed, even if they oftern aren't a monster."
+    "Sometimes, it's okay to remember, even if you wanted to forget."
+    "Sometimes, hard truths are better than kind lies."
+    return
+
+label ending_sweet_sleep:
+    scene bg black
+    "Sometimes, dragons don't die, even if they can."
+    "Sometimes, the best laid plans are led astray."
+    "Sometimes, it's important not to talk."
+    "Sometimes, it's important to sleep."
+    "Good night."
+    return
+
+label ending_ask_questions:
+    scene bg black
+
+    "Sometimes, you need to be curious"
+    "Sometimes, you need to ask questions."
+    "Sometimes, often, in fact, the answers are just as important."
+
     return
 
 #kinda just ignoring the whole ending thing

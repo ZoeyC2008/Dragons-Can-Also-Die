@@ -1476,20 +1476,19 @@ init 1 python:
         },
 
         #sojourn!!
-        "sojourn_story_one":{
+        "sojourn_story_start":{
             "title":"Would you talk of your sojourn? And what of many story you saw.",
             "hub":"sojourn",
             "requires":[],
             "answer_lines":[
-                {"repeat":"true"},
                 {"call":"sojourn_story_one"}
             ]
         },
 
-        "sojourn_story":{
+        "sojourn_story_tell":{
             "title":"Talk of your many story. I enjoy it.",
             "hub":"sojourn",
-            "requires":["sojourn_story_one"],
+            "requires":["sojourn_story_start"],
             "answer_lines":[
                 {"repeat":"true"},
                 {"call":"sojourn_story"}
@@ -1497,7 +1496,7 @@ init 1 python:
         },
 
         "sojourn_no_elaborate":{
-            "title":"Can you elaborate? Like explain more about the harship you mentioned/",
+            "title":"Can you elaborate? Like explain more about the hardship you mentioned.",
             "hub":"sojourn",
             "requires":[],
             "answer_lines":[
@@ -1530,7 +1529,7 @@ init 1 python:
         "sojourn_yes_future":{
             "title":"And if you go on? Past this village, that is?",
             "hub":"sojourn",
-            "requires":["sojourn_story"],
+            "requires":["sojourn_story_start"],
             "answer_lines":[
                 {"who":"sojourn",
                 "text":"I think I shall go to the south. Lord knows it is far too cold for my bofy and I had a wish of warming up to a point."},
@@ -1543,7 +1542,7 @@ init 1 python:
         "sojourn_yes_why":{
             "title":"Why did you go out on a sojourn?",
             "hub":"sojourn",
-            "requires":["sojourn_story"],
+            "requires":["sojourn_story_start"],
             "answer_lines":[
                 {"who":"sojourn",
                 "text":"I want to know a world. For it is knowable, at least in part, and I know not to follow what is not."},
@@ -1837,18 +1836,80 @@ init 1 python:
                 {"who":"miller_son",
                 "text":"Mmm...Sure, I guess, it can't hurt at least"}
             ]
+        },
+
+        "drgn_okay":{
+            "title":"Are you holding up alright?",
+            "hub":"drgn",
+            "requires":[],
+            "answer_lines":[
+                {"who":"boy",
+                "text":"Yes. I think so."},
+
+                {"who":"boy",
+                "text":"That question was mostly for an even four wasn't it?"},
+
+                {"who":"boy",
+                "text":"Four possible dragons, four possible chapters, four possible characters going into the dragon lair."},
+
+                {"who":"boy",
+                "text":"Yes, it makes sense to end on another four."}
+            ]
+        },
+
+        "drgn_will":{
+            "title":"What will you do now.",
+            "hub":"drgn",
+            "requires":[],
+            "answer_lines":[
+                {"who":"boy",
+                "text":"Keep travelling"},
+
+                {"who":"boy",
+                "text":"Keep finding ways to help Wolf."},
+
+                {"who":"boy",
+                "text":"Keep learning magic."},
+
+                {"who":"boy",
+                "text":"I'm self satisfied and see no reason to change my way of life."}
+            ]
+        },
+
+        "drgn_future":{
+            "title":"What will I do in the future?",
+            "hub":"drgn",
+            "requires":[],
+            "answer_lines":[
+                {"who":"boy",
+                "text":"Whatever you want, I'm not going to control you."},
+
+                {"who":"boy",
+                "text":"But, I don't mind if you keep travelling with Wolf and I."},
+
+                {"who":"boy",
+                "text":"But in the end, it's you who makes your future."}
+            ]
+        },
+
+        "drgn_why":{
+            "title":"Why was the dragon...like that?",
+            "hub":"drgn",
+            "requires":[],
+            "answer_lines":[
+                {"call":"drgn_variation"}
+            ]
         }
     }
 
     """
         "":{
             "title":"",
-            "hub":"miller_son",
+            "hub":"drgn",
             "requires":[],
             "answer_lines":[
-                {}
-                {"who":"miller_son"
-                "text":""}
+                {"who":"boy",
+                "text":""},
             ]
         },
     

@@ -190,3 +190,19 @@ label sojourn_zhuangzi:
     $ sojourn_name = "Man in Midst of Sojourn: 噩梦"
     return
 
+label drgn_variation:
+    if which_drgn == "sad":
+        boy "We have expectations of the world and the world has expectations of us."
+        boy "You are called a prince/ss and you act like it."
+        boy "This dragon, she didn't want to be a classic fire-breathing monster and this harmless, sad, sometimes decrepit, is not an uncommon subversion."
+    elif which_drgn == "classic":
+        boy "You knew, even if you don't remember that this is meant to be about subverting tropes."
+        boy "So, you try your best attempt at sarcasm and external references, something that while we're not lacking is also something we seeping in."
+        boy "Something had to give."
+        boy "If every element in the parody or subversion is self-aware and in turn parodic, then it must be either really good or really bad. (A good parody is measured by how much love the source material had from the parody creators, in this creator's opinion.)"
+        boy "So, the dragon was perfectly classic and traditional."
+    elif which_drgn == "aloof":
+        boy "*shrug* It's like the dragon said, sometimes we all need reminders to grind us."
+        boy "We can't be all passion, all the time, but that also doesn't mean we shouldn't give something to everything we do and we shouldn't try to be above everything."
+    else:
+        boy "IT WAS MR. ERROR."
