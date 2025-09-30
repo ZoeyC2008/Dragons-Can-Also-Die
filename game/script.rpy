@@ -18,6 +18,7 @@ define princess_name = "Fensediaiwe"
 
 #@Naomi are we putting char in front of the characters? e.g. char_boy??
 define mirror = Character("[mirror_name]", color="#e0dddd")
+define mirror = Character(mirror_name, color="#e0dddd")
 define boy = Character("The Boy: [boy_name]", color="#ba0f0a")
 define wolf = Character("The Wolf: Llangernyw", color="#90a3b0")
 define wizard = Character("The Wizard: Bea", color="#6f4685")
@@ -67,29 +68,36 @@ image drgn_sad = "images/characters/dragons/depressed.png"
 
 #backgrounds (I ledgitemently think this is the hardesd part)
 #ch0
-image bg black = "#000"
+image bg_black = "#000"
 
 #ch1 forest
-image bg forest path = "images/backgrounds/bg_forest_path.png"
-image bg forest camp = "images/backgrounds/bg_forest_camp.png"
+image bg_forest_path = "images/backgrounds/bg_forest_path.png"
+image bg_forest_camp = "images/backgrounds/bg_forest_camp.png"
 
 #ch2 village
-image bg pasture = "images/backgrounds/bg_pasture.png"
+image bg_pasture = "images/backgrounds/bg_pasture.png"
+image bg_village_street = "images/backgrounds/bg_village_street.png"
+image bg_inn = "images/backgrounds/bg_inn.png"
+image bg_doors = "images/backgrounds/bg_doors.png"
+image bg_wizard_tower = "images/backgrounds/bg_wizard_tower.png"
 
 #ch3 dragons
-image bg lair hobby = "images/backgrounds/lairs/bg_hobby.png"
+image bg_lair_hobby = "images/backgrounds/lairs/bg_hobby.png"
+
+#ch3 dragon endings
+image cut_classic_run_no_wizard = "images/cutscenes/cut_classic_run_no_wizard.png"
 
 #ch3 dragon endings
 image cut_classic_run_no_wizard = "images/cutscenes/cut_classic_run_no_wizard.png"
 
 #titlecards
-image titlecard ch0 = "images/titlecards/ch0.png"
-image titlecard ch1 = "images/titlecards/ch1.png"
-image titlecard ch2 = "images/titlecards/ch2.png"
-image titlecard ch3 = "images/titlecards/ch3.png"
+image titlecard_ch0 = "images/titlecards/ch0.png"
+image titlecard_ch1 = "images/titlecards/ch1.png"
+image titlecard_ch2 = "images/titlecards/ch2.png"
+image titlecard_ch3 = "images/titlecards/ch3.png"
 
 #cutscenes
-image cutscene puppet show = "images/cutscenes/puppet_show.png"
+image cutscene_puppet_show = "images/cutscenes/puppet_show.png"
 
 #decon drgn stuff (at the end of photos)
 image bg white = "#fff"
