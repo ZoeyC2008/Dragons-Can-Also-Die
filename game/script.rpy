@@ -225,7 +225,6 @@ label start:
     #jump ch0_titlecard
 
 label test:
-
     jump ch0_titlecard    
 
     return
