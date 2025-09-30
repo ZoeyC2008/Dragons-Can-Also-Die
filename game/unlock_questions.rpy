@@ -709,7 +709,7 @@ init 1 python:
                 "text":"It could help you too."},
 
                 {"who":"boy",
-                "text":"The dragon's mind can also heal minds, it'd definitly help you with your missing memories."},
+                "text":"The dragon's mind can also heal minds, it'd definitely help you with your missing memories."},
             ]
         },
 
@@ -809,7 +809,7 @@ init 1 python:
                 "text":"Well, I don't know all that much."},
 
                 {"who":"boy",
-                "text":"It's pretty small and they do like farming and what not. Definitly has a lot of farmers and shepherds, maybe has a lost heir and a magic sword, seeing as there's a wizard hiding over there."},
+                "text":"It's pretty small and they do like farming and what not. definitely has a lot of farmers and shepherds, maybe has a lost heir and a magic sword, seeing as there's a wizard hiding over there."},
                 
                 {"who":"boy",
                 "text":"ALthough it probably doesn't. The chances of a random town having a true magic sword is one in a million."},
@@ -1093,7 +1093,7 @@ init 1 python:
             "hub":"innkeeper",
             "requires":[],
             "answer_lines":[
-                {"jump":"innkeeper_no_rhyme"}
+                {"jump":"innkeeper_no"}
             ]
         },
 
@@ -1102,7 +1102,7 @@ init 1 python:
             "hub":"innkeeper",
             "requires":["mu_my_flag"],
             "answer_lines":[
-                {"jump":"innkeeper_no_rhyme"}
+                {"jump":"innkeeper_no"}
             ]
         },
 
@@ -1132,7 +1132,7 @@ init 1 python:
             "hub":"innkeeper",
             "requires":["innkeeper_yes_dragon"],
             "answer_lines":[
-                {"jump":"innkeeper_no_rhyme"}
+                {"jump":"innkeeper_no"}
             ]
         },
 

@@ -91,6 +91,8 @@ image bg lair classic = "images/backgrounds/lairs/bg_classic.png"
 
 #ch3 dragon endings
 image cutscene classic run = "images/cutscenes/cut_classic_run_no_wizard.png"
+image cutscene classic die1 = "images/cutscenes/classic_die1.png"
+image cutscene classic die2 = "images/cutscenes/classic_die2.png"
 image cutscene sad bread = "images/cutscenes/cut_depressed_bread.png"
 image cutscene sad dead = "images/cutscenes/cut_depressed_dead.png"
 image cutscene sad wizard = "images/cutscenes/cut_depressed_wizard.png"
@@ -105,7 +107,7 @@ image titlecard ch2 = "images/titlecards/ch2.png"
 image titlecard ch3 = "images/titlecards/ch3.png"
 
 #cutscenes
-image cutscene_puppet_show = "images/cutscenes/puppet_show.png"
+image cutscene puppet show = "images/cutscenes/puppet_show.png"
 
 #decon drgn stuff (at the end of photos)
 image drgn_decon one = "images/drgn_decon/drgn_decon_1.png"
@@ -144,9 +146,9 @@ define pos_dragon_right = Position(xalign=0.9, ypos=1100)
 define pos_drgn_decon_center = Position(xalign = 0.5, yalign = 0.5)
 
 #chanting, this is something to be figured out
-define kill_drgn_chant = ""
-define butterfly_chant = ""
-define teleport_chant = ""
+define kill_drgn_chant = "humanahumanahumanahumanhumana"
+define butterfly_chant = "archeus oh pokemon god please come down before us and summon a feable butterfree"
+define teleport_chant = "RAHHHHHHHHHHHHHHHHHHHHH"
 
 #Variable and flags default 
 
@@ -206,7 +208,7 @@ default miller_son_bread = False
 default bread_aquired = False
     #wizard stuff
 default wizard_door = 0
-default wizard_door_num = 7 #pray this throws an error
+default wizard_door_num = 4 #pray this throws an error
 default wizard_convinced = 0
 default wizard_threshold = 4
 default wizard_joined = False
@@ -224,9 +226,11 @@ label start:
 
     #jump ch0_titlecard
 
-label test:
-    
-    jump ch0_titlecard    
+label test:   
+
+    jump ch0_titlecard
+   
+    pause 
 
     return
 
@@ -705,9 +709,9 @@ label ch2_meet_innkeeper:
     innkeeper "I hold you to no blame, but just so you know Pepper's the name; you'll be enjoy your two rooms and I claim: they're both one and the same."
     innkeeper "Stay in the common room 'till onset of night, I'll bring over some soup so you won't be feeling light."
 
-    #hide innkeeper
+    hide innkeeper
 
-    wolf "Finally being a good apprentice, eh Boy? This Wold definitly needs his privacy and I imagine you two youngsters will want your own room."
+    wolf "Finally being a good apprentice, eh Boy? This Wold definitely needs his privacy and I imagine you two youngsters will want your own room."
 
     menu:
         "I'd rather share with you, I like your lectures on magic.":
@@ -805,7 +809,7 @@ label ch2_innkeeper_demo:
     boy "Innkeeper, please tell us about the folks 'round here! I even heard there's a magician who I'd love to watch and give them a cheer."
     innkeeper "Bea! Everyone calls her a delight, house right next to  a street light."
     innkeeper "Her admirer the Shepherd finds work in the fields; \nServel the Smith makes the greatest shields;"
-    innkeeper "Baltrice the Baker is lazy and lives next to hte mill; \nWren the Weaver has pet spiders along with skill;"
+    innkeeper "Baltrice the Baker is lazy and lives next to the mill; \nWren the Weaver has pet spiders along with skill;"
     innkeeper "Benjy the Butcher has knife in hand and tears in eyes; \nSirra the Spinner is dreamy and gives advice that's wise;"
     innkeeper "Sally the Seamstress is a hateful woman with nothing to addd; \nCandice the Cobbler can't finish their work and leaves their clients sad;"
     innkeeper "Tinden the Tanner is forever fair and honourable and just; \nCorry the Candlestick maker is almost snuffed out with every gust;"
@@ -984,13 +988,13 @@ label sojourn_no:
 label ch2_miller_son_question_hub:
     python:
         hub_key = "miller_son"
-        num_asks = 0
+        num_asks = 4
 
     scene bg village street
 
     show miller_son at center
 
-    miller_son "Man, man, woman, person, stranger, whatever. What are you doing wandering round here?"
+    miller_son "Man, woman, person, stranger, whatever. What are you doing wandering round here?"
 
     call hub_loop
 
@@ -1553,7 +1557,7 @@ label ch3_sad_start:
         show wizard party at pos_wizard_party
     show wolf party at pos_wolf_party   
 
-    show drgn_sad
+    show drgn_sad at pos_dragon_right
 
     if wizard_joined:
         jump ch3_sad_wizard
@@ -1579,7 +1583,7 @@ label ch3_sad_wizard:
     boy "And we want to."
     wolf "Seconded."
     menu:
-        "Yes. We'll definitly help.":
+        "Yes. We'll definitely help.":
             wizard "See."
         "*whisper* Wait, what happened to killing the dragon?":
             wizard "We don't."
@@ -1589,7 +1593,7 @@ label ch3_sad_wizard:
             boy "We'll find another solution to our problems."
             boy "But later."
             wizard "For now, we help."
-    
+    hide window
     scene cutscene sad wizard
 
 
@@ -1665,6 +1669,7 @@ label ch3_sad_no_wizard_kill:
     boy "Depressed Dragon, I hope you won't mind."
     
     #art
+    hide window
     scene cutscene sad dead
 
     #script cont
@@ -1681,7 +1686,7 @@ label ch3_sad_no_wizard_save:
     drgn_sad "No... I... want... to..."
     drgn_sad "Want... to.. die..."
     menu:
-        "(Give her bread.)":
+        "(Give her bread.)" if (bread_aquired == True):
             jump ch3_sad_no_wizard_save_bread
         "...":
             jump ch3_sad_no_wizard_save_no_bread
@@ -1691,8 +1696,8 @@ label ch3_sad_no_wizard_save_bread:
     boy "Why don't you try it."
 
     #cutscene
+    hide window
     scene cutscene sad bread
-
 
     #script cont
     boy "There's more to live for."
@@ -1743,7 +1748,7 @@ label ch3_classic_start:
         show wizard party at pos_wizard_party
     show wolf party at pos_wolf_party
 
-    show drgn_classic
+    show drgn_classic at pos_dragon_right
 
     drgn_classic "WHO DARES ENTER MY LAIR!"
     boy "Nobody. Just some people who are here to slay you."
@@ -1781,6 +1786,7 @@ label ch3_classic_start:
 label ch3_classic_run:
     boy "What are you doing!!"
 
+    hide window
     scene cutscene classic run
 
     boy "RUNNNNNNNNNN!!"
@@ -1792,6 +1798,7 @@ label ch3_classic_run:
 label ch3_classic_wolf:
     wolf "I haven't the strength!!"
 
+    hide scene
     scene cutscene classic run
 
     boy "RUNNNNNNNNNN!!"
@@ -1803,7 +1810,9 @@ label ch3_classic_wolf:
 label ch3_classic_wizard:
     wizard "[butterfly_chant]."
     drgn_classic "ANNOYING BUG!!"
-    # cutscene
+    hide window
+    scene cutscene classic die1
+    scene cutscene classsic die2
     boy "[kill_drgn_chant]!!!"
     drgn_classic "ARRRGGGGHHHHH"
     pause
@@ -1908,7 +1917,7 @@ label ch3_hobby_start:
     drgn_hobby "But I want more people to listen, get used to having an audience and all that."
     drgn_hobby "My parents have already told me, when I let myself touch the world, the world will reach back and hurt me. I don't want to be hurt, so I'm going to touch the world a little and see if that does happen."
     boy "I hope that goes well!"
-    boy "We'll definitly send people your way!"
+    boy "We'll definitely send people your way!"
 
     pause
 
@@ -2018,7 +2027,7 @@ label ending_stay_with_sad:
     scene bg lair sad
 
     show wizard party at pos_left
-    show drgn_sad
+    show drgn_sad at pos_slightly_right
 
 
 
