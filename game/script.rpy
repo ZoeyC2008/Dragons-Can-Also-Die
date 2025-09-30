@@ -208,7 +208,7 @@ default miller_son_bread = False
 default bread_aquired = False
     #wizard stuff
 default wizard_door = 0
-default wizard_door_num = 4 #pray this throws an error
+default wizard_door_num = 4
 default wizard_convinced = 0
 default wizard_threshold = 4
 default wizard_joined = False
@@ -1116,7 +1116,9 @@ label ch2_choose_door:
 
     
     scene bg_doors
-    $ wizard_door = renpy.input("Choose which door to knock on:")
+    $ wizard_door = renpy.input("Choose which door to knock on: (Type an int from between 1-10)")
+    $ wizard_door = int(wizard_door) if wizard_door.isdigit() else -1
+
     if wizard_door == wizard_door_num:
         jump ch2_wizard_start
     else:
@@ -1130,19 +1132,19 @@ label ch2_random_door:
 
 label ch2_wizard_start:
     scene bg wizard tower
-    show boy at pos_left
-    show wolf at pos_wolf_slightly_left
-    show wizard at pos_wizard_slightly_right
 
     boy "Hello?"
     wizard "H-h-hello..."
     boy "We were wondering if this is the local wizard."
-    wizard "I-I_I. Y-y-yes... I-I-I am."
+    wizard "I-I-I. Y-y-yes... I-I-I am."
     wolf "Boy, tell her to return us inside."
     wizard "C-c-come in."
     wizard "S-s-sorry, I h-h-heard you, um..."
 
     scene bg inn
+    show boy at pos_left
+    show wolf at pos_wolf_slightly_left
+    show wizard at pos_wizard_slightly_right
     boy "I'm Boy, that's Wolf, and this is Prince."
     wolf "I am Llangernyw, the Wolf. That is what you will call me, and nothing less."
     wizard "Llangernyw!! Y-y-you have a-a-amazing m-m-magic."
