@@ -101,6 +101,43 @@ init 2 python:
         label_name = scene_list.pop(idx)
         renpy.call(label_name)
 
+    def start_random_pile_blocking(image_list):
+        min_pause=0.1
+        accel_range=(0.75, .99)
+        layer='master'
+        
+        # Defensive checks
+        if not image_list:
+            return
+
+        pause_time = float(2.0)
+        keep_piling = 40
+
+        while keep_piling > 0:
+            img = random.choice(image_list)
+
+            xpos = random.random()
+            ypos = random.random()
+
+            # Build a Transform so the shown image can be placed and transformed.
+            t = Transform(xpos=xpos, ypos=ypos, xanchor=0.5, yanchor=0.5)
+
+            tag = "pile_%d" % keep_piling
+
+            # Show the image using the unique tag so it does NOT replace previous images (they pile).
+            renpy.show(img, at_list=[t], tag=tag, layer=layer)
+
+            # Pause (this yields to the engine)
+            renpy.pause(pause_time, hard=True)
+
+            # shorten pause multiplicatively by a random factor in accel_range
+            factor = random.uniform(accel_range[0], accel_range[1])
+            pause_time = max(min_pause, pause_time * factor)
+
+            keep_piling -= 1
+
+        # When loop exits, function returns.
+
 # --- label to play topic with nested-choices support ---
 label show_topic_answer:
     $ topic_id = _current_topic

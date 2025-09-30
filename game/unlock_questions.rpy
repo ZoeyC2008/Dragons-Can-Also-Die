@@ -1010,7 +1010,7 @@ init 1 python:
         },
 
         "travel_wolf_sleep":{
-            "title":"",
+            "title":"Llangernyw, how do you fall asleep so fast?",
             "hub":"travel",
             "requires":["travel_day_three", "travel_early_flag"],
             "answer_lines":[
@@ -1048,6 +1048,29 @@ init 1 python:
             "answer_lines":[
                 {"repeat":"true"},
                 {"call":"ellipsis_saga"}
+            ]
+        },
+
+        "travel_wizard_dragon":{
+            "title":"Bea, what do you know about dragons?",
+            "hub":"travel",
+            "requires":["wizard_joined"],
+            "answer_lines":[
+                {"repeat":"true"},
+                {"call":"wizard_dragon"}
+            ]
+        },
+
+        "travel":{
+            "title":"Bea, what can you do with magic?",
+            "hub":"travel",
+            "requires":["wizard_joined"],
+            "answer_lines":[
+                {"who":"wizard",
+                "text":"Oh, I can summon the illusion of a butterfly!"},
+                
+                {"who":"wizard",
+                "text":"That's it, that's all, that's everything I can do."}
             ]
         },
 
