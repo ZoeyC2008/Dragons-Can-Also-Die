@@ -15,7 +15,7 @@ define mirror_name = "The Mirror" #In recover the past ending, The Mirror: Ilia
 #protag name
 define princess_name = "Fensediaiwe"
 
-#@Naomi are we putting char in front of the characters? e.g. char_boy??
+#@Naomi are we putting char in front of the characters? e.g. char_boy?? nah
 define mirror = Character(mirror_name, color="#e0dddd")
 define boy = Character("The Boy: [boy_name]", color="#ba0f0a")
 define wolf = Character("The Wolf: Llangernyw", color="#90a3b0")
@@ -37,19 +37,19 @@ define extra = Character ("???", color="#eee")
 #characters
 #mirror
 image mirror = "images/characters/mirror/mirror_0_whole.png"
-image mirror small cracks = "images/characters/mirror/mirror_1_small_cracks.png"
-image mirror medium cracks = "images/characters/mirror/mirror_2_medium_cracks.png"
-image mirror big cracks = "images/characters/mirror/mirror_3_big_cracks.png"
-image mirror frame = "images/characters/mirror/mirror_4_frame.png"
+image mirror_small_cracks = "images/characters/mirror/mirror_1_small_cracks.png"
+image mirror_medium_cracks = "images/characters/mirror/mirror_2_medium_cracks.png"
+image mirror_big_cracks = "images/characters/mirror/mirror_3_big_cracks.png"
+image mirror_frame = "images/characters/mirror/mirror_4_frame.png"
 
 #Boy!
 image boy = "images/characters/boy/boy_default.png"
-image boy snarky = "images/characters/boy/boy_snarky.png"
-image boy shock = "images/characters/boy/boy_shocked.png"
+image boy_snarky = "images/characters/boy/boy_snarky.png"
+image boy_shock = "images/characters/boy/boy_shocked.png"
 
 #Wolf
 image wolf = "images/characters/wolf/wolf_default.png"
-image wolf dying = "images/characters/wolf/wolf_dying.png"
+image wolf_dying = "images/characters/wolf/wolf_dying.png"
 
 #Wizard
 image wizard = "images/characters/wizard/wizard_default.png"
@@ -64,26 +64,30 @@ image drgn_hobby = "images/characters/dragons/hobby_default.png"
 
 #backgrounds (I ledgitemently think this is the hardesd part)
 #ch0
-image bg black = "#000"
+image bg_black = "#000"
 
 #ch1 forest
-image bg forest path = "images/backgrounds/bg_forest_path.png"
-image bg forest camp = "images/backgrounds/bg_forest_camp.png"
+image bg_forest_path = "images/backgrounds/bg_forest_path.png"
+image bg_forest_camp = "images/backgrounds/bg_forest_camp.png"
 
 #ch2 village
-image bg pasture = "images/backgrounds/bg_pasture.png"
+image bg_pasture = "images/backgrounds/bg_pasture.png"
+image bg_village_street = "images/backgrounds/bg_village_street.png"
+image bg_inn = "images/backgrounds/bg_inn.png"
+image bg_doors = "images/backgrounds/bg_doors.png"
+image bg_wizard_tower = "images/backgrounds/bg_wizard_tower.png"
 
 #ch3 dragons
-image bg lair hobby = "images/backgrounds/lairs/bg_hobby.png"
+image bg_lair_hobby = "images/backgrounds/lairs/bg_hobby.png"
 
 #titlecards
-image titlecard ch0 = "images/titlecards/ch0.png"
-image titlecard ch1 = "images/titlecards/ch1.png"
-image titlecard ch2 = "images/titlecards/ch2.png"
-image titlecard ch3 = "images/titlecards/ch3.png"
+image titlecard_ch0 = "images/titlecards/ch0.png"
+image titlecard_ch1 = "images/titlecards/ch1.png"
+image titlecard_ch2 = "images/titlecards/ch2.png"
+image titlecard_ch3 = "images/titlecards/ch3.png"
 
 #cutscenes
-image cutscene puppet show = "images/cutscenes/puppet_show.png"
+image cutscene_puppet_show = "images/cutscenes/puppet_show.png"
 
 #let's also define some image positions!
 define wolf_ypos = 1100
