@@ -977,7 +977,7 @@ label ch2_sojourn_question_hub:
 
     jump ch2_scrum
 
-label sojourn_no:
+label ch2_sojourn_no:
     sojourn "What an atrocious sound."
     sojourn "I'm afraid I'll only rally againn around dusk."
     sojourn "If you're still curious mayhaps I'll talk to you again after that hour."

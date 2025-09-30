@@ -1093,7 +1093,7 @@ init 1 python:
             "hub":"innkeeper",
             "requires":[],
             "answer_lines":[
-                {"jump":"innkeeper_no"}
+                {"jump":"ch2_innkeeper_no"}
             ]
         },
 
@@ -1102,7 +1102,7 @@ init 1 python:
             "hub":"innkeeper",
             "requires":["mu_my_flag"],
             "answer_lines":[
-                {"jump":"innkeeper_no"}
+                {"jump":"ch2_innkeeper_no"}
             ]
         },
 
@@ -1132,7 +1132,7 @@ init 1 python:
             "hub":"innkeeper",
             "requires":["innkeeper_yes_dragon"],
             "answer_lines":[
-                {"jump":"innkeeper_no"}
+                {"jump":"ch2_innkeeper_no"}
             ]
         },
 
@@ -1523,7 +1523,7 @@ init 1 python:
             "hub":"sojourn",
             "requires":[],
             "answer_lines":[
-                {"jump":"sojourn_no"}
+                {"jump":"ch2_sojourn_no"}
             ]
         },
 
@@ -1605,7 +1605,7 @@ init 1 python:
             "hub":"sojourn",
             "requires":["mu_my_flag"],
             "answer_lines":[
-                {"jump":"sojourn_no"}
+                {"jump":"ch2_sojourn_no"}
             ]
         },
 
@@ -1614,7 +1614,7 @@ init 1 python:
             "hub":"sojourn",
             "requires":["mu_my_flag"],
             "answer_lines":[
-                {"jump":"sojourn_no"}
+                {"jump":"ch2_sojourn_no"}
             ]
         },
 
@@ -1639,7 +1639,7 @@ init 1 python:
             "hub":"sojourn",
             "requires":["sojourn_yes_reason"],
             "answer_lines":[
-                {"jump":"sojourn_no"}
+                {"jump":"ch2_sojourn_no"}
             ]
         },
 
@@ -1683,7 +1683,7 @@ init 1 python:
             "hub":"sojourn",
             "requires":["sojourn_yes_motive"],
             "answer_lines":[
-                {"jump":"sojourn_no"}
+                {"jump":"ch2_sojourn_no"}
             ]
         },
 
@@ -1692,7 +1692,7 @@ init 1 python:
             "hub":"sojourn",
             "requires":["sojourn_yes_inn_motive"],
             "answer_lines":[
-                {"jump":"sojourn_no"}
+                {"jump":"ch2_sojourn_no"}
             ]
         },
 
@@ -1723,7 +1723,7 @@ init 1 python:
             "hub":"miller_son",
             "requires":[],
             "answer_lines":[
-                {"jump":"miller_son_no"}
+                {"jump":"ch2_miller_son_no"}
             ]
         },
 
@@ -1732,7 +1732,7 @@ init 1 python:
             "hub":"miller_son",
             "requires":[],
             "answer_lines":[
-                {"jump":"miller_son_no"}
+                {"jump":"ch2_miller_son_no"}
             ]
         },
 
@@ -1799,7 +1799,7 @@ init 1 python:
             "hub":"miller_son",
             "requires":["miller_son_yes_wizard", "miller_son_yes_flowers"],
             "answer_lines":[
-                {"jump":"miller_son_no"}
+                {"jump":"ch2_miller_son_no"}
             ]
         },
 
@@ -1808,7 +1808,7 @@ init 1 python:
             "hub":"miller_son",
             "requires":["miller_son_yes_wizard"],
             "answer_lines":[
-                {"jump":"miller_son_no"}
+                {"jump":"ch2_miller_son_no"}
             ]
         },
 
@@ -1846,7 +1846,7 @@ init 1 python:
             "hub":"miller_son",
             "requires":["mu_my_flag"],
             "answer_lines":[
-                {"jump":"miller_son_no"}
+                {"jump":"ch2_miller_son_no"}
             ]
         },
 
