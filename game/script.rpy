@@ -5,10 +5,10 @@
 
 
 #make dynamic colour, cause deconstructed wants to be weird
-define drgn_decon_color = "#000000"
+define drgn_decon_color = "#7cdcf0"
 
 #make dynamic names: (i think this works?)
-default boy_name = "" #Boy is namable by the player, real name is Sasha
+default boy_name = "Boy" #Boy is namable by the player, real name is Sasha
 #default boy_display_name = "The Boy: "+boy_name
 define sojourn_name = "Man in Midst of Sojourn: 噩梦" #With 'e's: The Sojourner: E Meng
 define mirror_name = "The Mirror" #In recover the past ending, The Mirror: Ilia
@@ -28,7 +28,7 @@ define miller_son = Character("Miller's Mischieveous Moppet: Much", color="#be55
 define drgn_classic = Character("Furious Dragon", color="#ff2400") #@Naomi is Furious better than Classic or Traditional?
 define drgn_sad = Character("Depressed Dragon", color="#2c3e4c") #logic here is that decon also starts with d
 define drgn_hobby = Character("Joyous Dragon", color="#0492c2")
-define degn_decon = Character("drgn_decon", color=drgn_decon_color) #I think it makes sense for decon to use her code name instead of a descriptor
+define drgn_decon = Character("drgn_decon", color=drgn_decon_color) #I think it makes sense for decon to use her code name instead of a descriptor
 
 #I don't think we use this
 define extra = Character ("???", color="#eee")
@@ -86,6 +86,24 @@ image titlecard ch3 = "images/titlecards/ch3.png"
 #cutscenes
 image cutscene puppet show = "images/cutscenes/puppet_show.png"
 
+#decon drgn stuff (at the end of photos)
+image bg white = "#fff"
+image drgn_decon one = "images/drgn_decon/drgn_decon_1.png"
+image drgn_decon two = "images/drgn_decon/drgn_decon_2.png"
+image drgn_decon three = "images/drgn_decon/drgn_decon_3.png"
+
+image code1 = "images/drgn_decon/code1.png"
+image code2 = "images/drgn_decon/code2.png"
+image code3 = "images/drgn_decon/code3.png"
+image code4 = "images/drgn_decon/code4.png"
+image code5 = "images/drgn_decon/code5.png"
+image code6 = "images/drgn_decon/code6.png"
+image code7 = "images/drgn_decon/code7.png"
+image code8 = "images/drgn_decon/code8.png"
+
+default code_list = [ "code%d" % i for i in range(1, 8) ]
+
+
 #let's also define some image positions!
 define wolf_ypos = 1100
 define wizard_ypos = 1100
@@ -96,6 +114,8 @@ define pos_wolf_center = Position(xalign=0.5, ypos=wolf_ypos)
 define pos_wolf_slightly_left = Position(xalign=0.4, ypos=wolf_ypos)
 define pos_slightly_right = Position(xalign=0.7, ypos=0.5)
 define pos_wizard_slightly_right = Position(xalign=0.7, ypos=wizard_ypos)
+
+define pos_drgn_decon_center = Position(xalign = 0.5, yalign = 0.5)
 
 #chanting, this is something to be figured out
 define kill_drgn_chant = ""
@@ -113,12 +133,12 @@ init python:
     #if none of the thresholds are met, deconstructed since you haven't made personality choices
 
     #amount to add
-    add_most = 16
-    add_some = 10
-    add_little = 6
-    add_tiny = 2
+    add_most = 20
+    add_some = 14
+    add_little = 9
+    add_tiny = 4
     subtract_tiny = -2
-    threshold = 20
+    threshold = 19
 
     def ellipsis():
         global royal, decon, aloof
@@ -180,9 +200,7 @@ label start:
 label test:
     # we do be testing art
 
-    pause
-
-    jump ch2_sojourn_question_hub
+    jump ch0_titlecard    
 
     return
 
@@ -1078,6 +1096,7 @@ label ch2_random_door:
     #show scene wrong door
     extra "Get away!"
     extra "And stay away from this village and our wizard!"
+    jump ch2_travel
 
 label ch2_wizard_start:
     #show scene right door
@@ -1367,7 +1386,101 @@ label ch2_wizard_deny:
     jump ch2_travel
 
 label ch2_travel:
-    pass
+    jump ch2_travel_question_hub
+
+
+#we do be traveling
+label ch2_travel_question_hub:
+    scene bg mountain camp
+    show boy at pos_left
+    show wolf at pos_wolf_center
+
+    $ travel_day += 1
+    
+    python:
+        hub_key = "travel"
+        num_asks = 2
+    
+    $ travel_early_flag = True
+    
+    call hub_loop
+
+    python:
+        hub_key = None
+        num_asks = 0
+
+    if travel_day == 5:
+        jump ch2_travel_day1
+    elif travel_day == 6:
+        jump ch2_travel_day2
+    elif travel_day == 7:
+        jump ch2_travel_day3
+    elif travel_day == 8:
+        jump ch3_titlecard
+
+#the road goes ever on
+label ch2_travel_day1:
+    scene bg mountain path
+    show boy at pos_left
+    show wolf at pos_wolf_center
+    if wizard_joined:
+        show wizard at pos_wizard_slightly_right
+
+    boy "Upon the hearth the fire is red,\nBeaneath the roof there is a bed;"
+    boy "But not yet weary are our feet,\nStill round the corner we may meet"
+    boy "A sudden tree or standing stone\nThat none have seen but we alone."
+    boy "Tree and flower and lead and grass,\nLet them pass! Let them pass!"
+    boy "Hill and water under sky,\nPass the by! Pass them by!"
+
+    menu:
+        "Still round the corner there may wait...":
+            $ decon += add_tiny
+        "Is that Lord of the Rings? By J. R. R. Tolkien?":
+            $ decon += add_most        
+        "...":    
+            $ ellipsis()    
+    jump ch2_travel_question_hub
+
+label ch2_travel_day2:
+    scene bg mountain path
+    show boy at pos_left
+    show wolf at pos_wolf_center
+    if wizard_joined:
+        show wizard at pos_wizard_slightly_right
+
+    boy "Still round the corner there may wait\nA new road or a secret gate,"
+    boy "And through we pass them by today,\nTomorrow we may come this way"
+    boy "And take the hidden paths that run\nTowards the Moon or to the Sun."
+    boy "Apple, thorn, and nut and sloe,\nLet them go! Let them go!"
+    boy "Sand and stone and pool and dell,\nFare you well! Fare you well!"
+
+    menu:
+        "Home is behind, the world ahead,...":
+            $ decon += add_tiny
+        "You're singing the same thing... And it's still Tolkien.":
+            $ decon += add_most        
+        "...":    
+            $ ellipsis()
+    jump ch2_travel_question_hub
+
+label ch2_travel_day3:
+    scene bg forest path
+    show boy at pos_left
+    show wolf at pos_wolf_center
+
+    boy "We'll be arriving tomorrow."
+
+    jump ch2_travel_day3_song
+
+label ch2_travel_day3_song:
+    boy "Home is behind, the world ahead,\nAnd there are many paths to tread"
+    boy "Through shadows to the edge of night,\nUntil the stars are all alight."
+    boy "Then the world behind and home ahead,\nWe'll wander back to home and bed."
+    boy "Mist and twilight, cloud and shade,\nAway shall fade! Away shall fade!"
+    boy "Fire and lamp, and meat and bread,\nAnd then to bed! And then to bed!"
+    
+    jump ch2_travel_question_hub
+
 
 label ch3_titlecard:
     show titlecard ch3
@@ -1730,7 +1843,7 @@ label ch3_hobby_start:
     drgn_hobby "That was my performance of Riptide by Vance Joy!! It's one of my favourite songs!!"
     drgn_hobby "So what did you think!!"
     menu:
-        "I was good!":
+        "It was good!":
             boy "I agree!"
         "I didn't like it.":
             boy "Which isn't to say it wasn't good! Just not to Prince's taste."
@@ -1753,7 +1866,44 @@ label ch3_hobby_start:
     jump ch3_alive_drgn
 
 label ch3_decon_start:
-    pass
+    scene bg white
+    show drgn_decon one at pos_drgn_decon_center
+
+    pause
+
+    show drgn_decon two
+
+    pause
+
+    show drgn_decon three
+
+    pause
+
+    drgn_decon "So what do you think?"
+
+    pause
+
+    menu:
+        "I think this is weird??":
+            drgn_decon "Weird is relative."
+        "I don't understand.":
+            drgn_decon "Nobody understands anything anyway, not truely."
+        "I think your art's awful.":
+            drgn_decon "Creator 1 knows. (At least I hope they know. It'd be awkward otherwise, but I think there's a reason Creator 2 does the art.)"
+        "I think the art's good...":
+            drgn_decon "Well, I think the art's horrible. I think I could have been drawn so much better if I wasn't left to crunch time."
+            drgn_decon "Thank you for being kind nonetheless."
+        "What does 'DYK: Dragons are fain life in the Cosmere' mean?":
+            drgn_decon "It means exactly what it says."
+    
+    drgn_decon "Sorry, that was the last decision for you to make."
+
+    degn_decon "Now, just click forwards."
+    
+
+    $ start_random_pile_blocking(code_list)
+    
+    jump ending_decon_crash
 
 
 #post drgn meeting
@@ -1777,7 +1927,8 @@ label ch3_dead_drgn:
 label ch3_alive_drgn:
     boy "So... talk now?"
     wolf "I'm going to sleep, that took way to much from me and I need my precious rest."
-    wizard "I think, I'll follow him. Sorry, Boy."
+    if wizard_joined:
+        wizard "I think, I'll follow him. Sorry, Boy."
     menu:
         "I have some questions":
             jump ch3_question_hub
@@ -1875,6 +2026,13 @@ label ending_ask_questions:
     "Sometimes, often, in fact, the answers are just as important."
 
     return
+
+label ending_decon_crash:
+    scene bg black
+
+    "Sometimes, it's okay that things do weird things and start crashing."
+    "That is the reality of code."
+    "Have you tried turning it off an restarting?"
 
 #kinda just ignoring the whole ending thing
 label ending:

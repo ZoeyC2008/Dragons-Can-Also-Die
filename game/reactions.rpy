@@ -87,7 +87,58 @@ label ellipsis_saga:
         boy "I don't even know what more I could talk about right now."
         boy "You've made feel really comfortable."
         boy "Let's go to sleep, we'll make it to the village tomorrow."
+    elif ellipsis_count == 8:
+        boy "I think I've finally thought of a name."
+        boy "What do you think of Sasha?"
+        $ boy_name = "Sasha"
+        $ travel_ellipsis_flag = False
+
+    $ ellipsis_count += 1
     
+    return
+
+default wizard_dragon_count = 0
+label wizard_dragon:
+    if wizard_dragon_count == 0:
+        wizard "European Dragons are traditionally shown as forces of nature, or even symbolic of evil in its purest form."
+        wizard "They can only be tamed by the select few, and the ones that aren't tamed tend to wreck villages and cities, as well as eat livestock and destroy crops."
+        wizard "Almost like predator animals, but bigger and stronger. Expect them to be giant winged beasts that breathe fire."
+        wizard "Eastern dragons are usually more benign, but are powerful, almost god-like beings capable of immense destruction if they are angered."
+        wizard "Then you have these dragons. They're not mean or destructive; in fact, they're downright friendly. "
+        wizard "These dragons tend to be only slightly bigger than an adult human and have much rounder features, such as a pear-shaped body. "
+        wizard "Expect them to be a Friend to All Living Things or at least a Friend to All Children."
+        wizard "If they are a lot bigger than humans, chances are they'll be a Gentle Giant. Small ones may be a Shoulder-Sized Dragon."
+        wizard "This is a fairly recent trope as far as depictions of dragons are concerned. "
+        wizard "It would not be until the late 20th century, though, that cute dragons truly became a fixture of popular culture. Nowadays, such portrayals are extremely common, to the point of almost rivaling the original, more monstrous, portrayals in number. "
+    elif wizard_dragon_count == 1:
+        wizard "In modern fantasy fiction, killing a dragon is usually a job for an entire party of adventurers, or completely beyond most warriors' ability to harm. "
+        wizard "So how can the Dragonslayer do this themselves? Having a dragon-specific Weapon of X-Slaying and the strength to lift and wield it helps, but beyond incredible strength and skill, they must have knowledge. Dragons traditionally have a brace of classic weak spots — a missing scale, the eyes, and the mouth are particularly common — and knowing just where to hit the beast can be crucial. "
+        wizard "Dragons, especially in games, often have specific elemental alignments, and knowing how to properly exploit the Elemental Rock-Paper-Scissors can also go a long way. "
+        wizard "So this is just a variant of the Hunter of Monsters, right? Well, no. "
+        wizard "The Hunter normally suffers the Achilles' Heel of Crippling Overspecialization, while the Dragonslayer still has a giant sword, which unlike a stake or silver daggers is very effective in battle."
+        wizard "The Dragonslayer is often The Hero with a few dead dragons tacked on. "
+        wizard "Due to the power and danger usually given to dragons in myth and fiction, the title of Dragonslayer itself can also be a highly respected and coveted one in-universe."
+        wizard "It is important to note that having killed one dragon does not necessarily make one a dragonslayer, just as having saved one person makes someone a hero but not The Hero. "
+        wizard "This is basically part of their job description, meaning they generally hunt dragons, plural. The other qualification, of course, is surviving the encounter."
+    elif wizard_dragon_count == 2:
+        wizard "In some settings, dragons tend to guard hoards of treasure — typically by lying on top of it. "
+        wizard "This trope is especially ingrained in Germanic mythology — in fact it is hard to find a dragon in ancient Anglo-Saxon, German or Norse legends that doesn't guard gold. "
+        wizard "Curiously, there is no consensus as to why dragons do this. Justifications in-story for why a dragon sits on a hoard, including backstories of how hoard and dragon came together, vary considerably. "
+        wizard "The classical version depicts dragons as taking over preexisting tombs or forgotten treasuries and taking possession of their rich grave goods or treasure; in modern fiction, it's usually more common for the dragon to piece a hoard together over a long lifetime of raiding and gathering trophies and baubles. "
+        wizard "Our dragon hords decide how m=big the dragon is."
+        wizard "Dragons have a peculiarity, though, in that they are especially attached to gold: dragon-hoards almost always contain at least a substantial share of gold."
+        wizard "Whatever the reasons, on average dragons show noticeably less interest in other treasures, like silver or even jewels. "
+        "Some dragons, like Joyous actually spends her gold on the stuffies, hence why she's so samll. Others, like Furious don't spend a cent, hence why she's massive."
+    elif wizard_dragon_count == 3:
+        wizard "Our Dragons Are Different, often very much so, and sometimes choosing a specific type from all the variety, or discarding all the others, is hard."
+        wizard "Some works dodge this issue by including a greater variety of dragons, including many different dragon appearances, characterizations and dispositions within a single work, and define all the different varieties as being distinct and distinctive strains, breeds or species that coexist in the same setting. "
+        wizard "There are many different ways to sort types of dragons, and no two works use all the same variants or define them in precisely the same way, but certain kinds tend to turn up more often than others."
+        wizard "Many of these originate from the depictions of mythological dragons used in specific historical areas or from unrelated mythical beings, while others are taken from heraldic systems and others still were created more or less from whole cloth in modern fantasy fiction."
+        wizard "Some works specifically root these distinctions in the number and kind of the creatures' appendages; this is not universal. "
+        wizard "It's also common for more original variants to turn up. "
+        wizard "These include more or less divergent variants of the above types, less well-established versions of or takes on fantasy dragons, more obscure mythological beings, and simply piques of a creator's fantasy. "
+    
+    $ wizard_dragon_count += 1
     return
 
 label sojourn_story_one:
@@ -99,10 +150,19 @@ label sojourn_story_one:
     $ sojourn_name = "Man in Midst of Sojourn: 噩梦"
     return
 
+default sojourn_count = 0
 label sojourn_story:
     $ sojourn_list = ["sojourn_cinderella", "sojourn_snegurochka", "sojourn_zhuangzi"]
 
-    $ random_call_from_list(sojourn_list, True)
+    if sojourn_count == 0:
+        call sojourn_cinderella
+    elif sojourn_count == 1:
+        call sojourn_snegurochka
+    else:
+        call sojourn_zhuangzi
+    
+    $ sojourn_count += 1
+
     return
 
 label sojourn_cinderella:
@@ -201,7 +261,7 @@ label drgn_variation:
         boy "Something had to give."
         boy "If every element in the parody or subversion is self-aware and in turn parodic, then it must be either really good or really bad. (A good parody is measured by how much love the source material had from the parody creators, in this creator's opinion.)"
         boy "So, the dragon was perfectly classic and traditional."
-    elif which_drgn == "aloof":
+    elif which_drgn == "hobby":
         boy "*shrug* It's like the dragon said, sometimes we all need reminders to grind us."
         boy "We can't be all passion, all the time, but that also doesn't mean we shouldn't give something to everything we do and we shouldn't try to be above everything."
     else:
