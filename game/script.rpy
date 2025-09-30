@@ -1818,7 +1818,6 @@ label ch3_classic_wolf:
 label ch3_classic_wizard:
     wizard "[butterfly_chant]."
     drgn_classic "ANNOYING BUG!!"
-    hide window
     scene cutscene classic die1
     boy "[kill_drgn_chant]!!!"
 
