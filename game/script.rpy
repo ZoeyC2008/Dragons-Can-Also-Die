@@ -1618,9 +1618,11 @@ label ch3_sad_wizard:
 
     menu:
         "I'll stay with you.": #do we keep this??
+            hide window
             pause
             jump ending_stay_with_sad
         "We'll make sure the whole world knows you're kind.":
+            hide window
             pause
             jump ch3_alive_drgn    
 
@@ -1677,6 +1679,7 @@ label ch3_sad_no_wizard_kill:
     boy "...[kill_drgn_chant]"
     drgn_sad "Thank... you..."
     
+    hide window
     pause
     
     jump ch3_dead_drgn
@@ -1720,6 +1723,7 @@ label ch3_sad_no_wizard_save_bread:
     drgn_sad "..."
     drgn_sad "Thank you."
 
+    hide window
     pause
     
     jump ch3_alive_drgn
@@ -1736,6 +1740,7 @@ label ch3_sad_no_wizard_save_no_bread:
     drgn_sad "Thank... you... for..."
     drgn_sad "For... being... a... spectator..."
 
+    hide window
     pause
 
     jump ch3_dead_drgn
@@ -1791,6 +1796,7 @@ label ch3_classic_run:
 
     boy "RUNNNNNNNNNN!!"
 
+    hide window
     pause
 
     jump ch3_alive_drgn
@@ -1798,10 +1804,12 @@ label ch3_classic_run:
 label ch3_classic_wolf:
     wolf "I haven't the strength!!"
 
-    hide scene
+    hide window
     scene cutscene classic run
 
     boy "RUNNNNNNNNNN!!"
+
+    hide window
 
     pause
 
@@ -1812,9 +1820,16 @@ label ch3_classic_wizard:
     drgn_classic "ANNOYING BUG!!"
     hide window
     scene cutscene classic die1
-    scene cutscene classsic die2
     boy "[kill_drgn_chant]!!!"
+
+    hide window
+    pause
+
+    hide window
+    scene cutscene classsic die2
+    
     drgn_classic "ARRRGGGGHHHHH"
+    hide window
     pause
 
     jump ch3_dead_drgn
@@ -1823,8 +1838,20 @@ label ch3_classic_bread:
     #show cutscene
 
     drgn_classic "WHAT!?"
+    drgn_classic "BREAD!?"
+    
+    hide window
+    scene cutscene classic die1
     boy "[kill_drgn_chant]!!!"
+
+    hide window
+    pause
+
+    hide window
+    scene cutscene classsic die2
+    
     drgn_classic "ARRRGGGGHHHHH"
+    hide window
     pause
 
     jump ch3_dead_drgn
@@ -1919,6 +1946,7 @@ label ch3_hobby_start:
     boy "I hope that goes well!"
     boy "We'll definitely send people your way!"
 
+    hide window
     pause
 
     jump ch3_alive_drgn
@@ -1957,6 +1985,7 @@ label ch3_decon_start:
 
     drgn_decon "Now, just click forwards."
     
+    hide window    
 
     $ start_random_pile_blocking(code_list)
     
