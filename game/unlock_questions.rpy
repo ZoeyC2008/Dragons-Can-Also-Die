@@ -1111,7 +1111,7 @@ init 1 python:
             "hub":"innkeeper",
             "requires":[],
             "answer_lines":[
-                {"jump":"inkeeper_no_rhyme"}
+                {"jump":"ch2_innkeeper_no"}
             ]
         },
 
